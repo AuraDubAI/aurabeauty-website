@@ -25,6 +25,7 @@ const OG_IMAGE = '/assets/og-image.png';   // 1200x630
 const OG_LOCALES = { it: 'it_IT', en: 'en_US', de: 'de_DE', fr: 'fr_FR', es: 'es_ES' };
 
 const pageUrl = lang => BASE_URL + '/' + lang + '/';
+const privacyUrl = lang => BASE_URL + '/' + lang + '/privacy/';
 
 // Data di <lastmod> nella sitemap. Costante e non new Date(): una data che
 // cambia a ogni esecuzione romperebbe l'idempotenza del build. Aggiornare a
@@ -79,11 +80,15 @@ const RUNTIME_KEYS = ['sending', 'success', 'error'];
 // Segnaposto risolti dal build, non dalle traduzioni.
 const BUILTIN = new Set([
   'LANG', 'LANG_UPPER', 'TITLE', 'DESCRIPTION', 'PRIVACY_URL',
-  'LANG_OPTIONS', 'I18N_SCRIPT', 'SEO_HEAD', 'STYLE_URL', 'SCRIPT_URL'
+  'LANG_OPTIONS', 'I18N_SCRIPT', 'SEO_HEAD', 'STYLE_URL', 'SCRIPT_URL',
+  // solo nelle pagine legali
+  'CANONICAL', 'HREFLANG_BLOCK', 'BODY'
 ]);
 
 // Segnaposto il cui valore e' gia' markup e non va escapato.
-const RAW = new Set(['LANG_OPTIONS', 'I18N_SCRIPT', 'SEO_HEAD']);
+const RAW = new Set([
+  'LANG_OPTIONS', 'I18N_SCRIPT', 'SEO_HEAD', 'HREFLANG_BLOCK', 'BODY'
+]);
 
 const PLACEHOLDER = /\{\{\s*([^}\s]+)\s*\}\}/g;
 
@@ -120,6 +125,38 @@ function buildI18nScript(t) {
   return '<script>window.AURA_I18N=' + json + ';<\/script>';
 }
 
+// Blocco hreflang reciproco su un insieme OMOGENEO di pagine: le home fra
+// loro, le privacy fra loro. urlFor decide quale insieme. Mescolarli
+// (una privacy che rimanda alla home di un'altra lingua) romperebbe la
+// reciprocita': non sono traduzioni l'una dell'altra.
+function hreflangBlock(urlFor) {
+  return LANGS
+    .map(l => '<link rel="alternate" hreflang="' + l + '" href="' + urlFor(l) + '">')
+    .concat('<link rel="alternate" hreflang="x-default" href="' + urlFor(X_DEFAULT) + '">')
+    .join('\n');
+}
+
+// Le <option> del selettore lingua. urlFor sceglie la destinazione: dalla
+// privacy italiana si passa alla privacy tedesca, non alla home tedesca.
+function langOptions(lang, urlFor) {
+  return LANG_OPTIONS.map(([code, label]) =>
+    '<option value="' + urlFor(code) + '"' + (code === lang ? ' selected' : '') + '>' +
+    escapeHtml(label) + '</option>'
+  ).join('');
+}
+
+// Corpo di una pagina legale. Le sezioni sono dati, non markup:
+// translations.js non contiene HTML. Ogni stringa e' escapata, quindi un
+// < in un testo legale non puo' diventare un tag.
+function renderLegalBody(sections) {
+  const out = [];
+  for (const s of sections) {
+    out.push('      <h2>' + escapeHtml(s.heading) + '</h2>');
+    for (const p of s.paragraphs) out.push('      <p>' + escapeHtml(p) + '</p>');
+  }
+  return out.join('\n');
+}
+
 // ---------- SEO nel <head> ----------
 // Tutto cio' che varia per lingua: canonical, hreflang reciproci,
 // Open Graph, Twitter Card, JSON-LD.
@@ -138,10 +175,7 @@ function buildSeoHead(lang, t) {
 
   // Blocco hreflang: ogni pagina elenca tutte le lingue, se stessa inclusa,
   // altrimenti la reciprocita' non e' completa e i motori lo ignorano.
-  for (const l of LANGS) {
-    out.push('<link rel="alternate" hreflang="' + l + '" href="' + pageUrl(l) + '">');
-  }
-  out.push('<link rel="alternate" hreflang="x-default" href="' + pageUrl(X_DEFAULT) + '">');
+  out.push(hreflangBlock(pageUrl));
 
   out.push(meta('property', 'og:type', 'website'));
   out.push(meta('property', 'og:site_name', 'AURA'));
@@ -229,26 +263,35 @@ function buildRobotsTxt() {
 }
 
 function buildSitemapXml() {
-  const alternates = LANGS
-    .map(l => '    <xhtml:link rel="alternate" hreflang="' + l + '" href="' + pageUrl(l) + '"/>')
-    .concat('    <xhtml:link rel="alternate" hreflang="x-default" href="' + pageUrl(X_DEFAULT) + '"/>')
+  // Le alternate di un URL devono elencare pagine equivalenti fra loro: le
+  // home con le home, le privacy con le privacy. Stesso insieme omogeneo
+  // dei blocchi hreflang nel <head>, stessa funzione urlFor a deciderlo.
+  const alternates = urlFor => LANGS
+    .map(l => '    <xhtml:link rel="alternate" hreflang="' + l + '" href="' + urlFor(l) + '"/>')
+    .concat('    <xhtml:link rel="alternate" hreflang="x-default" href="' + urlFor(X_DEFAULT) + '"/>')
     .join('\n');
 
-  const urls = LANGS.map(lang => [
+  const entries = (urlFor, priority) => LANGS.map(lang => [
     '  <url>',
-    '    <loc>' + pageUrl(lang) + '</loc>',
+    '    <loc>' + urlFor(lang) + '</loc>',
     '    <lastmod>' + BUILD_DATE + '</lastmod>',
-    alternates,
+    '    <priority>' + priority + '</priority>',
+    alternates(urlFor),
     '  </url>'
   ].join('\n')).join('\n');
 
-  // Escluse di proposito: /<lang>/privacy/ (non esiste ancora) e "/"
-  // (e' il fallback noindex).
+  // priority e' un peso RELATIVO interno alla sitemap: dice quali pagine
+  // contano di piu' fra le nostre, non rispetto ad altri siti. Le
+  // informative vanno indicizzate ma non sono la ragione per cui il sito
+  // esiste, quindi stanno sotto le home.
+  //
+  // Esclusa di proposito: "/", che e' il fallback noindex.
   return [
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
     '        xmlns:xhtml="http://www.w3.org/1999/xhtml">',
-    urls,
+    entries(pageUrl, '1.0'),
+    entries(privacyUrl, '0.3'),
     '</urlset>',
     ''
   ].join('\n');
@@ -345,7 +388,7 @@ function buildHeaders(assets) {
   ].join('\n');
 }
 
-function build404() {
+function build404(styleUrl) {
   const links = LANG_OPTIONS
     .map(([code, label]) => '    <a href="/' + code + '/">' + escapeHtml(label) + '</a>')
     .join('\n');
@@ -359,7 +402,7 @@ function build404() {
     '<title>404 — AURA</title>',
     '<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">',
     '<meta name="theme-color" content="#0a0a12">',
-    '<link rel="stylesheet" href="/style.css">',
+    '<link rel="stylesheet" href="' + styleUrl + '">',
     '</head>',
     '<body>',
     '<div class="bg-glow"></div>',
@@ -403,15 +446,20 @@ function buildRootFallback() {
 }
 
 // ---------- guardia (a): chiavi mancanti ----------
-function validateKeys(template, translations) {
+function validateKeys(templates, translations) {
   const keys = [...new Set([
-    // segnaposto presenti nel template
-    ...[...template.matchAll(PLACEHOLDER)].map(m => m[1]).filter(k => !BUILTIN.has(k)),
+    // segnaposto presenti nei template
+    ...templates
+      .flatMap(tpl => [...tpl.matchAll(PLACEHOLDER)].map(m => m[1]))
+      .filter(k => !BUILTIN.has(k)),
     // chiavi consumate a runtime via window.AURA_I18N: non compaiono nel
     // template, ma se mancassero il form resterebbe muto senza avvisare
     ...RUNTIME_KEYS.map(k => 'contact.' + k),
     // usate dal build per <title>, <meta name="description"> e Open Graph
-    'seo.title', 'seo.description', 'seo.ogImageAlt'
+    'seo.title', 'seo.description', 'seo.ogImageAlt',
+    // <head> e corpo delle pagine legali: risolte dal build, non dal
+    // template, quindi invisibili alla scansione dei segnaposto
+    'privacy.seo.title', 'privacy.seo.description', 'privacy.sections'
   ])];
 
   const problems = [];
@@ -431,7 +479,7 @@ function validateKeys(template, translations) {
   }
   if (problems.length) {
     fail(
-      `${problems.length} chiave/i usata/e nel template ma non risolvibile/i`,
+      `${problems.length} chiave/i usata/e nei template ma non risolvibile/i`,
       problems.join('\n') +
       `\n\nControllate ${keys.length} chiavi × ${LANGS.length} lingue.`
     );
@@ -439,11 +487,78 @@ function validateKeys(template, translations) {
   return keys;
 }
 
+// ---------- guardia (e): forma delle sezioni legali ----------
+// validateKeys sa dire che privacy.sections esiste ed e' un array, non che
+// gli elementi abbiano la forma attesa. Senza questo controllo una sezione
+// malformata finirebbe in pagina come "undefined" invece di far fallire
+// il build.
+function validateLegalSections(translations) {
+  const problems = [];
+  for (const lang of LANGS) {
+    const secs = getPath(translations[lang], 'privacy.sections');
+    if (!Array.isArray(secs) || secs.length === 0) {
+      problems.push(`[${lang}] privacy.sections assente o vuoto`);
+      continue;
+    }
+    secs.forEach((sec, i) => {
+      const at = `[${lang}] privacy.sections[${i}]`;
+      if (typeof sec !== 'object' || sec === null || Array.isArray(sec)) {
+        problems.push(`${at} non è un oggetto`);
+        return;
+      }
+      if (typeof sec.heading !== 'string' || !sec.heading.trim()) {
+        problems.push(`${at}.heading mancante o vuoto`);
+      }
+      if (!Array.isArray(sec.paragraphs) || sec.paragraphs.length === 0) {
+        problems.push(`${at}.paragraphs assente o vuoto`);
+        return;
+      }
+      sec.paragraphs.forEach((p, j) => {
+        if (typeof p !== 'string' || !p.trim()) {
+          problems.push(`${at}.paragraphs[${j}] non è una stringa non vuota`);
+        }
+      });
+    });
+  }
+  // Stesso numero di sezioni in tutte le lingue: una lingua con una sezione
+  // in meno non e' una sfumatura di traduzione, e' un'informativa incompleta.
+  const counts = LANGS.map(l => (getPath(translations[l], 'privacy.sections') || []).length);
+  if (new Set(counts).size > 1) {
+    problems.push('numero di sezioni diverso fra lingue: ' +
+      LANGS.map((l, i) => l + '=' + counts[i]).join(' '));
+  }
+  if (problems.length) {
+    fail(problems.length + ' problema/i nella struttura di privacy.sections',
+      problems.join('\n'));
+  }
+}
+
 // ---------- rendering ----------
+// Sostituzione dei segnaposto, comune ai due template. Un segnaposto di
+// build usato in una pagina che non lo prevede (p.es. {{I18N_SCRIPT}} in
+// legal.html) fa fallire il build invece di finire in output come
+// "undefined": e' l'errore piu' facile da introdurre ora che i template
+// sono due.
+function fill(template, builtin, t) {
+  return template.replace(PLACEHOLDER, (_, key) => {
+    if (BUILTIN.has(key)) {
+      if (!(key in builtin)) {
+        fail('segnaposto di build non disponibile in questa pagina', '{{' + key + '}}');
+      }
+      return RAW.has(key) ? builtin[key] : escapeHtml(builtin[key]);
+    }
+    const v = getPath(t, key);
+    if (Array.isArray(v)) {
+      return v.map(item => '<li>' + escapeHtml(item) + '</li>').join('\n            ');
+    }
+    return escapeHtml(v);
+  });
+}
+
 function render(template, lang, translations, assets) {
   const t = translations[lang];
   const assetUrls = Object.fromEntries(assets.map(a => [a.urlKey, a.url]));
-  const builtin = {
+  return fill(template, {
     ...assetUrls,
     LANG: lang,
     LANG_UPPER: lang.toUpperCase(),
@@ -451,23 +566,30 @@ function render(template, lang, translations, assets) {
     DESCRIPTION: getPath(t, 'seo.description'),
     // URL, non percorso filesystem: sempre forward slash.
     PRIVACY_URL: '/' + lang + '/privacy/',
-    LANG_OPTIONS: LANG_OPTIONS.map(([code, label]) =>
-      '<option value="/' + code + '/"' + (code === lang ? ' selected' : '') + '>' +
-      escapeHtml(label) + '</option>'
-    ).join(''),
+    LANG_OPTIONS: langOptions(lang, code => '/' + code + '/'),
     I18N_SCRIPT: buildI18nScript(t),
     SEO_HEAD: buildSeoHead(lang, t)
-  };
+  }, t);
+}
 
-  return template.replace(PLACEHOLDER, (_, key) => {
-    if (RAW.has(key)) return builtin[key];
-    if (BUILTIN.has(key)) return escapeHtml(builtin[key]);
-    const v = getPath(t, key);
-    if (Array.isArray(v)) {
-      return v.map(item => '<li>' + escapeHtml(item) + '</li>').join('\n            ');
-    }
-    return escapeHtml(v);
-  });
+// Pagina legale. Niente JSON-LD (vedi verifyNoJsonLd), niente
+// {{I18N_SCRIPT}}: non c'e' form, quindi non servono stringhe a runtime.
+function renderLegal(template, lang, translations, assets) {
+  const t = translations[lang];
+  const assetUrls = Object.fromEntries(assets.map(a => [a.urlKey, a.url]));
+  return fill(template, {
+    ...assetUrls,
+    LANG: lang,
+    TITLE: getPath(t, 'privacy.seo.title'),
+    DESCRIPTION: getPath(t, 'privacy.seo.description'),
+    // Il footer linka la privacy della lingua corrente anche dalla privacy
+    // stessa: il footer e' identico su tutte le pagine.
+    PRIVACY_URL: '/' + lang + '/privacy/',
+    CANONICAL: privacyUrl(lang),
+    HREFLANG_BLOCK: hreflangBlock(privacyUrl),
+    LANG_OPTIONS: langOptions(lang, code => '/' + code + '/privacy/'),
+    BODY: renderLegalBody(getPath(t, 'privacy.sections'))
+  }, t);
 }
 
 // ---------- guardia (b) + controlli sull'output ----------
@@ -521,6 +643,56 @@ function verifyJsonLd(html, label) {
   }
 }
 
+// Speculare a verifyJsonLd. Sulle pagine legali il JSON-LD non ci deve
+// essere: marcare un'informativa come SoftwareApplication o WebSite
+// sarebbe dato strutturato falso.
+function verifyNoJsonLd(html, label) {
+  const blocks = html.match(/<script type="application\/ld\+json">/g);
+  if (blocks) {
+    fail('JSON-LD presente in ' + label,
+      blocks.length + ' blocco/hi trovato/i, atteso nessuno');
+  }
+}
+
+// ---------- guardia (f): integrita' dei riferimenti interni ----------
+// Il consenso nel form rimanda a {{PRIVACY_URL}}: se quella pagina non
+// venisse emessa, la casella "accetto l'informativa" punterebbe a un 404
+// e il consenso non sarebbe informato. Il controllo e' generalizzato a
+// tutti i riferimenti interni perche' lo stesso errore vale per fogli di
+// stile, font e immagini — e perche' le pagine scritte a mano dal build
+// (404.html, il fallback di "/") non passano da verifyOutput e quindi
+// sfuggono alle altre guardie.
+//
+// Gira sull'output finale, non sull'HTML in memoria: e' l'unico momento
+// in cui si puo' dire se il file di destinazione esiste davvero.
+function verifyInternalLinks() {
+  const problems = [];
+  let checked = 0;
+  for (const file of walk(DIST)) {
+    if (!file.endsWith('.html')) continue;
+    const label = path.relative(DIST, file).split(path.sep).join('/');
+    const html = fs.readFileSync(file, 'utf8');
+    const refs = [...html.matchAll(/(?:href|src)="([^"]+)"/g)].map(m => m[1]);
+    for (const ref of new Set(refs)) {
+      // Solo i riferimenti interni assoluti. mailto:, ancore di pagina e
+      // URL esterni ("//host/…" incluso) non sono file di dist/.
+      if (!ref.startsWith('/') || ref.startsWith('//')) continue;
+      const clean = ref.split('#')[0].split('?')[0];
+      if (!clean) continue;
+      // Una directory URL ("/it/privacy/") e' servita dal suo index.html.
+      const rel = clean.endsWith('/') ? clean + 'index.html' : clean;
+      const target = path.join(DIST, ...rel.split('/').filter(Boolean));
+      checked++;
+      if (!fs.existsSync(target)) problems.push(label + '  ->  ' + ref);
+    }
+  }
+  if (problems.length) {
+    fail(problems.length + ' riferimento/i interno/i a file che non esistono in dist/',
+      problems.join('\n'));
+  }
+  return checked;
+}
+
 // ---------- copia ----------
 function copyRecursive(from, to) {
   if (EXCLUDE.has(path.basename(from))) return 0;
@@ -553,8 +725,10 @@ function build() {
 
   const translations = loadTranslations();
   const template = fs.readFileSync(path.join(SRC, 'template.html'), 'utf8');
+  const legal = fs.readFileSync(path.join(SRC, 'legal.html'), 'utf8');
 
-  const keys = validateKeys(template, translations);
+  const keys = validateKeys([template, legal], translations);
+  validateLegalSections(translations);
 
   // Idempotenza: dist/ viene sempre ricreato da zero.
   fs.rmSync(DIST, { recursive: true, force: true });
@@ -586,13 +760,20 @@ function build() {
     verifyJsonLd(html, `dist/${lang}/index.html`);
     fs.mkdirSync(path.join(DIST, lang), { recursive: true });
     fs.writeFileSync(path.join(DIST, lang, 'index.html'), html);
+
+    const priv = renderLegal(legal, lang, translations, assets);
+    verifyOutput(priv, `dist/${lang}/privacy/index.html`);
+    verifyNoJsonLd(priv, `dist/${lang}/privacy/index.html`);
+    fs.mkdirSync(path.join(DIST, lang, 'privacy'), { recursive: true });
+    fs.writeFileSync(path.join(DIST, lang, 'privacy', 'index.html'), priv);
   }
 
   fs.writeFileSync(path.join(DIST, 'index.html'), buildRootFallback());
   fs.writeFileSync(path.join(DIST, 'robots.txt'), buildRobotsTxt());
   fs.writeFileSync(path.join(DIST, 'sitemap.xml'), buildSitemapXml());
   fs.writeFileSync(path.join(DIST, 'llms.txt'), buildLlmsTxt());
-  fs.writeFileSync(path.join(DIST, '404.html'), build404());
+  fs.writeFileSync(path.join(DIST, '404.html'),
+    build404(assets.find(a => a.urlKey === 'STYLE_URL').url));
   fs.writeFileSync(path.join(DIST, '_headers'), buildHeaders(assets));
 
   // Le versioni senza hash non devono esistere in dist/.
@@ -610,14 +791,18 @@ function build() {
     }
   }
 
+  const links = verifyInternalLinks();
+
   const files = walk(DIST);
   const bytes = files.reduce((s, f) => s + fs.statSync(f).size, 0);
   const ms = Number(process.hrtime.bigint() - t0) / 1e6;
 
   console.log('build ok');
-  console.log(`  ${LANGS.length} pagine   ${LANGS.map(l => '/' + l + '/').join(' ')}`);
+  console.log(`  ${LANGS.length} home     ${LANGS.map(l => '/' + l + '/').join(' ')}`);
+  console.log(`  ${LANGS.length} privacy  ${LANGS.map(l => '/' + l + '/privacy/').join(' ')}`);
   console.log(`  ${keys.length} chiavi risolte per lingua`);
   console.log(`  ${copied} file copiati`);
+  console.log(`  ${links} riferimenti interni verificati`);
   for (const a of assets) console.log(`  fingerprint  ${a.src}  ->  ${a.out}`);
   console.log(`  ${files.length} file totali in dist/  (${(bytes / 1024).toFixed(1)} KB)`);
   console.log(`  ${ms.toFixed(0)} ms`);

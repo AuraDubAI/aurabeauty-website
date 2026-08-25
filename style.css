@@ -644,6 +644,11 @@ a{ color: inherit; text-decoration:none; }
 }
 .footer-logo{ height: 22px; opacity: 0.85; }
 .site-footer p{ margin:0; font-size: 0.85rem; }
+/* Il footer ha due righe di testo: copyright e dati legali. */
+.footer-legal{ display:flex; flex-direction:column; gap: 6px; }
+/* a{} globale azzera color e text-decoration: senza questa regola il
+   link alla privacy sarebbe indistinguibile dal testo intorno. */
+.site-footer a{ text-decoration: underline; }
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 900px){

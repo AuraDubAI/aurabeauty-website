@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<meta name="description" content="{{DESCRIPTION}}">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#0a0a12">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="canonical" href="{{CANONICAL}}">
+{{HREFLANG_BLOCK}}
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/manrope-variable-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/poppins-700-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/poppins-600-latin.woff2">
+<link rel="stylesheet" href="{{STYLE_URL}}">
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">{{a11y.skip}}</a>
+
+<div class="bg-glow"></div>
+
+<header class="site-header" id="header">
+  <div class="container header-inner">
+    <a href="/{{LANG}}/#home" class="brand">
+      <img src="/assets/logo.png" alt="AURA" class="brand-logo" width="600" height="315" decoding="async">
+    </a>
+    <nav class="main-nav" id="main-nav">
+      <a href="/{{LANG}}/#home">{{nav.home}}</a>
+      <a href="/{{LANG}}/#chi-siamo">{{nav.chisiamo}}</a>
+      <a href="/{{LANG}}/#servizi">{{nav.servizi}}</a>
+      <a href="/{{LANG}}/#perche">{{nav.perche}}</a>
+      <a href="/{{LANG}}/#contatti" class="nav-cta">{{nav.cta}}</a>
+      <label class="sr-only" for="lang-select">{{a11y.langSelect}}</label>
+      <select class="lang-select" id="lang-select">{{LANG_OPTIONS}}</select>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="{{a11y.navToggle}}">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main-content" tabindex="-1">
+
+  <section class="section">
+    <div class="container narrow">
+      <h1>{{privacy.title}}</h1>
+      <p class="lead">{{privacy.intro}}</p>
+{{BODY}}
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <img src="/assets/logo.png" alt="AURA" class="footer-logo" width="600" height="315" loading="lazy" decoding="async">
+    <div class="footer-legal">
+      <p>&copy; <span id="year"></span> AURA. <span>{{footer.rights}}</span></p>
+      <p>AI LAB L.L.C-FZ &middot; TRN 105142922100003 &middot; <a href="{{PRIVACY_URL}}">{{footer.privacy}}</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="{{SCRIPT_URL}}"></script>
+</body>
+</html>

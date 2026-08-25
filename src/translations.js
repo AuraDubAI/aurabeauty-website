@@ -88,7 +88,118 @@ const translations = {
       error: "We couldn't send your request. Please try again, or write to us at info@aurabeauty.app.",
       altText: "Or write to us directly:"
     },
-    footer: { rights: "All rights reserved." }
+    footer: { rights: "All rights reserved.", privacy: "Privacy Policy" },
+
+    privacy: {
+      seo: {
+        title: "Privacy Policy | AURA",
+        description: "How AI LAB L.L.C-FZ processes the personal data collected through this site: purposes, legal basis, retention, processors, transfers outside the European Union and your rights."
+      },
+      title: "Privacy Policy",
+      intro: "This policy explains how the personal data collected through this site is processed, pursuant to Articles 13 and 14 of Regulation (EU) 2016/679 (GDPR).",
+      sections: [
+        {
+          heading: "Data controller",
+          paragraphs: [
+            "The data controller is AI LAB L.L.C-FZ, Meydan Grandstand, 6th floor, Meydan Road, Nad Al Sheba, Dubai, United Arab Emirates.",
+            "Tax identifier: TRN 105142922100003. The TRN (Tax Registration Number) is an identifier issued by the authorities of the United Arab Emirates: it is not a VAT number and not an EU VAT identification number.",
+            "For any matter concerning the processing of your data you can write to info@aurabeauty.app."
+          ]
+        },
+        {
+          heading: "Representative in the European Union (Art. 27 GDPR)",
+          paragraphs: [
+            "__RAPPRESENTANTE_UE__",
+            "The designation of the representative in the European Union under Article 27 GDPR is in progress. This section will be updated with the representative's identity and contact details as soon as the appointment is finalised.",
+            "In the meantime you can address the controller directly at info@aurabeauty.app: no request goes unanswered because the representative has not yet been designated."
+          ]
+        },
+        {
+          heading: "Data we collect",
+          paragraphs: [
+            "Through the contact form we collect your name, your business name (optional), your email address, the message you choose to write to us (optional) and the language of the page you sent the request from.",
+            "Name, email address and consent are necessary in order to act on your request. The other fields are optional and leaving them empty has no consequence, other than a less targeted reply from us.",
+            "For technical and security reasons your IP address is processed by the infrastructure serving this site. It is data collected automatically by any connection to a web server, used to protect the site against abuse and not to identify or profile you."
+          ]
+        },
+        {
+          heading: "Why we process your data",
+          paragraphs: [
+            "We process the data you send us for a single purpose: to answer your commercial request for information or for a product demonstration, to get back to you and to continue the conversation you started.",
+            "We do not use your data for profiling, we do not take automated decisions concerning you, and we do not transfer or sell it to third parties for marketing purposes."
+          ]
+        },
+        {
+          heading: "Legal basis for processing",
+          paragraphs: [
+            "The legal basis is your consent, given freely, specifically and on an informed basis by ticking the box in the form before submitting it: Article 6(1)(a) GDPR.",
+            "Consent is optional. Withholding it only means you cannot submit the form, and carries no other consequence.",
+            "You can withdraw your consent at any time by writing to info@aurabeauty.app. Withdrawal does not affect the lawfulness of processing carried out before the withdrawal."
+          ]
+        },
+        {
+          heading: "How long we keep your data",
+          paragraphs: [
+            "We keep the data collected through the form for 24 months from the last meaningful contact with you.",
+            "This period reflects the typical length of a commercial evaluation cycle in our sector: a demo request can turn into a decision several months later, and a shorter period would stop us from picking the conversation up where it left off. After 24 months the data is deleted.",
+            "If you withdraw your consent or ask for erasure, the data is deleted straight away, without waiting for that deadline."
+          ]
+        },
+        {
+          heading: "Who we share your data with",
+          paragraphs: [
+            "Your data is not disseminated. Besides the controller's staff handling commercial enquiries, it is accessible to the providers listed here, which process it on our behalf as processors under Article 28 GDPR.",
+            "Web3Forms: delivery of the messages sent through the contact form. It receives the form data for the sole purpose of forwarding it to the controller's mailbox.",
+            "Cloudflare: site hosting, content delivery network (CDN) and cookieless usage statistics. It processes technical connection data, including the IP address.",
+            "We use no other providers to process the data collected through this site."
+          ]
+        },
+        {
+          heading: "Transfer of data outside the European Union",
+          paragraphs: [
+            "The data controller is established in the United Arab Emirates. The data you send us is therefore processed in a country outside the European Union.",
+            "The United Arab Emirates are not covered by an adequacy decision of the European Commission under Article 45 GDPR: the Commission has not established that the country offers a level of protection of personal data essentially equivalent to the one guaranteed within the Union.",
+            "The transfer takes place on the basis of your explicit consent, under Article 49(1)(a) GDPR. By giving your consent in the form you accept the transfer, having been informed that, in the absence of an adequacy decision and of appropriate safeguards, you may not have the same means of redress available under Union law, and that local authorities may be able to access the data in circumstances that do not match those provided for by the European legal framework.",
+            "If you would rather not transfer your data on these terms, do not submit the form: consent is free, and withholding it has no other consequence."
+          ]
+        },
+        {
+          heading: "Your rights",
+          paragraphs: [
+            "As a data subject you can exercise the rights set out in Articles 15 to 22 GDPR at any time.",
+            "Access: obtain confirmation as to whether your personal data is being processed and, if so, receive a copy of it together with information on the purposes, recipients and retention period.",
+            "Rectification: have inaccurate data corrected or incomplete data completed.",
+            "Erasure: obtain the deletion of your personal data.",
+            "Restriction: ask that processing be restricted to storage only, in the cases provided for by the GDPR.",
+            "Portability: receive the data you provided to us in a structured, commonly used and machine-readable format, or ask for it to be transmitted directly to another controller.",
+            "Objection: object to the processing of your personal data.",
+            "Withdrawal of consent: withdraw the consent you gave at any time, without affecting the lawfulness of processing carried out before the withdrawal.",
+            "To exercise any of these rights write to info@aurabeauty.app. We reply without undue delay and in any case within one month of receiving the request."
+          ]
+        },
+        {
+          heading: "Lodging a complaint with a supervisory authority",
+          paragraphs: [
+            "If you consider that the processing of your personal data infringes the GDPR, you have the right to lodge a complaint with a supervisory authority.",
+            "You can address the supervisory authority of the Member State of your habitual residence, of your place of work, or of the place where the alleged infringement occurred."
+          ]
+        },
+        {
+          heading: "Cookies and usage statistics",
+          paragraphs: [
+            "This site uses no profiling cookies, no third-party cookies, and does not track your browsing across other sites.",
+            "Usage statistics are collected with Cloudflare Web Analytics, a tool that measures visits without cookies and without device fingerprinting, producing aggregate data that cannot identify you.",
+            "Since the site sets no cookies requiring your consent, no cookie consent banner is shown."
+          ]
+        },
+        {
+          heading: "Changes to this policy",
+          paragraphs: [
+            "This policy may be updated to reflect regulatory or organisational changes, for instance once the representative in the European Union has been designated. The version published on this page is always the one in force."
+          ]
+        }
+      ]
+    }
   },
 
   it: {
@@ -180,7 +291,118 @@ const translations = {
       error: "Non siamo riusciti a inviare la richiesta. Riprova oppure scrivici a info@aurabeauty.app.",
       altText: "Oppure scrivici direttamente:"
     },
-    footer: { rights: "Tutti i diritti riservati." }
+    footer: { rights: "Tutti i diritti riservati.", privacy: "Informativa sulla privacy" },
+
+    privacy: {
+      seo: {
+        title: "Informativa sulla privacy | AURA",
+        description: "Come AI LAB L.L.C-FZ tratta i dati personali raccolti da questo sito: finalità, base giuridica, conservazione, responsabili, trasferimenti fuori dall'Unione europea e diritti dell'interessato."
+      },
+      title: "Informativa sulla privacy",
+      intro: "Questa informativa descrive come vengono trattati i dati personali raccolti attraverso questo sito, ai sensi degli articoli 13 e 14 del Regolamento (UE) 2016/679 (GDPR).",
+      sections: [
+        {
+          heading: "Titolare del trattamento",
+          paragraphs: [
+            "Il titolare del trattamento è AI LAB L.L.C-FZ, con sede in Meydan Grandstand, 6th floor, Meydan Road, Nad Al Sheba, Dubai, Emirati Arabi Uniti.",
+            "Identificativo fiscale: TRN 105142922100003. Il TRN (Tax Registration Number) è un identificativo rilasciato dalle autorità degli Emirati Arabi Uniti: non è una partita IVA né un numero identificativo IVA dell'Unione europea.",
+            "Per qualunque questione relativa al trattamento dei tuoi dati puoi scrivere a info@aurabeauty.app."
+          ]
+        },
+        {
+          heading: "Rappresentante nell'Unione europea (art. 27 GDPR)",
+          paragraphs: [
+            "__RAPPRESENTANTE_UE__",
+            "La designazione del rappresentante nell'Unione europea ai sensi dell'articolo 27 del GDPR è in corso. Questa sezione sarà aggiornata con i dati identificativi e di contatto del rappresentante non appena la nomina sarà perfezionata.",
+            "Nel frattempo puoi rivolgerti direttamente al titolare all'indirizzo info@aurabeauty.app: nessuna richiesta resta senza risposta per il fatto che il rappresentante non sia ancora designato."
+          ]
+        },
+        {
+          heading: "Dati che raccogliamo",
+          paragraphs: [
+            "Attraverso il modulo di contatto raccogliamo il tuo nome, il nome della tua attività (facoltativo), il tuo indirizzo email, il messaggio che scegli di scriverci (facoltativo) e la lingua della pagina da cui hai inviato la richiesta.",
+            "Nome, indirizzo email e consenso sono necessari per dare seguito alla richiesta. Gli altri campi sono facoltativi e la loro mancata compilazione non ha alcuna conseguenza, se non una nostra risposta meno mirata.",
+            "Per ragioni tecniche e di sicurezza il tuo indirizzo IP viene trattato dall'infrastruttura che eroga il sito. È un dato raccolto automaticamente da qualsiasi connessione a un server web, usato per proteggere il sito da abusi e non per identificarti né per profilarti."
+          ]
+        },
+        {
+          heading: "Perché trattiamo i tuoi dati",
+          paragraphs: [
+            "Trattiamo i dati che ci invii per un'unica finalità: rispondere alla tua richiesta commerciale di informazioni o di dimostrazione del prodotto, ricontattarti e proseguire la conversazione che hai avviato.",
+            "Non usiamo i tuoi dati per attività di profilazione, non prendiamo decisioni automatizzate che ti riguardino e non li cediamo né li vendiamo a terzi per finalità di marketing."
+          ]
+        },
+        {
+          heading: "Base giuridica del trattamento",
+          paragraphs: [
+            "La base giuridica è il tuo consenso, prestato in modo libero, specifico e informato spuntando la casella presente nel modulo prima dell'invio: articolo 6, paragrafo 1, lettera a, del GDPR.",
+            "Il consenso è facoltativo. Non prestarlo significa soltanto non poter inviare il modulo, e non comporta alcuna altra conseguenza.",
+            "Puoi revocare il consenso in qualsiasi momento scrivendo a info@aurabeauty.app. La revoca non pregiudica la liceità del trattamento svolto prima della revoca stessa."
+          ]
+        },
+        {
+          heading: "Per quanto tempo conserviamo i dati",
+          paragraphs: [
+            "Conserviamo i dati raccolti tramite il modulo per 24 mesi a decorrere dall'ultimo contatto utile con te.",
+            "Il termine è motivato dalla durata tipica di un ciclo di valutazione commerciale nel nostro settore: una richiesta di dimostrazione può tradursi in una decisione anche a distanza di parecchi mesi, e un periodo più breve ci impedirebbe di riprendere la conversazione dal punto in cui si era interrotta. Scaduti i 24 mesi i dati vengono cancellati.",
+            "Se revochi il consenso o chiedi la cancellazione, i dati vengono cancellati subito, senza attendere quella scadenza."
+          ]
+        },
+        {
+          heading: "A chi comunichiamo i dati",
+          paragraphs: [
+            "I dati non vengono diffusi. Oltre al personale del titolare che si occupa delle richieste commerciali, vi accedono i fornitori qui elencati, che li trattano per nostro conto in qualità di responsabili del trattamento ai sensi dell'articolo 28 del GDPR.",
+            "Web3Forms: recapito dei messaggi inviati dal modulo di contatto. Riceve i dati del modulo al solo scopo di inoltrarli alla casella di posta del titolare.",
+            "Cloudflare: hosting del sito, rete di distribuzione dei contenuti (CDN) e statistiche di utilizzo senza cookie. Tratta i dati tecnici di connessione, fra cui l'indirizzo IP.",
+            "Non ci avvaliamo di altri fornitori per il trattamento dei dati raccolti da questo sito."
+          ]
+        },
+        {
+          heading: "Trasferimento dei dati fuori dall'Unione europea",
+          paragraphs: [
+            "Il titolare del trattamento è stabilito negli Emirati Arabi Uniti. I dati che ci invii sono quindi trattati in un paese terzo rispetto all'Unione europea.",
+            "Gli Emirati Arabi Uniti non sono oggetto di una decisione di adeguatezza della Commissione europea ai sensi dell'articolo 45 del GDPR: la Commissione non ha cioè accertato che quel paese offra un livello di protezione dei dati personali sostanzialmente equivalente a quello garantito nell'Unione.",
+            "Il trasferimento avviene sulla base del tuo consenso esplicito, ai sensi dell'articolo 49, paragrafo 1, lettera a, del GDPR. Prestando il consenso nel modulo accetti il trasferimento dopo essere stato informato che, in mancanza di una decisione di adeguatezza e di garanzie adeguate, potresti non disporre degli stessi mezzi di tutela previsti dal diritto dell'Unione, e che le autorità locali potrebbero avere facoltà di accesso ai dati in casi non sovrapponibili a quelli previsti dall'ordinamento europeo.",
+            "Se preferisci non trasferire i tuoi dati a queste condizioni, non inviare il modulo: il consenso è libero e il suo mancato conferimento non ha altre conseguenze."
+          ]
+        },
+        {
+          heading: "I tuoi diritti",
+          paragraphs: [
+            "In qualità di interessato puoi esercitare in qualsiasi momento i diritti previsti dagli articoli da 15 a 22 del GDPR.",
+            "Accesso: ottenere conferma che sia in corso un trattamento dei tuoi dati personali e, in tal caso, riceverne copia insieme alle informazioni su finalità, destinatari e tempi di conservazione.",
+            "Rettifica: far correggere dati inesatti o integrare dati incompleti.",
+            "Cancellazione: ottenere la cancellazione dei tuoi dati personali.",
+            "Limitazione: chiedere che il trattamento sia limitato alla sola conservazione, nei casi previsti dal GDPR.",
+            "Portabilità: ricevere i dati che ci hai fornito in un formato strutturato, di uso comune e leggibile da dispositivo automatico, oppure chiederne la trasmissione diretta a un altro titolare.",
+            "Opposizione: opporti al trattamento dei tuoi dati personali.",
+            "Revoca del consenso: ritirare in qualsiasi momento il consenso prestato, senza che ciò pregiudichi la liceità del trattamento effettuato prima della revoca.",
+            "Per esercitare uno di questi diritti scrivi a info@aurabeauty.app. Rispondiamo senza ingiustificato ritardo e comunque entro un mese dal ricevimento della richiesta."
+          ]
+        },
+        {
+          heading: "Reclamo all'autorità di controllo",
+          paragraphs: [
+            "Se ritieni che il trattamento dei tuoi dati personali violi il GDPR hai il diritto di proporre reclamo a un'autorità di controllo. In Italia l'autorità competente è il Garante per la protezione dei dati personali.",
+            "Puoi in alternativa rivolgerti all'autorità di controllo dello Stato membro in cui risiedi abitualmente, in cui lavori, o in cui si è verificata la presunta violazione."
+          ]
+        },
+        {
+          heading: "Cookie e statistiche di utilizzo",
+          paragraphs: [
+            "Questo sito non utilizza cookie di profilazione, non utilizza cookie di terze parti e non traccia la tua navigazione su altri siti.",
+            "Le statistiche di utilizzo sono raccolte con Cloudflare Web Analytics, uno strumento che misura le visite senza cookie e senza fingerprinting del dispositivo, producendo dati aggregati che non consentono di identificarti.",
+            "Poiché il sito non installa cookie che richiedano il tuo consenso, non viene mostrato alcun banner di consenso ai cookie."
+          ]
+        },
+        {
+          heading: "Modifiche a questa informativa",
+          paragraphs: [
+            "Questa informativa può essere aggiornata per adeguarla a cambiamenti normativi od organizzativi, per esempio quando sarà designato il rappresentante nell'Unione europea. La versione pubblicata su questa pagina è sempre quella vigente."
+          ]
+        }
+      ]
+    }
   },
 
   de: {
@@ -272,7 +494,118 @@ const translations = {
       error: "Ihre Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut oder schreiben Sie uns an info@aurabeauty.app.",
       altText: "Oder schreiben Sie uns direkt:"
     },
-    footer: { rights: "Alle Rechte vorbehalten." }
+    footer: { rights: "Alle Rechte vorbehalten.", privacy: "Datenschutzerklärung" },
+
+    privacy: {
+      seo: {
+        title: "Datenschutzerklärung | AURA",
+        description: "Wie AI LAB L.L.C-FZ die über diese Website erhobenen personenbezogenen Daten verarbeitet: Zwecke, Rechtsgrundlage, Speicherdauer, Auftragsverarbeiter, Übermittlung außerhalb der EU und Ihre Rechte."
+      },
+      title: "Datenschutzerklärung",
+      intro: "Diese Erklärung beschreibt, wie die über diese Website erhobenen personenbezogenen Daten verarbeitet werden, gemäß Artikel 13 und 14 der Verordnung (EU) 2016/679 (DSGVO).",
+      sections: [
+        {
+          heading: "Verantwortlicher",
+          paragraphs: [
+            "Verantwortlicher für die Verarbeitung ist AI LAB L.L.C-FZ, Meydan Grandstand, 6th floor, Meydan Road, Nad Al Sheba, Dubai, Vereinigte Arabische Emirate.",
+            "Steuerliche Kennung: TRN 105142922100003. Die TRN (Tax Registration Number) ist eine von den Behörden der Vereinigten Arabischen Emirate vergebene Kennung: sie ist weder eine Umsatzsteuer-Identifikationsnummer noch eine USt-IdNr. der Europäischen Union.",
+            "Bei allen Fragen zur Verarbeitung Ihrer Daten können Sie an info@aurabeauty.app schreiben."
+          ]
+        },
+        {
+          heading: "Vertreter in der Europäischen Union (Art. 27 DSGVO)",
+          paragraphs: [
+            "__RAPPRESENTANTE_UE__",
+            "Die Benennung des Vertreters in der Europäischen Union nach Artikel 27 DSGVO läuft derzeit. Dieser Abschnitt wird um Identität und Kontaktdaten des Vertreters ergänzt, sobald die Benennung abgeschlossen ist.",
+            "In der Zwischenzeit können Sie sich unter info@aurabeauty.app unmittelbar an den Verantwortlichen wenden: keine Anfrage bleibt unbeantwortet, nur weil der Vertreter noch nicht benannt ist."
+          ]
+        },
+        {
+          heading: "Welche Daten wir erheben",
+          paragraphs: [
+            "Über das Kontaktformular erheben wir Ihren Namen, den Namen Ihres Betriebs (freiwillig), Ihre E-Mail-Adresse, die Nachricht, die Sie uns schreiben möchten (freiwillig), und die Sprache der Seite, von der aus Sie die Anfrage gesendet haben.",
+            "Name, E-Mail-Adresse und Einwilligung sind erforderlich, um Ihre Anfrage bearbeiten zu können. Die übrigen Felder sind freiwillig; werden sie nicht ausgefüllt, hat das keine Folgen außer einer weniger gezielten Antwort unsererseits.",
+            "Aus technischen und Sicherheitsgründen wird Ihre IP-Adresse von der Infrastruktur verarbeitet, die diese Website ausliefert. Es handelt sich um ein Datum, das bei jeder Verbindung zu einem Webserver automatisch anfällt und dem Schutz der Website vor Missbrauch dient, nicht Ihrer Identifizierung oder Profilbildung."
+          ]
+        },
+        {
+          heading: "Warum wir Ihre Daten verarbeiten",
+          paragraphs: [
+            "Wir verarbeiten die Daten, die Sie uns senden, zu einem einzigen Zweck: Ihre geschäftliche Anfrage nach Informationen oder nach einer Produktvorführung zu beantworten, Sie zurückzukontaktieren und das von Ihnen begonnene Gespräch fortzuführen.",
+            "Wir nutzen Ihre Daten nicht zur Profilbildung, treffen keine automatisierten Entscheidungen über Sie und geben sie nicht zu Marketingzwecken an Dritte weiter oder verkaufen sie."
+          ]
+        },
+        {
+          heading: "Rechtsgrundlage der Verarbeitung",
+          paragraphs: [
+            "Rechtsgrundlage ist Ihre freiwillig, für den bestimmten Fall und in informierter Weise erteilte Einwilligung, die Sie vor dem Absenden durch Ankreuzen des Kästchens im Formular erteilen: Artikel 6 Absatz 1 Buchstabe a DSGVO.",
+            "Die Einwilligung ist freiwillig. Wird sie nicht erteilt, können Sie lediglich das Formular nicht absenden; weitere Folgen hat das nicht.",
+            "Sie können Ihre Einwilligung jederzeit widerrufen, indem Sie an info@aurabeauty.app schreiben. Der Widerruf berührt nicht die Rechtmäßigkeit der bis dahin erfolgten Verarbeitung."
+          ]
+        },
+        {
+          heading: "Wie lange wir die Daten speichern",
+          paragraphs: [
+            "Die über das Formular erhobenen Daten speichern wir 24 Monate ab dem letzten sinnvollen Kontakt mit Ihnen.",
+            "Diese Frist ergibt sich aus der üblichen Dauer eines geschäftlichen Entscheidungszyklus in unserer Branche: aus einer Anfrage nach einer Vorführung kann noch nach etlichen Monaten eine Entscheidung werden, und ein kürzerer Zeitraum würde uns daran hindern, das Gespräch dort wieder aufzunehmen, wo es unterbrochen wurde. Nach Ablauf der 24 Monate werden die Daten gelöscht.",
+            "Wenn Sie Ihre Einwilligung widerrufen oder die Löschung verlangen, werden die Daten sofort gelöscht, ohne diese Frist abzuwarten."
+          ]
+        },
+        {
+          heading: "An wen wir die Daten weitergeben",
+          paragraphs: [
+            "Die Daten werden nicht veröffentlicht. Neben den Mitarbeitenden des Verantwortlichen, die geschäftliche Anfragen bearbeiten, haben die hier aufgeführten Dienstleister Zugriff darauf; sie verarbeiten die Daten in unserem Auftrag als Auftragsverarbeiter nach Artikel 28 DSGVO.",
+            "Web3Forms: Zustellung der über das Kontaktformular gesendeten Nachrichten. Der Dienst erhält die Formulardaten allein zu dem Zweck, sie an das Postfach des Verantwortlichen weiterzuleiten.",
+            "Cloudflare: Hosting der Website, Content Delivery Network (CDN) und Nutzungsstatistiken ohne Cookies. Verarbeitet technische Verbindungsdaten, darunter die IP-Adresse.",
+            "Weitere Dienstleister setzen wir für die Verarbeitung der über diese Website erhobenen Daten nicht ein."
+          ]
+        },
+        {
+          heading: "Übermittlung von Daten außerhalb der Europäischen Union",
+          paragraphs: [
+            "Der Verantwortliche hat seinen Sitz in den Vereinigten Arabischen Emiraten. Die Daten, die Sie uns senden, werden daher in einem Drittland außerhalb der Europäischen Union verarbeitet.",
+            "Für die Vereinigten Arabischen Emirate besteht kein Angemessenheitsbeschluss der Europäischen Kommission nach Artikel 45 DSGVO: die Kommission hat also nicht festgestellt, dass das Land ein Schutzniveau für personenbezogene Daten bietet, das dem in der Union gewährleisteten der Sache nach gleichwertig ist.",
+            "Die Übermittlung erfolgt auf Grundlage Ihrer ausdrücklichen Einwilligung nach Artikel 49 Absatz 1 Buchstabe a DSGVO. Mit der Einwilligung im Formular stimmen Sie der Übermittlung zu, nachdem Sie darüber unterrichtet wurden, dass Ihnen mangels Angemessenheitsbeschluss und geeigneter Garantien möglicherweise nicht dieselben Rechtsbehelfe wie nach dem Unionsrecht zur Verfügung stehen und dass lokale Behörden unter Umständen auf die Daten zugreifen können, die sich mit den im europäischen Recht vorgesehenen Fällen nicht decken.",
+            "Wenn Sie Ihre Daten unter diesen Bedingungen lieber nicht übermitteln möchten, senden Sie das Formular nicht ab: die Einwilligung ist freiwillig, und ihre Verweigerung hat keine weiteren Folgen."
+          ]
+        },
+        {
+          heading: "Ihre Rechte",
+          paragraphs: [
+            "Als betroffene Person können Sie jederzeit die in den Artikeln 15 bis 22 DSGVO vorgesehenen Rechte ausüben.",
+            "Auskunft: Bestätigung darüber verlangen, ob Sie betreffende personenbezogene Daten verarbeitet werden, und in diesem Fall eine Kopie davon sowie Informationen zu Zwecken, Empfängern und Speicherdauer erhalten.",
+            "Berichtigung: unrichtige Daten berichtigen oder unvollständige Daten vervollständigen lassen.",
+            "Löschung: die Löschung Ihrer personenbezogenen Daten verlangen.",
+            "Einschränkung: verlangen, dass die Verarbeitung in den von der DSGVO vorgesehenen Fällen auf die bloße Speicherung beschränkt wird.",
+            "Datenübertragbarkeit: die von Ihnen bereitgestellten Daten in einem strukturierten, gängigen und maschinenlesbaren Format erhalten oder deren direkte Übermittlung an einen anderen Verantwortlichen verlangen.",
+            "Widerspruch: der Verarbeitung Ihrer personenbezogenen Daten widersprechen.",
+            "Widerruf der Einwilligung: die erteilte Einwilligung jederzeit widerrufen, ohne dass die Rechtmäßigkeit der bis dahin erfolgten Verarbeitung berührt wird.",
+            "Zur Ausübung eines dieser Rechte schreiben Sie an info@aurabeauty.app. Wir antworten ohne unangemessene Verzögerung, in jedem Fall innerhalb eines Monats nach Eingang der Anfrage."
+          ]
+        },
+        {
+          heading: "Beschwerde bei einer Aufsichtsbehörde",
+          paragraphs: [
+            "Wenn Sie der Ansicht sind, dass die Verarbeitung Ihrer personenbezogenen Daten gegen die DSGVO verstößt, haben Sie das Recht, Beschwerde bei einer Aufsichtsbehörde einzulegen.",
+            "Sie können sich an die Aufsichtsbehörde des Mitgliedstaats Ihres gewöhnlichen Aufenthaltsorts, Ihres Arbeitsplatzes oder des Orts des mutmaßlichen Verstoßes wenden."
+          ]
+        },
+        {
+          heading: "Cookies und Nutzungsstatistiken",
+          paragraphs: [
+            "Diese Website verwendet keine Profiling-Cookies, keine Cookies von Drittanbietern und verfolgt Ihr Surfverhalten nicht über andere Websites hinweg.",
+            "Die Nutzungsstatistiken werden mit Cloudflare Web Analytics erhoben, einem Werkzeug, das Besuche ohne Cookies und ohne Device-Fingerprinting misst und aggregierte Daten erzeugt, die keine Identifizierung erlauben.",
+            "Da die Website keine einwilligungsbedürftigen Cookies setzt, wird kein Cookie-Banner angezeigt."
+          ]
+        },
+        {
+          heading: "Änderungen dieser Erklärung",
+          paragraphs: [
+            "Diese Erklärung kann aktualisiert werden, um rechtlichen oder organisatorischen Änderungen Rechnung zu tragen, etwa sobald der Vertreter in der Europäischen Union benannt ist. Maßgeblich ist stets die auf dieser Seite veröffentlichte Fassung."
+          ]
+        }
+      ]
+    }
   },
 
   fr: {
@@ -364,7 +697,118 @@ const translations = {
       error: "Nous n'avons pas pu envoyer votre demande. Réessayez ou écrivez-nous à info@aurabeauty.app.",
       altText: "Ou écrivez-nous directement :"
     },
-    footer: { rights: "Tous droits réservés." }
+    footer: { rights: "Tous droits réservés.", privacy: "Politique de confidentialité" },
+
+    privacy: {
+      seo: {
+        title: "Politique de confidentialité | AURA",
+        description: "Comment AI LAB L.L.C-FZ traite les données personnelles collectées via ce site : finalités, base légale, conservation, sous-traitants, transferts hors Union européenne et droits des personnes concernées."
+      },
+      title: "Politique de confidentialité",
+      intro: "Cette politique décrit la manière dont sont traitées les données personnelles collectées via ce site, conformément aux articles 13 et 14 du règlement (UE) 2016/679 (RGPD).",
+      sections: [
+        {
+          heading: "Responsable du traitement",
+          paragraphs: [
+            "Le responsable du traitement est AI LAB L.L.C-FZ, Meydan Grandstand, 6th floor, Meydan Road, Nad Al Sheba, Dubaï, Émirats arabes unis.",
+            "Identifiant fiscal : TRN 105142922100003. Le TRN (Tax Registration Number) est un identifiant délivré par les autorités des Émirats arabes unis : il ne s'agit ni d'un numéro de TVA ni d'un numéro d'identification à la TVA de l'Union européenne.",
+            "Pour toute question relative au traitement de vos données, vous pouvez écrire à info@aurabeauty.app."
+          ]
+        },
+        {
+          heading: "Représentant dans l'Union européenne (art. 27 RGPD)",
+          paragraphs: [
+            "__RAPPRESENTANTE_UE__",
+            "La désignation du représentant dans l'Union européenne au titre de l'article 27 du RGPD est en cours. Cette section sera complétée par l'identité et les coordonnées du représentant dès que la nomination sera finalisée.",
+            "Dans l'intervalle, vous pouvez vous adresser directement au responsable du traitement à l'adresse info@aurabeauty.app : aucune demande ne reste sans réponse du fait que le représentant n'est pas encore désigné."
+          ]
+        },
+        {
+          heading: "Données que nous collectons",
+          paragraphs: [
+            "Via le formulaire de contact, nous collectons votre nom, le nom de votre établissement (facultatif), votre adresse électronique, le message que vous choisissez de nous écrire (facultatif) et la langue de la page depuis laquelle vous avez envoyé la demande.",
+            "Le nom, l'adresse électronique et le consentement sont nécessaires pour donner suite à votre demande. Les autres champs sont facultatifs et le fait de ne pas les remplir n'a aucune conséquence, si ce n'est une réponse moins ciblée de notre part.",
+            "Pour des raisons techniques et de sécurité, votre adresse IP est traitée par l'infrastructure qui délivre ce site. Il s'agit d'une donnée collectée automatiquement par toute connexion à un serveur web, utilisée pour protéger le site contre les abus et non pour vous identifier ou vous profiler."
+          ]
+        },
+        {
+          heading: "Pourquoi nous traitons vos données",
+          paragraphs: [
+            "Nous traitons les données que vous nous transmettez dans une finalité unique : répondre à votre demande commerciale d'informations ou de démonstration du produit, vous recontacter et poursuivre la conversation que vous avez engagée.",
+            "Nous n'utilisons pas vos données à des fins de profilage, nous ne prenons pas de décision automatisée vous concernant et nous ne les cédons ni ne les vendons à des tiers à des fins de prospection."
+          ]
+        },
+        {
+          heading: "Base légale du traitement",
+          paragraphs: [
+            "La base légale est votre consentement, donné de manière libre, spécifique et éclairée en cochant la case présente dans le formulaire avant l'envoi : article 6, paragraphe 1, point a, du RGPD.",
+            "Le consentement est facultatif. Ne pas le donner signifie seulement ne pas pouvoir envoyer le formulaire, sans aucune autre conséquence.",
+            "Vous pouvez retirer votre consentement à tout moment en écrivant à info@aurabeauty.app. Le retrait ne compromet pas la licéité du traitement effectué avant celui-ci."
+          ]
+        },
+        {
+          heading: "Durée de conservation des données",
+          paragraphs: [
+            "Nous conservons les données collectées via le formulaire pendant 24 mois à compter du dernier contact utile avec vous.",
+            "Ce délai correspond à la durée habituelle d'un cycle d'évaluation commerciale dans notre secteur : une demande de démonstration peut déboucher sur une décision plusieurs mois plus tard, et une durée plus courte nous empêcherait de reprendre la conversation là où elle s'était interrompue. Passé ce délai de 24 mois, les données sont supprimées.",
+            "Si vous retirez votre consentement ou demandez l'effacement, les données sont supprimées immédiatement, sans attendre cette échéance."
+          ]
+        },
+        {
+          heading: "À qui nous communiquons les données",
+          paragraphs: [
+            "Les données ne font l'objet d'aucune diffusion. Outre le personnel du responsable du traitement chargé des demandes commerciales, y accèdent les prestataires énumérés ci-dessous, qui les traitent pour notre compte en qualité de sous-traitants au sens de l'article 28 du RGPD.",
+            "Web3Forms : acheminement des messages envoyés depuis le formulaire de contact. Ce prestataire reçoit les données du formulaire dans le seul but de les transmettre à la boîte de réception du responsable du traitement.",
+            "Cloudflare : hébergement du site, réseau de diffusion de contenu (CDN) et statistiques d'utilisation sans cookies. Traite les données techniques de connexion, dont l'adresse IP.",
+            "Nous ne faisons appel à aucun autre prestataire pour le traitement des données collectées via ce site."
+          ]
+        },
+        {
+          heading: "Transfert de données hors de l'Union européenne",
+          paragraphs: [
+            "Le responsable du traitement est établi aux Émirats arabes unis. Les données que vous nous transmettez sont donc traitées dans un pays tiers à l'Union européenne.",
+            "Les Émirats arabes unis ne font pas l'objet d'une décision d'adéquation de la Commission européenne au titre de l'article 45 du RGPD : la Commission n'a donc pas constaté que ce pays offre un niveau de protection des données personnelles substantiellement équivalent à celui garanti au sein de l'Union.",
+            "Le transfert repose sur votre consentement explicite, au titre de l'article 49, paragraphe 1, point a, du RGPD. En donnant votre consentement dans le formulaire, vous acceptez le transfert après avoir été informé qu'en l'absence de décision d'adéquation et de garanties appropriées, vous pourriez ne pas disposer des mêmes voies de recours que celles prévues par le droit de l'Union, et que les autorités locales pourraient avoir accès aux données dans des cas qui ne recoupent pas ceux prévus par l'ordre juridique européen.",
+            "Si vous préférez ne pas transférer vos données à ces conditions, n'envoyez pas le formulaire : le consentement est libre et son refus n'a aucune autre conséquence."
+          ]
+        },
+        {
+          heading: "Vos droits",
+          paragraphs: [
+            "En tant que personne concernée, vous pouvez exercer à tout moment les droits prévus aux articles 15 à 22 du RGPD.",
+            "Accès : obtenir la confirmation que vos données personnelles sont ou ne sont pas traitées et, le cas échéant, en recevoir une copie ainsi que les informations sur les finalités, les destinataires et la durée de conservation.",
+            "Rectification : faire corriger des données inexactes ou compléter des données incomplètes.",
+            "Effacement : obtenir la suppression de vos données personnelles.",
+            "Limitation : demander que le traitement soit limité à la seule conservation, dans les cas prévus par le RGPD.",
+            "Portabilité : recevoir les données que vous nous avez fournies dans un format structuré, couramment utilisé et lisible par machine, ou en demander la transmission directe à un autre responsable du traitement.",
+            "Opposition : vous opposer au traitement de vos données personnelles.",
+            "Retrait du consentement : retirer à tout moment le consentement donné, sans que cela compromette la licéité du traitement effectué auparavant.",
+            "Pour exercer l'un de ces droits, écrivez à info@aurabeauty.app. Nous répondons sans retard injustifié et en tout état de cause dans un délai d'un mois à compter de la réception de la demande."
+          ]
+        },
+        {
+          heading: "Réclamation auprès d'une autorité de contrôle",
+          paragraphs: [
+            "Si vous estimez que le traitement de vos données personnelles constitue une violation du RGPD, vous avez le droit d'introduire une réclamation auprès d'une autorité de contrôle.",
+            "Vous pouvez vous adresser à l'autorité de contrôle de l'État membre de votre résidence habituelle, de votre lieu de travail ou du lieu où la violation alléguée aurait été commise."
+          ]
+        },
+        {
+          heading: "Cookies et statistiques d'utilisation",
+          paragraphs: [
+            "Ce site n'utilise pas de cookies de profilage, n'utilise pas de cookies tiers et ne suit pas votre navigation sur d'autres sites.",
+            "Les statistiques d'utilisation sont collectées avec Cloudflare Web Analytics, un outil qui mesure les visites sans cookies et sans empreinte numérique de l'appareil, en produisant des données agrégées qui ne permettent pas de vous identifier.",
+            "Le site ne déposant aucun cookie soumis à consentement, aucune bannière de consentement aux cookies n'est affichée."
+          ]
+        },
+        {
+          heading: "Modifications de la présente politique",
+          paragraphs: [
+            "Cette politique peut être mise à jour pour tenir compte d'évolutions réglementaires ou organisationnelles, par exemple lorsque le représentant dans l'Union européenne aura été désigné. La version publiée sur cette page est toujours celle en vigueur."
+          ]
+        }
+      ]
+    }
   },
 
   es: {
@@ -456,6 +900,117 @@ const translations = {
       error: "No hemos podido enviar tu solicitud. Inténtalo de nuevo o escríbenos a info@aurabeauty.app.",
       altText: "O escríbenos directamente:"
     },
-    footer: { rights: "Todos los derechos reservados." }
+    footer: { rights: "Todos los derechos reservados.", privacy: "Política de privacidad" },
+
+    privacy: {
+      seo: {
+        title: "Política de privacidad | AURA",
+        description: "Cómo trata AI LAB L.L.C-FZ los datos personales recogidos a través de este sitio: finalidades, base jurídica, conservación, encargados, transferencias fuera de la Unión Europea y derechos del interesado."
+      },
+      title: "Política de privacidad",
+      intro: "Esta política describe cómo se tratan los datos personales recogidos a través de este sitio, conforme a los artículos 13 y 14 del Reglamento (UE) 2016/679 (RGPD).",
+      sections: [
+        {
+          heading: "Responsable del tratamiento",
+          paragraphs: [
+            "El responsable del tratamiento es AI LAB L.L.C-FZ, con domicilio en Meydan Grandstand, 6th floor, Meydan Road, Nad Al Sheba, Dubái, Emiratos Árabes Unidos.",
+            "Identificador fiscal: TRN 105142922100003. El TRN (Tax Registration Number) es un identificador emitido por las autoridades de los Emiratos Árabes Unidos: no es un NIF-IVA ni un número de identificación a efectos del IVA de la Unión Europea.",
+            "Para cualquier cuestión relativa al tratamiento de tus datos puedes escribir a info@aurabeauty.app."
+          ]
+        },
+        {
+          heading: "Representante en la Unión Europea (art. 27 RGPD)",
+          paragraphs: [
+            "__RAPPRESENTANTE_UE__",
+            "La designación del representante en la Unión Europea conforme al artículo 27 del RGPD está en curso. Esta sección se actualizará con la identidad y los datos de contacto del representante en cuanto se formalice el nombramiento.",
+            "Mientras tanto puedes dirigirte directamente al responsable en info@aurabeauty.app: ninguna solicitud queda sin respuesta por el hecho de que el representante no esté designado todavía."
+          ]
+        },
+        {
+          heading: "Datos que recogemos",
+          paragraphs: [
+            "A través del formulario de contacto recogemos tu nombre, el nombre de tu negocio (opcional), tu dirección de correo electrónico, el mensaje que quieras escribirnos (opcional) y el idioma de la página desde la que has enviado la solicitud.",
+            "El nombre, la dirección de correo electrónico y el consentimiento son necesarios para poder atender tu solicitud. Los demás campos son opcionales y no rellenarlos no tiene ninguna consecuencia, más allá de una respuesta menos precisa por nuestra parte.",
+            "Por motivos técnicos y de seguridad, tu dirección IP es tratada por la infraestructura que sirve este sitio. Es un dato que se recoge automáticamente en cualquier conexión a un servidor web, utilizado para proteger el sitio frente a abusos y no para identificarte ni elaborar perfiles."
+          ]
+        },
+        {
+          heading: "Por qué tratamos tus datos",
+          paragraphs: [
+            "Tratamos los datos que nos envías con una única finalidad: responder a tu solicitud comercial de información o de demostración del producto, volver a ponernos en contacto contigo y continuar la conversación que has iniciado.",
+            "No utilizamos tus datos para elaborar perfiles, no adoptamos decisiones automatizadas que te afecten y no los cedemos ni los vendemos a terceros con fines de marketing."
+          ]
+        },
+        {
+          heading: "Base jurídica del tratamiento",
+          paragraphs: [
+            "La base jurídica es tu consentimiento, prestado de forma libre, específica e informada al marcar la casilla del formulario antes de enviarlo: artículo 6, apartado 1, letra a, del RGPD.",
+            "El consentimiento es voluntario. No prestarlo solo implica no poder enviar el formulario, y no conlleva ninguna otra consecuencia.",
+            "Puedes retirar el consentimiento en cualquier momento escribiendo a info@aurabeauty.app. La retirada no afecta a la licitud del tratamiento realizado con anterioridad."
+          ]
+        },
+        {
+          heading: "Cuánto tiempo conservamos los datos",
+          paragraphs: [
+            "Conservamos los datos recogidos mediante el formulario durante 24 meses a partir del último contacto útil contigo.",
+            "El plazo responde a la duración habitual de un ciclo de evaluación comercial en nuestro sector: una solicitud de demostración puede traducirse en una decisión incluso varios meses después, y un periodo más corto nos impediría retomar la conversación donde se interrumpió. Transcurridos los 24 meses los datos se suprimen.",
+            "Si retiras el consentimiento o solicitas la supresión, los datos se suprimen de inmediato, sin esperar a ese vencimiento."
+          ]
+        },
+        {
+          heading: "A quién comunicamos los datos",
+          paragraphs: [
+            "Los datos no se difunden. Además del personal del responsable que atiende las solicitudes comerciales, acceden a ellos los proveedores que se enumeran a continuación, que los tratan por cuenta nuestra en calidad de encargados del tratamiento conforme al artículo 28 del RGPD.",
+            "Web3Forms: entrega de los mensajes enviados desde el formulario de contacto. Recibe los datos del formulario con la única finalidad de remitirlos al buzón del responsable.",
+            "Cloudflare: alojamiento del sitio, red de distribución de contenidos (CDN) y estadísticas de uso sin cookies. Trata los datos técnicos de conexión, entre ellos la dirección IP.",
+            "No recurrimos a ningún otro proveedor para el tratamiento de los datos recogidos a través de este sitio."
+          ]
+        },
+        {
+          heading: "Transferencia de datos fuera de la Unión Europea",
+          paragraphs: [
+            "El responsable del tratamiento está establecido en los Emiratos Árabes Unidos. Los datos que nos envías se tratan, por tanto, en un país tercero respecto de la Unión Europea.",
+            "Los Emiratos Árabes Unidos no son objeto de una decisión de adecuación de la Comisión Europea conforme al artículo 45 del RGPD: la Comisión no ha constatado que ese país ofrezca un nivel de protección de los datos personales sustancialmente equivalente al garantizado en la Unión.",
+            "La transferencia se realiza sobre la base de tu consentimiento explícito, conforme al artículo 49, apartado 1, letra a, del RGPD. Al prestar el consentimiento en el formulario aceptas la transferencia tras haber sido informado de que, a falta de una decisión de adecuación y de garantías adecuadas, podrías no disponer de las mismas vías de recurso previstas por el Derecho de la Unión, y de que las autoridades locales podrían tener acceso a los datos en supuestos que no coinciden con los previstos por el ordenamiento europeo.",
+            "Si prefieres no transferir tus datos en estas condiciones, no envíes el formulario: el consentimiento es libre y no prestarlo no tiene ninguna otra consecuencia."
+          ]
+        },
+        {
+          heading: "Tus derechos",
+          paragraphs: [
+            "Como interesado puedes ejercer en cualquier momento los derechos previstos en los artículos 15 a 22 del RGPD.",
+            "Acceso: obtener confirmación de si se están tratando datos personales que te conciernen y, en tal caso, recibir una copia junto con la información sobre las finalidades, los destinatarios y el plazo de conservación.",
+            "Rectificación: hacer corregir datos inexactos o completar datos incompletos.",
+            "Supresión: obtener la supresión de tus datos personales.",
+            "Limitación: solicitar que el tratamiento se limite a la mera conservación, en los supuestos previstos por el RGPD.",
+            "Portabilidad: recibir los datos que nos has facilitado en un formato estructurado, de uso común y lectura mecánica, o solicitar su transmisión directa a otro responsable.",
+            "Oposición: oponerte al tratamiento de tus datos personales.",
+            "Retirada del consentimiento: retirar en cualquier momento el consentimiento prestado, sin que ello afecte a la licitud del tratamiento realizado antes de la retirada.",
+            "Para ejercer cualquiera de estos derechos escribe a info@aurabeauty.app. Respondemos sin dilación indebida y, en todo caso, en el plazo de un mes desde la recepción de la solicitud."
+          ]
+        },
+        {
+          heading: "Reclamación ante la autoridad de control",
+          paragraphs: [
+            "Si consideras que el tratamiento de tus datos personales infringe el RGPD, tienes derecho a presentar una reclamación ante una autoridad de control.",
+            "Puedes dirigirte a la autoridad de control del Estado miembro de tu residencia habitual, de tu lugar de trabajo o del lugar donde se haya producido la presunta infracción."
+          ]
+        },
+        {
+          heading: "Cookies y estadísticas de uso",
+          paragraphs: [
+            "Este sitio no utiliza cookies de perfilado, no utiliza cookies de terceros y no rastrea tu navegación en otros sitios.",
+            "Las estadísticas de uso se recogen con Cloudflare Web Analytics, una herramienta que mide las visitas sin cookies y sin huella digital del dispositivo, y que produce datos agregados que no permiten identificarte.",
+            "Dado que el sitio no instala cookies que requieran tu consentimiento, no se muestra ningún banner de consentimiento de cookies."
+          ]
+        },
+        {
+          heading: "Modificaciones de esta política",
+          paragraphs: [
+            "Esta política puede actualizarse para adaptarla a cambios normativos u organizativos, por ejemplo cuando se designe al representante en la Unión Europea. La versión publicada en esta página es siempre la vigente."
+          ]
+        }
+      ]
+    }
   }
 };
