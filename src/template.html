@@ -301,8 +301,10 @@
         <div class="field">
           <div class="form-consent" id="consent-box">
             <input type="checkbox" id="privacy-consent" name="privacy" required>
-            <label for="privacy-consent"><span>{{contact.consentText}}</span></label>
-            <a href="{{PRIVACY_URL}}">{{contact.consentLink}}</a>
+            <span class="form-consent-text">
+              <label for="privacy-consent">{{contact.consentText}}</label>
+              <a href="{{PRIVACY_URL}}">{{contact.consentLink}}</a>
+            </span>
           </div>
           <p class="field-error" id="err-privacy" role="alert"></p>
         </div>
