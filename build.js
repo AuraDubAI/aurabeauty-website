@@ -522,7 +522,7 @@ function build404(styleUrl) {
     '<main class="section container narrow center">',
     '  <h1>404</h1>',
     '  <p class="lead">This page does not exist.</p>',
-    '  <nav class="hero-actions" style="justify-content:center">',
+    '  <nav class="hero-actions hero-actions-center">',
     links,
     '  </nav>',
     '</main>',
@@ -833,6 +833,41 @@ function verifyInternalLinks() {
   return checked;
 }
 
+// ---------- guardia (h): nessuno stile inline nel markup ----------
+// La CSP dichiara style-src senza 'unsafe-inline'. Un hash autorizza un
+// elemento <style>, ma per specifica NON copre gli attributi
+// style="...": per quelli servirebbe 'unsafe-hashes'. Il browser li
+// blocca, e l'elemento resta senza la regola che doveva applicargli.
+//
+// Non e' teoria: l'honeypot del form aveva style="display:none", la
+// regola veniva bloccata, e in produzione compariva una seconda
+// checkbox accanto a quella del consenso. Ha spedito cosi' per cinque
+// commit, perche' la pagina si carica lo stesso, il build passa, e
+// solo la console del browser lo dice.
+//
+// La cura non e' allargare la CSP: e' non scrivere stili nel markup.
+function verifyNoInlineStyles() {
+  const problems = [];
+  for (const file of walk(DIST)) {
+    if (!file.endsWith('.html')) continue;
+    const label = path.relative(DIST, file).split(path.sep).join('/');
+    // Via il contenuto degli <script>: JSON-LD e payload i18n sono dati,
+    // non markup, e una sequenza "style=" li dentro non e' un attributo.
+    const html = fs.readFileSync(file, 'utf8')
+      .replace(/<script[\s\S]*?<\/script>/g, '');
+    for (const m of html.matchAll(/<([a-zA-Z][\w-]*)[^>]*?\sstyle\s*=\s*"([^"]*)"/g)) {
+      problems.push(`${label}  <${m[1]} style="${m[2]}">`);
+    }
+  }
+  if (problems.length) {
+    fail(problems.length + ' attributo/i style="..." nel markup, che la CSP blocca',
+      problems.join('\n') +
+      '\n\nSpostare la dichiarazione in una classe di style.css.\n' +
+      "Non aggiungere 'unsafe-hashes' o 'unsafe-inline' alla CSP: sarebbe\n" +
+      'indebolire la policy per un problema che si risolve nel markup.');
+  }
+}
+
 // ---------- copia ----------
 function copyRecursive(from, to) {
   if (EXCLUDE.has(path.basename(from))) return 0;
@@ -932,6 +967,7 @@ function build() {
   }
 
   const links = verifyInternalLinks();
+  verifyNoInlineStyles();
 
   const files = walk(DIST);
   const bytes = files.reduce((s, f) => s + fs.statSync(f).size, 0);
