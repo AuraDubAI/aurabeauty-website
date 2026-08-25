@@ -119,7 +119,7 @@ const translations = {
           paragraphs: [
             "Through the contact form we collect your name, your business name (optional), your email address, the message you choose to write to us (optional) and the language of the page you sent the request from.",
             "Name, email address and consent are necessary in order to act on your request. The other fields are optional and leaving them empty has no consequence, other than a less targeted reply from us.",
-            "For technical and security reasons your IP address is processed by the infrastructure serving this site. It is data collected automatically by any connection to a web server, used to protect the site against abuse and not to identify or profile you."
+            "Your IP address is also processed for technical and security reasons: it is data that any connection to a web server generates automatically. Besides being processed by the infrastructure serving this site, when you submit the form it is used to limit the number of submissions allowed from the same address within a given interval of time, as protection against automated abuse. For that check the IP address is not kept beyond the time needed to carry it out, and it is never used to identify or profile you."
           ]
         },
         {
@@ -140,7 +140,7 @@ const translations = {
         {
           heading: "How long we keep your data",
           paragraphs: [
-            "We keep the data collected through the form for 24 months from the last meaningful contact with you.",
+            "We keep the data collected through the form for 24 months from the last communication between you and the controller concerning your request.",
             "This period reflects the typical length of a commercial evaluation cycle in our sector: a demo request can turn into a decision several months later, and a shorter period would stop us from picking the conversation up where it left off. After 24 months the data is deleted.",
             "If you withdraw your consent or ask for erasure, the data is deleted straight away, without waiting for that deadline."
           ]
@@ -322,7 +322,7 @@ const translations = {
           paragraphs: [
             "Attraverso il modulo di contatto raccogliamo il tuo nome, il nome della tua attività (facoltativo), il tuo indirizzo email, il messaggio che scegli di scriverci (facoltativo) e la lingua della pagina da cui hai inviato la richiesta.",
             "Nome, indirizzo email e consenso sono necessari per dare seguito alla richiesta. Gli altri campi sono facoltativi e la loro mancata compilazione non ha alcuna conseguenza, se non una nostra risposta meno mirata.",
-            "Per ragioni tecniche e di sicurezza il tuo indirizzo IP viene trattato dall'infrastruttura che eroga il sito. È un dato raccolto automaticamente da qualsiasi connessione a un server web, usato per proteggere il sito da abusi e non per identificarti né per profilarti."
+            "Per ragioni tecniche e di sicurezza viene trattato anche il tuo indirizzo IP: è un dato che qualsiasi connessione a un server web produce automaticamente. Oltre a essere trattato dall'infrastruttura che eroga il sito, all'invio del modulo viene usato per limitare il numero di invii consentiti da uno stesso indirizzo in un dato intervallo di tempo, a protezione da abusi automatizzati. Per questa verifica l'indirizzo IP non viene conservato oltre il tempo necessario a effettuarla, e in nessun caso serve a identificarti o a profilarti."
           ]
         },
         {
@@ -343,7 +343,7 @@ const translations = {
         {
           heading: "Per quanto tempo conserviamo i dati",
           paragraphs: [
-            "Conserviamo i dati raccolti tramite il modulo per 24 mesi a decorrere dall'ultimo contatto utile con te.",
+            "Conserviamo i dati raccolti tramite il modulo per 24 mesi a decorrere dall'ultima comunicazione intercorsa fra te e il titolare in relazione alla tua richiesta.",
             "Il termine è motivato dalla durata tipica di un ciclo di valutazione commerciale nel nostro settore: una richiesta di dimostrazione può tradursi in una decisione anche a distanza di parecchi mesi, e un periodo più breve ci impedirebbe di riprendere la conversazione dal punto in cui si era interrotta. Scaduti i 24 mesi i dati vengono cancellati.",
             "Se revochi il consenso o chiedi la cancellazione, i dati vengono cancellati subito, senza attendere quella scadenza."
           ]
@@ -525,7 +525,7 @@ const translations = {
           paragraphs: [
             "Über das Kontaktformular erheben wir Ihren Namen, den Namen Ihres Betriebs (freiwillig), Ihre E-Mail-Adresse, die Nachricht, die Sie uns schreiben möchten (freiwillig), und die Sprache der Seite, von der aus Sie die Anfrage gesendet haben.",
             "Name, E-Mail-Adresse und Einwilligung sind erforderlich, um Ihre Anfrage bearbeiten zu können. Die übrigen Felder sind freiwillig; werden sie nicht ausgefüllt, hat das keine Folgen außer einer weniger gezielten Antwort unsererseits.",
-            "Aus technischen und Sicherheitsgründen wird Ihre IP-Adresse von der Infrastruktur verarbeitet, die diese Website ausliefert. Es handelt sich um ein Datum, das bei jeder Verbindung zu einem Webserver automatisch anfällt und dem Schutz der Website vor Missbrauch dient, nicht Ihrer Identifizierung oder Profilbildung."
+            "Aus technischen und Sicherheitsgründen wird auch Ihre IP-Adresse verarbeitet: es handelt sich um ein Datum, das bei jeder Verbindung zu einem Webserver automatisch anfällt. Sie wird nicht nur von der Infrastruktur verarbeitet, die diese Website ausliefert, sondern beim Absenden des Formulars auch dazu genutzt, die Zahl der von derselben Adresse innerhalb eines bestimmten Zeitraums zulässigen Übermittlungen zu begrenzen, zum Schutz vor automatisiertem Missbrauch. Für diese Prüfung wird die IP-Adresse nicht länger gespeichert, als zu ihrer Durchführung erforderlich ist, und sie dient in keinem Fall Ihrer Identifizierung oder Profilbildung."
           ]
         },
         {
@@ -546,7 +546,7 @@ const translations = {
         {
           heading: "Wie lange wir die Daten speichern",
           paragraphs: [
-            "Die über das Formular erhobenen Daten speichern wir 24 Monate ab dem letzten sinnvollen Kontakt mit Ihnen.",
+            "Die über das Formular erhobenen Daten speichern wir 24 Monate ab der letzten Kommunikation zwischen Ihnen und dem Verantwortlichen im Zusammenhang mit Ihrer Anfrage.",
             "Diese Frist ergibt sich aus der üblichen Dauer eines geschäftlichen Entscheidungszyklus in unserer Branche: aus einer Anfrage nach einer Vorführung kann noch nach etlichen Monaten eine Entscheidung werden, und ein kürzerer Zeitraum würde uns daran hindern, das Gespräch dort wieder aufzunehmen, wo es unterbrochen wurde. Nach Ablauf der 24 Monate werden die Daten gelöscht.",
             "Wenn Sie Ihre Einwilligung widerrufen oder die Löschung verlangen, werden die Daten sofort gelöscht, ohne diese Frist abzuwarten."
           ]
@@ -728,7 +728,7 @@ const translations = {
           paragraphs: [
             "Via le formulaire de contact, nous collectons votre nom, le nom de votre établissement (facultatif), votre adresse électronique, le message que vous choisissez de nous écrire (facultatif) et la langue de la page depuis laquelle vous avez envoyé la demande.",
             "Le nom, l'adresse électronique et le consentement sont nécessaires pour donner suite à votre demande. Les autres champs sont facultatifs et le fait de ne pas les remplir n'a aucune conséquence, si ce n'est une réponse moins ciblée de notre part.",
-            "Pour des raisons techniques et de sécurité, votre adresse IP est traitée par l'infrastructure qui délivre ce site. Il s'agit d'une donnée collectée automatiquement par toute connexion à un serveur web, utilisée pour protéger le site contre les abus et non pour vous identifier ou vous profiler."
+            "Votre adresse IP est également traitée pour des raisons techniques et de sécurité : il s'agit d'une donnée que toute connexion à un serveur web génère automatiquement. Outre son traitement par l'infrastructure qui délivre ce site, elle est utilisée, lors de l'envoi du formulaire, pour limiter le nombre d'envois autorisés depuis une même adresse sur un intervalle de temps donné, afin de protéger le site contre les abus automatisés. Pour cette vérification, l'adresse IP n'est pas conservée au-delà du temps nécessaire à sa réalisation, et elle ne sert en aucun cas à vous identifier ou à vous profiler."
           ]
         },
         {
@@ -749,7 +749,7 @@ const translations = {
         {
           heading: "Durée de conservation des données",
           paragraphs: [
-            "Nous conservons les données collectées via le formulaire pendant 24 mois à compter du dernier contact utile avec vous.",
+            "Nous conservons les données collectées via le formulaire pendant 24 mois à compter de la dernière communication échangée entre vous et le responsable du traitement au sujet de votre demande.",
             "Ce délai correspond à la durée habituelle d'un cycle d'évaluation commerciale dans notre secteur : une demande de démonstration peut déboucher sur une décision plusieurs mois plus tard, et une durée plus courte nous empêcherait de reprendre la conversation là où elle s'était interrompue. Passé ce délai de 24 mois, les données sont supprimées.",
             "Si vous retirez votre consentement ou demandez l'effacement, les données sont supprimées immédiatement, sans attendre cette échéance."
           ]
@@ -931,7 +931,7 @@ const translations = {
           paragraphs: [
             "A través del formulario de contacto recogemos tu nombre, el nombre de tu negocio (opcional), tu dirección de correo electrónico, el mensaje que quieras escribirnos (opcional) y el idioma de la página desde la que has enviado la solicitud.",
             "El nombre, la dirección de correo electrónico y el consentimiento son necesarios para poder atender tu solicitud. Los demás campos son opcionales y no rellenarlos no tiene ninguna consecuencia, más allá de una respuesta menos precisa por nuestra parte.",
-            "Por motivos técnicos y de seguridad, tu dirección IP es tratada por la infraestructura que sirve este sitio. Es un dato que se recoge automáticamente en cualquier conexión a un servidor web, utilizado para proteger el sitio frente a abusos y no para identificarte ni elaborar perfiles."
+            "Tu dirección IP también se trata por motivos técnicos y de seguridad: es un dato que cualquier conexión a un servidor web genera automáticamente. Además de ser tratada por la infraestructura que sirve este sitio, al enviar el formulario se utiliza para limitar el número de envíos permitidos desde una misma dirección en un intervalo de tiempo determinado, como protección frente a abusos automatizados. Para esa comprobación la dirección IP no se conserva más allá del tiempo necesario para realizarla, y en ningún caso sirve para identificarte ni para elaborar perfiles."
           ]
         },
         {
@@ -952,7 +952,7 @@ const translations = {
         {
           heading: "Cuánto tiempo conservamos los datos",
           paragraphs: [
-            "Conservamos los datos recogidos mediante el formulario durante 24 meses a partir del último contacto útil contigo.",
+            "Conservamos los datos recogidos mediante el formulario durante 24 meses a partir de la última comunicación mantenida entre tú y el responsable en relación con tu solicitud.",
             "El plazo responde a la duración habitual de un ciclo de evaluación comercial en nuestro sector: una solicitud de demostración puede traducirse en una decisión incluso varios meses después, y un periodo más corto nos impediría retomar la conversación donde se interrumpió. Transcurridos los 24 meses los datos se suprimen.",
             "Si retiras el consentimiento o solicitas la supresión, los datos se suprimen de inmediato, sin esperar a ese vencimiento."
           ]
