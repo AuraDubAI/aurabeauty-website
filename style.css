@@ -119,7 +119,23 @@
   --surface-border: rgba(255,255,255,0.08);
   --text: #eef0f5;
   --text-muted: #a3a6b8;
-  --pink: #ec1b7f;
+  /* Era #ec1b7f. Su quel rosa il bianco stava a 4.18:1, sotto AA 4.5:1,
+     e riguardava i tre elementi che portano testo bianco piccolo sul
+     gradiente: .btn-primary (15.68px/600), .nav-cta (15.20px/600) e
+     .pillar-tag (16px/700 — bold sotto i 18.66px e' ancora testo
+     normale, non "large text"). Tutti e tre prendono il fondo da --grad,
+     il cui punto peggiore e' lo stop 0%, cioe' questo token: correggerlo
+     qui li sistema tutti e tre insieme.
+     #e21376 porta il bianco a 4.58:1. Non serve piu' margine di cosi':
+     WCAG si calcola sui colori DICHIARATI, non sui pixel resi, e lo
+     stop 0% e' esattamente il valore dichiarato.
+     La distanza dal rosa precedente e' dE2000 = 2.68, il confine sotto
+     cui due campioni non si distinguono nemmeno affiancati. Tinta e
+     saturazione non si muovono: cala L* di 2.6 punti, da 52.0 a 49.4.
+     I nove rgba() decorativi nel foglio usano lo stesso valore in forma
+     letterale (226,19,118): non possono leggere una variabile perche'
+     serve il canale alpha, ma vanno tenuti allineati a mano. */
+  --pink: #e21376;
   --pink-soft: #ff5fa8;
   --purple: #6c3ce9;
   --purple-soft: #9d7bff;
@@ -226,7 +242,7 @@ a{ color: inherit; text-decoration:none; }
   z-index: -1;
   background:
     radial-gradient(circle at 15% 0%, rgba(108,60,233,0.25), transparent 45%),
-    radial-gradient(circle at 90% 20%, rgba(236,27,127,0.18), transparent 45%);
+    radial-gradient(circle at 90% 20%, rgba(226,19,118,0.18), transparent 45%);
   pointer-events: none;
 }
 
@@ -381,7 +397,7 @@ a{ color: inherit; text-decoration:none; }
 .lang-links a[aria-current="page"]{
   color:#fff;
   border-color: var(--pink);
-  background: rgba(236,27,127,0.16);
+  background: rgba(226,19,118,0.16);
 }
 
 /* ---------- BUTTONS ---------- */
@@ -398,9 +414,9 @@ a{ color: inherit; text-decoration:none; }
 .btn-primary{
   background: var(--grad);
   color: #fff;
-  box-shadow: 0 10px 30px -8px rgba(236,27,127,0.55);
+  box-shadow: 0 10px 30px -8px rgba(226,19,118,0.55);
 }
-.btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 14px 34px -6px rgba(236,27,127,0.65); }
+.btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 14px 34px -6px rgba(226,19,118,0.65); }
 .btn-ghost{
   background: transparent;
   color: #fff;
@@ -414,7 +430,7 @@ a{ color: inherit; text-decoration:none; }
 }
 .btn-primary:disabled:hover{
   transform: none;
-  box-shadow: 0 10px 30px -8px rgba(236,27,127,0.55);
+  box-shadow: 0 10px 30px -8px rgba(226,19,118,0.55);
 }
 
 /* ---------- HERO ---------- */
@@ -489,7 +505,7 @@ a{ color: inherit; text-decoration:none; }
   margin-bottom: 48px;
 }
 .diff-card{
-  background: linear-gradient(160deg, rgba(108,60,233,0.14), rgba(236,27,127,0.09));
+  background: linear-gradient(160deg, rgba(108,60,233,0.14), rgba(226,19,118,0.09));
   border: 1px solid var(--surface-border);
   border-radius: var(--radius);
   padding: 36px;
@@ -543,7 +559,11 @@ a{ color: inherit; text-decoration:none; }
   justify-content:center;
   font-size: 1.3rem;
 }
-.diff-highlight h4{ margin-bottom: 8px; font-size: 1rem; }
+/* h3 e non h4: questi quattro riquadri stanno in .diff-highlights, che e'
+   fratello di .diff-grid, quindi dipendono dall'h2 di sezione e non dagli
+   h3 delle due card che li precedono. La dimensione era e resta 1rem,
+   dichiarata qui: la resa non cambia. */
+.diff-highlight h3{ margin-bottom: 8px; font-size: 1rem; }
 .diff-highlight p{ margin:0; font-size: 0.9rem; }
 
 /* ---------- FEATURE GRID ---------- */
@@ -559,7 +579,7 @@ a{ color: inherit; text-decoration:none; }
   padding: 32px;
   transition: transform .25s ease, border-color .25s ease;
 }
-.feature-card:hover{ transform: translateY(-4px); border-color: rgba(236,27,127,0.4); }
+.feature-card:hover{ transform: translateY(-4px); border-color: rgba(226,19,118,0.4); }
 .feature-card-wide{ grid-column: span 3; }
 .feature-icon{ font-size: 1.8rem; margin-bottom: 14px; }
 .feature-card h3{ margin-bottom: 12px; }
@@ -600,7 +620,7 @@ a{ color: inherit; text-decoration:none; }
   gap: 24px;
 }
 .pillar{
-  background: linear-gradient(160deg, rgba(108,60,233,0.12), rgba(236,27,127,0.08));
+  background: linear-gradient(160deg, rgba(108,60,233,0.12), rgba(226,19,118,0.08));
   border: 1px solid var(--surface-border);
   border-radius: var(--radius);
   padding: 36px 28px;
@@ -634,7 +654,7 @@ a{ color: inherit; text-decoration:none; }
   background: var(--grad);
   padding: 4px;
   background-clip: padding-box;
-  box-shadow: 0 0 0 3px rgba(236,27,127,0.25), 0 20px 50px -10px rgba(108,60,233,0.4);
+  box-shadow: 0 0 0 3px rgba(226,19,118,0.25), 0 20px 50px -10px rgba(108,60,233,0.4);
 }
 .control-text p:last-child{ margin-bottom:0; }
 
@@ -664,7 +684,13 @@ a{ color: inherit; text-decoration:none; }
   font-weight:700;
   margin-top: 2px;
 }
-.why-item h4{ margin-bottom: 4px; }
+/* h3 e non h4: la sezione #perche' aveva un h2 seguito da cinque h4, cioe'
+   un livello saltato. font-size dichiarato qui perche' la regola globale
+   h3 vale 1.2rem contro gli 1.05rem di h4: senza questa riga i cinque
+   titoli crescerebbero da 16.8 a 19.2px. Con la riga la resa e' identica
+   a prima — tra h3 e h4 l'unica differenza e' la dimensione, il peso e'
+   600 in entrambi e il resto viene dalla regola h1,h2,h3,h4. */
+.why-item h3{ margin-bottom: 4px; font-size: 1.05rem; }
 .why-item p{ margin:0; font-size: 0.95rem; }
 
 /* ---------- CLOSING ---------- */
@@ -743,8 +769,24 @@ a{ color: inherit; text-decoration:none; }
   outline:none;
   border-color: var(--pink);
 }
-.contact-form input::placeholder,
-.contact-form textarea::placeholder{ color: #6c6f82; }
+
+/* Etichette dei campi. Prima non esistevano: l'unica identificazione era
+   il placeholder, che sparisce alla prima battuta — chi si interrompe a
+   meta' modulo non sa piu' cosa sta compilando (WCAG 3.3.2, livello A).
+   Ora sono visibili e permanenti, e i placeholder sono stati rimossi
+   perche' ripetevano la stessa stringa.
+   Figlio diretto di .field: la <label> del consenso e' annidata in
+   .form-consent > .form-consent-text e mantiene il suo stile.
+   Il gap di .contact-form e' 16px e vale fra i .field, non dentro: la
+   distanza label-campo la da' questo margin, e resta contenuta perche'
+   i due elementi devono leggersi come una cosa sola. */
+.contact-form .field > label{
+  display:block;
+  margin-bottom: 6px;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: var(--text-muted);
+}
 .form-note{
   text-align:center;
   color: var(--pink-soft);
@@ -888,6 +930,35 @@ select:focus-visible,
    a sinistra come nella hero. Era anch'essa un attributo style. */
 .hero-actions-center{ justify-content:center; }
 
+/* Le cinque frasi della 404, una per lingua. Uniformi e senza gerarchia
+   fra loro: l'h1 "404" porta gia' il significato in modo neutro rispetto
+   alla lingua, quindi nessuna delle cinque e' il messaggio "principale".
+   Nessun bullet: la lista dichiara il parallelismo alla tecnologia
+   assistiva, non serve mostrarlo anche come pallini. */
+.error-messages{
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+/* I cinque link della 404 non avevano alcuna classe, quindi cadevano su
+   a{color:inherit;text-decoration:none} — testo bianco identico al
+   contenuto attorno, senza nessun segno di essere cliccabile. Non era
+   solo colore: non c'era affordance di alcun tipo. .site-footer a
+   ripristina l'underline per il footer, ma la 404 non ha footer.
+   --pink-soft su --bg e' 7.00:1, e la sottolineatura non lascia il
+   riconoscimento al solo colore. */
+.error-langs a{
+  color: var(--pink-soft);
+  text-decoration: underline;
+  font-weight: 600;
+}
+
 /* ---------- PAGINE LEGALI ---------- */
 
 /* La dimensione dell'h1 non e' qui: sta nella regola globale, perche' il
@@ -916,6 +987,15 @@ select:focus-visible,
    di prosa legale di fila: un filo di interlinea in piu' riduce la
    fatica su un testo che nessuno legge per piacere. */
 .section-legal p{ line-height: 1.7; }
+/* L'indirizzo nel corpo dell'informativa e' l'unico recapito per
+   esercitare i diritti: era testo semplice, da copiare a mano. Come link
+   serve un colore, perche' a{} globale azzera anche text-decoration.
+   --pink-soft su --bg e' 7.00:1, e l'underline non affida il
+   riconoscimento al solo colore. */
+.section-legal a{
+  color: var(--pink-soft);
+  text-decoration: underline;
+}
 
 /* ---------- FOOTER ---------- */
 .site-footer{

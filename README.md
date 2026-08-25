@@ -148,10 +148,43 @@ il browser non lo contatta mai.
       `<lastmod>` nella sitemap. Va aggiornata a mano quando i contenuti
       cambiano in modo sostanziale, oppure passata da CI con
       `SOURCE_DATE_EPOCH`. Non usare `new Date()`: romperebbe l'idempotenza.
-- [ ] **Segnaposto grafici** — `assets/og-image.png` (1200×630),
-      `assets/hero-bg.jpg`, `assets/founder.jpg`, `assets/logo.png`,
-      `assets/apple-touch-icon.png` sono provvisori, in attesa della grafica
-      definitiva.
+- [x] **`assets/og-image.jpg`** (1200×630) — non è più un segnaposto: è
+      generato da `tools/gen-og-image.mjs` ritagliando `assets/hero-bg.jpg`
+      con la strategia `attention` e applicando lo stesso scurimento della
+      hero a intensità ridotta. Il logo **non** viene composto sopra:
+      `hero-bg.jpg` ha già il marchio impresso nei pixel, e `assets/logo.png`
+      è lo stesso wordmark. I dettagli sono nell'intestazione dello script.
+- [ ] **Segnaposto grafici** — `assets/hero-bg.jpg`, `assets/founder.jpg`,
+      `assets/logo.png`, `assets/apple-touch-icon.png` e `assets/favicon.svg`
+      sono provvisori, in attesa della grafica definitiva.
+      Nota su `favicon.svg`: il rosa del gradiente è stato allineato a mano
+      a `--pink` (`#e21376`). È testo nel file, quindi si modifica come i
+      letterali del CSS. `apple-touch-icon.png` no: lì il rosa è nei pixel
+      e va rigenerato, e per ora resta col vecchio valore.
+      Attenzione al caching: `_headers` dà a `/assets/*`
+      `max-age=31536000, immutable` e questi file **non** sono
+      fingerprintati, quindi cambiarli mantenendo lo stesso nome non
+      raggiunge i client che li hanno già in cache. Per gli asset
+      definitivi serve un nome nuovo, o spostarli fra i `FINGERPRINTED`.
+- [ ] **I nove `rgba()` letterali col rosa del brand** in `style.css` —
+      bagliori, `box-shadow`, bordi `:hover` e gradienti di fondo usano
+      `rgba(226,19,118, …)`, cioè `--pink` scritto a mano. **Non possono
+      leggere il token**: serve il canale alpha, e `rgba()` non accetta una
+      variabile esadecimale. Se `--pink` cambia, vanno aggiornati a mano
+      tutti e nove, altrimenti token e letterali divergono in silenzio. La
+      ragione è commentata accanto al token in `style.css`.
+      `grep -o '226,19,118' style.css | wc -l` deve dare 10: i nove valori
+      più la citazione dentro quel commento. Conta le occorrenze e non le
+      righe, così resta valido anche se due dichiarazioni finiscono sulla
+      stessa riga.
+- [ ] **Contrasto di `.grad-text` nell'`<h1>` della hero** — va misurato su
+      render, non calcolato. Quel testo usa `background-clip: text` sopra
+      `hero-bg.jpg` a `opacity: 0.5` più due overlay (`rgba(10,10,18,.55)`
+      verticale e `rgba(10,10,18,.9)` orizzontale): il fondo effettivo
+      dipende dai pixel della foto, non da un colore piatto, quindi nessuna
+      formula lo decide. Gli altri usi del gradiente come testo sono su
+      fondi piatti e sono verificati: `.diff-stat-num` sta a 4,16:1 su
+      `--bg-alt`, oltre i 3:1 richiesti al testo grande.
 - [ ] **Varianti responsive delle immagini** — in `assets/` esistono già le
       versioni AVIF/WebP/JPEG a 1920/1280/768 px generate con
       `tools/gen-images.mjs`, ma **nessun template le usa ancora**: il markup
@@ -161,6 +194,15 @@ il browser non lo contatta mai.
       best-effort: la `Map` vive nel singolo isolate, quindi il limite reale è
       «5 per isolate per IP», non globale. Per una difesa vera servono le Rate
       Limiting Rules di Cloudflare o un contatore su KV / Durable Object.
+      **Se si passa a KV o Durable Objects va rivisto anche il capoverso
+      dell'informativa sull'indirizzo IP.** Oggi dice che «per questa
+      verifica l'indirizzo IP non viene conservato oltre il tempo necessario
+      a effettuarla», e con una `Map` in memoria dentro un isolate effimero
+      è vero. Un contatore persistente lo renderebbe falso: l'IP diventerebbe
+      un dato scritto in uno storage con una sua durata, da dichiarare come
+      tale nelle sezioni «Per quanto tempo conserviamo i dati» e «A chi
+      comunichiamo i dati». È una modifica tecnica che cambia un'affermazione
+      legale, quindi le due cose vanno fatte insieme.
 
 ## Vincoli da non violare
 

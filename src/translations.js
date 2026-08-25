@@ -7,6 +7,10 @@ const translations = {
       description: "AURA is the AI ecosystem that helps beauty centers, med spas, pharmacies and clinics attract new clients, manage leads and book more appointments.",
       ogImageAlt: "AURA — AI marketing automation for beauty centers and clinics"
     },
+    notFound: {
+      title: "Page not found | AURA",
+      message: "This page does not exist."
+    },
     nav: { home: "Home", chisiamo: "About AURA", servizi: "Services", perche: "Why AURA", cta: "Request a demo" },
     hero: {
       eyebrow: "AI for the beauty & health industry",
@@ -76,10 +80,10 @@ const translations = {
     contact: {
       title: "Request a demo of AURA",
       p: "Tell us a bit about your business: we'll show you how AURA can help you find new clients and grow your revenue.",
-      name: "Full name",
-      company: "Business name",
-      email: "Email",
-      message: "Tell us more (optional)",
+      labelName: "Full name",
+      labelCompany: "Business",
+      labelEmail: "Email",
+      labelMessage: "Message (optional)",
       consentText: "I consent to the processing of my personal data and I accept the",
       consentLink: "privacy policy",
       submit: "Request a demo of AURA",
@@ -107,7 +111,7 @@ const translations = {
     privacy: {
       seo: {
         title: "Privacy Policy | AURA",
-        description: "How AI LAB L.L.C-FZ processes the personal data collected through this site: purposes, legal basis, retention, processors, transfers outside the European Union and your rights."
+        description: "How AI LAB L.L.C-FZ processes the data collected through this site: purposes, legal basis, retention, transfers outside the EU and your rights."
       },
       title: "Privacy Policy",
       intro: "This policy explains how the personal data collected through this site is processed, pursuant to Articles 13 and 14 of Regulation (EU) 2016/679 (GDPR).",
@@ -224,6 +228,10 @@ const translations = {
       description: "AURA è l'ecosistema AI che porta nuovi clienti a centri estetici, farmacie e studi medici: campagne, gestione lead e prenotazioni automatizzate.",
       ogImageAlt: "AURA — intelligenza artificiale per il marketing di centri estetici e cliniche"
     },
+    notFound: {
+      title: "Pagina non trovata | AURA",
+      message: "Questa pagina non esiste."
+    },
     nav: { home: "Home", chisiamo: "Chi è AURA", servizi: "Servizi", perche: "Perché AURA", cta: "Richiedi una demo" },
     hero: {
       eyebrow: "AI per il settore beauty & health",
@@ -293,10 +301,10 @@ const translations = {
     contact: {
       title: "Richiedi una demo di AURA",
       p: "Raccontaci qualcosa della tua attività: ti mostreremo come AURA può aiutarti a trovare nuovi clienti e far crescere il fatturato.",
-      name: "Nome e cognome",
-      company: "Nome dell'attività",
-      email: "Email",
-      message: "Raccontaci qualcosa in più (opzionale)",
+      labelName: "Nome e cognome",
+      labelCompany: "Attività",
+      labelEmail: "Email",
+      labelMessage: "Messaggio (opzionale)",
       consentText: "Acconsento al trattamento dei miei dati personali e accetto la",
       consentLink: "privacy policy",
       submit: "Richiedi una demo di AURA",
@@ -324,7 +332,7 @@ const translations = {
     privacy: {
       seo: {
         title: "Informativa sulla privacy | AURA",
-        description: "Come AI LAB L.L.C-FZ tratta i dati personali raccolti da questo sito: finalità, base giuridica, conservazione, responsabili, trasferimenti fuori dall'Unione europea e diritti dell'interessato."
+        description: "Come AI LAB L.L.C-FZ tratta i dati raccolti da questo sito: finalità, base giuridica, conservazione, trasferimenti fuori dall'UE e diritti dell'interessato."
       },
       title: "Informativa sulla privacy",
       intro: "Questa informativa descrive come vengono trattati i dati personali raccolti attraverso questo sito, ai sensi degli articoli 13 e 14 del Regolamento (UE) 2016/679 (GDPR).",
@@ -439,7 +447,11 @@ const translations = {
     seo: {
       title: "AURA | KI-Marketing für Beauty-Studios und Praxen",
       description: "AURA ist das KI-Ökosystem für Kosmetikstudios, Apotheken und Praxen: mehr Neukunden, automatisierte Lead-Verwaltung und Terminbuchung.",
-      ogImageAlt: "AURA — KI-Marketing für Kosmetikstudios und Praxen"
+      ogImageAlt: "AURA – KI-Marketing für Kosmetikstudios und Praxen"
+    },
+    notFound: {
+      title: "Seite nicht gefunden | AURA",
+      message: "Diese Seite existiert nicht."
     },
     nav: { home: "Startseite", chisiamo: "Über AURA", servizi: "Leistungen", perche: "Warum AURA", cta: "Demo anfordern" },
     hero: {
@@ -510,10 +522,10 @@ const translations = {
     contact: {
       title: "Demo von AURA anfordern",
       p: "Erzählen Sie uns etwas über Ihr Unternehmen: Wir zeigen Ihnen, wie AURA Ihnen hilft, neue Kunden zu gewinnen und Ihren Umsatz zu steigern.",
-      name: "Vor- und Nachname",
-      company: "Name des Unternehmens",
-      email: "E-Mail",
-      message: "Erzählen Sie uns mehr (optional)",
+      labelName: "Vor- und Nachname",
+      labelCompany: "Unternehmen",
+      labelEmail: "E-Mail",
+      labelMessage: "Nachricht (optional)",
       consentText: "Ich willige in die Verarbeitung meiner personenbezogenen Daten ein und akzeptiere die",
       consentLink: "Datenschutzerklärung",
       submit: "Demo von AURA anfordern",
@@ -522,7 +534,7 @@ const translations = {
       success: "Vielen Dank! Ihre Nachricht wurde empfangen, wir melden uns in Kürze.",
       error: "Ihre Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut oder schreiben Sie uns an info@aurabeauty.app.",
       retry: "Erneut versuchen",
-      noscript: "Das Formular benötigt JavaScript, das derzeit nicht aktiv zu sein scheint. Sie können uns stattdessen an die untenstehende Adresse schreiben — wir antworten genauso.",
+      noscript: "Das Formular benötigt JavaScript, das derzeit nicht aktiv zu sein scheint. Sie können uns stattdessen an die untenstehende Adresse schreiben – wir antworten genauso.",
       altText: "Oder schreiben Sie uns direkt:"
     },
     form: {
@@ -541,7 +553,7 @@ const translations = {
     privacy: {
       seo: {
         title: "Datenschutzerklärung | AURA",
-        description: "Wie AI LAB L.L.C-FZ die über diese Website erhobenen personenbezogenen Daten verarbeitet: Zwecke, Rechtsgrundlage, Speicherdauer, Auftragsverarbeiter, Übermittlung außerhalb der EU und Ihre Rechte."
+        description: "Wie AI LAB L.L.C-FZ die über diese Website erhobenen Daten verarbeitet: Zwecke, Rechtsgrundlage, Speicherdauer, Übermittlung außerhalb der EU und Ihre Rechte."
       },
       title: "Datenschutzerklärung",
       intro: "Diese Erklärung beschreibt, wie die über diese Website erhobenen personenbezogenen Daten verarbeitet werden, gemäß Artikel 13 und 14 der Verordnung (EU) 2016/679 (DSGVO).",
@@ -658,6 +670,10 @@ const translations = {
       description: "AURA est l'écosystème d'IA qui aide instituts de beauté, pharmacies et cabinets médicaux à trouver de nouveaux clients et à remplir leur agenda.",
       ogImageAlt: "AURA — l'IA marketing pour instituts de beauté et cliniques"
     },
+    notFound: {
+      title: "Page introuvable | AURA",
+      message: "Cette page n'existe pas."
+    },
     nav: { home: "Accueil", chisiamo: "À propos d'AURA", servizi: "Services", perche: "Pourquoi AURA", cta: "Demander une démo" },
     hero: {
       eyebrow: "L'IA pour le secteur beauté & santé",
@@ -665,7 +681,7 @@ const translations = {
       title_grad: "rendez-vous, clients et chiffre d'affaires",
       title_post: "",
       lead: "AURA est l'écosystème d'intelligence artificielle conçu pour aider les instituts de beauté, pharmacies, cabinets médicaux et entreprises du secteur beauté à trouver de nouveaux clients, gérer les contacts et augmenter les ventes.",
-      sub: "Ce n'est pas un simple chatbot, ni seulement un outil de création de contenu. AURA accompagne votre activité à chaque étape du parcours commercial : de la création de la campagne publicitaire à la prise de rendez-vous, en passant par la gestion des leads, les relances et la réactivation des clients déjà présents dans votre base de données.",
+      sub: "Ce n'est pas un simple chatbot, ni seulement un outil de création de contenu. AURA accompagne votre activité à chaque étape du parcours commercial : de la création de la campagne publicitaire à la prise de rendez-vous, en passant par la gestion des leads, les relances et la réactivation des clients déjà présents dans votre base de données.",
       tagline: "Plus d'automatisation. Plus de contrôle. Plus d'opportunités de vente.",
       cta1: "Découvrir AURA",
       cta2: "Demander une démo"
@@ -673,14 +689,14 @@ const translations = {
     chisiamo: {
       title: "De la première annonce au rendez-vous inscrit à l'agenda",
       lead: "AURA vous aide à construire et gérer des campagnes marketing complètes, adaptées à vos objectifs, aux services que vous souhaitez promouvoir et à la capacité de votre agenda.",
-      p1: "Elle génère textes, images, vidéos et stratégies promotionnelles, en vous accompagnant dans la publication des campagnes et la gestion des contacts acquis. Dès qu'une personne demande des informations, AURA entre immédiatement en action : elle répond, présente le soin, envoie des documents d'information, recueille les besoins du client potentiel et le guide vers la prise de rendez-vous.",
+      p1: "Elle génère textes, images, vidéos et stratégies promotionnelles, en vous accompagnant dans la publication des campagnes et la gestion des contacts acquis. Dès qu'une personne demande des informations, AURA entre immédiatement en action : elle répond, présente le soin, envoie des documents d'information, recueille les besoins du client potentiel et le guide vers la prise de rendez-vous.",
       highlight: "Le résultat est un processus plus rapide, plus organisé et plus mesurable."
     },
     servizi: { title: "Ce qu'AURA fait pour votre activité" },
     diff: { title: "Ce qui différencie AURA" },
     diffA: {
       title: "Des vidéos publicitaires de qualité cinématographique, conçues pour l'algorithme",
-      p: "AURA ne se contente pas d'écrire des scripts : nous produisons des vidéos publicitaires complètes, de qualité cinématographique, conçues et testées pour performer avec l'algorithme publicitaire de Facebook. Nous avons déjà testé cette approche sur des centaines de centres : les KPI de vues et de conversion sont jusqu'à 4 fois supérieurs à ceux des vidéos réalisées de façon artisanale par les clients.",
+      p: "AURA ne se contente pas d'écrire des scripts : nous produisons des vidéos publicitaires complètes, de qualité cinématographique, conçues et testées pour performer avec l'algorithme publicitaire de Facebook. Nous avons déjà testé cette approche sur des centaines de centres : les KPI de vues et de conversion sont jusqu'à 4 fois supérieurs à ceux des vidéos réalisées de façon artisanale par les clients.",
       statNum: "4×",
       statLabel: "KPI de vues et de conversion plus élevés que les vidéos réalisées en interne"
     },
@@ -695,13 +711,13 @@ const translations = {
     feature1: {
       title: "Crée des campagnes publicitaires",
       p: "AURA analyse votre objectif et vous guide dans le choix de la stratégie la plus adaptée pour promouvoir les soins du visage et du corps, l'épilation, les programmes de remodelage corporel, les journées portes ouvertes et autres initiatives commerciales.",
-      listlabel: "Elle peut générer :",
+      listlabel: "Elle peut générer :",
       list: ["des stratégies promotionnelles", "des offres et un positionnement", "des textes pour les campagnes Meta", "des images et contenus créatifs", "des vidéos publicitaires de qualité cinématographique", "des messages WhatsApp et relances"],
       note: "Vous ne partez plus d'une page blanche. Vous partez d'une stratégie."
     },
     feature2: { title: "Gère les nouveaux contacts 24h/24", p: "Chaque lead peut recevoir une réponse immédiate, même en dehors des horaires d'ouverture. AURA dialogue avec le client potentiel, répond aux questions fréquentes, présente le service et recueille les informations nécessaires pour comprendre son intérêt réel." },
     feature3: { title: "Qualifie les opportunités", p: "Tous les contacts n'ont pas les mêmes besoins. AURA pose des questions ciblées, identifie le soin d'intérêt, recueille les disponibilités et accompagne la personne dans un parcours de choix plus simple et personnalisé." },
-    feature4: { title: "Guide le client vers la réservation", p: "AURA ne se contente pas de fournir des informations. Son objectif est d'accompagner le lead jusqu'à l'action : demander une consultation, postuler à une offre, choisir une date ou réserver un rendez-vous." },
+    feature4: { title: "Guide le client vers la réservation", p: "AURA ne se contente pas de fournir des informations. Son objectif est d'accompagner le lead jusqu'à l'action : demander une consultation, postuler à une offre, choisir une date ou réserver un rendez-vous." },
     feature5: { title: "Réactive les clients déjà acquis", p: "Votre base de données peut contenir des centaines de clients inactifs. AURA peut vous aider à créer des campagnes de réactivation et de remarketing personnalisées, en proposant de nouveaux soins et promotions adaptés au profil du client." },
     feature6: { title: "Vous aide à vendre davantage à vos clients actifs", p: "AURA soutient aussi les activités d'upselling et de cross-selling, en suggérant des communications et offres complémentaires pour augmenter la fréquence d'achat et la valeur moyenne de chaque client." },
     pillars: { title: "Un seul écosystème pour trois objectifs essentiels" },
@@ -726,21 +742,21 @@ const translations = {
     },
     contact: {
       title: "Demander une démo d'AURA",
-      p: "Parlez-nous un peu de votre activité : nous vous montrerons comment AURA peut vous aider à trouver de nouveaux clients et à augmenter votre chiffre d'affaires.",
-      name: "Nom et prénom",
-      company: "Nom de l'établissement",
-      email: "E-mail",
-      message: "Dites-nous en plus (facultatif)",
+      p: "Parlez-nous un peu de votre activité : nous vous montrerons comment AURA peut vous aider à trouver de nouveaux clients et à augmenter votre chiffre d'affaires.",
+      labelName: "Nom et prénom",
+      labelCompany: "Établissement",
+      labelEmail: "E-mail",
+      labelMessage: "Message (facultatif)",
       consentText: "Je consens au traitement de mes données personnelles et j'accepte la",
       consentLink: "politique de confidentialité",
       submit: "Demander une démo d'AURA",
       sending: "Envoi en cours…",
       successTitle: "Demande envoyée",
-      success: "Merci ! Votre message a bien été reçu, nous vous contacterons bientôt.",
+      success: "Merci ! Votre message a bien été reçu, nous vous contacterons bientôt.",
       error: "Nous n'avons pas pu envoyer votre demande. Réessayez ou écrivez-nous à info@aurabeauty.app.",
       retry: "Réessayer",
-      noscript: "Le formulaire nécessite JavaScript, qui ne semble pas actif. Vous pouvez nous écrire à l'adresse ci-dessous : nous répondons de la même manière.",
-      altText: "Ou écrivez-nous directement :"
+      noscript: "Le formulaire nécessite JavaScript, qui ne semble pas actif. Vous pouvez nous écrire à l'adresse ci-dessous : nous répondons de la même manière.",
+      altText: "Ou écrivez-nous directement :"
     },
     form: {
       err: {
@@ -758,7 +774,7 @@ const translations = {
     privacy: {
       seo: {
         title: "Politique de confidentialité | AURA",
-        description: "Comment AI LAB L.L.C-FZ traite les données personnelles collectées via ce site : finalités, base légale, conservation, sous-traitants, transferts hors Union européenne et droits des personnes concernées."
+        description: "Comment AI LAB L.L.C-FZ traite les données collectées via ce site : finalités, base légale, conservation, transferts hors UE et droits des personnes."
       },
       title: "Politique de confidentialité",
       intro: "Cette politique décrit la manière dont sont traitées les données personnelles collectées via ce site, conformément aux articles 13 et 14 du règlement (UE) 2016/679 (RGPD).",
@@ -767,14 +783,14 @@ const translations = {
           heading: "Responsable du traitement",
           paragraphs: [
             "Le responsable du traitement est AI LAB L.L.C-FZ, Meydan Grandstand, 6th floor, Meydan Road, Nad Al Sheba, Dubaï, Émirats arabes unis.",
-            "Identifiant fiscal : TRN 105142922100003. Le TRN (Tax Registration Number) est un identifiant délivré par les autorités des Émirats arabes unis : il ne s'agit ni d'un numéro de TVA ni d'un numéro d'identification à la TVA de l'Union européenne.",
+            "Identifiant fiscal : TRN 105142922100003. Le TRN (Tax Registration Number) est un identifiant délivré par les autorités des Émirats arabes unis : il ne s'agit ni d'un numéro de TVA ni d'un numéro d'identification à la TVA de l'Union européenne.",
             "Pour toute question relative au traitement de vos données, vous pouvez écrire à info@aurabeauty.app."
           ]
         },
         {
           heading: "Représentant dans l'Union européenne (art. 27 RGPD)",
           paragraphs: [
-            "Le responsable du traitement, n'étant pas établi dans l'Union européenne, a désigné au titre de l'article 27 du RGPD son représentant dans l'Union : PERLA BEAUTY SRL, Via Cappuccio 11, 20123 Milano, Italie.",
+            "Le responsable du traitement, n'étant pas établi dans l'Union européenne, a désigné au titre de l'article 27 du RGPD son représentant dans l'Union : PERLA BEAUTY SRL, Via Cappuccio 11, 20123 Milano, Italie.",
             "Le représentant sert de point de contact pour les personnes concernées et pour les autorités de contrôle sur les questions relatives au traitement des données personnelles.",
             "Pour exercer vos droits ou pour toute demande, vous pouvez écrire à info@aurabeauty.app."
           ]
@@ -784,20 +800,20 @@ const translations = {
           paragraphs: [
             "Via le formulaire de contact, nous collectons votre nom, le nom de votre établissement (facultatif), votre adresse électronique, le message que vous choisissez de nous écrire (facultatif) et la langue de la page depuis laquelle vous avez envoyé la demande.",
             "Le nom, l'adresse électronique et le consentement sont nécessaires pour donner suite à votre demande. Les autres champs sont facultatifs et le fait de ne pas les remplir n'a aucune conséquence, si ce n'est une réponse moins ciblée de notre part.",
-            "Votre adresse IP est également traitée pour des raisons techniques et de sécurité : il s'agit d'une donnée que toute connexion à un serveur web génère automatiquement. Outre son traitement par l'infrastructure qui délivre ce site, elle est utilisée, lors de l'envoi du formulaire, pour limiter le nombre d'envois autorisés depuis une même adresse sur un intervalle de temps donné, afin de protéger le site contre les abus automatisés. Pour cette vérification, l'adresse IP n'est pas conservée au-delà du temps nécessaire à sa réalisation, et elle ne sert en aucun cas à vous identifier ou à vous profiler."
+            "Votre adresse IP est également traitée pour des raisons techniques et de sécurité : il s'agit d'une donnée que toute connexion à un serveur web génère automatiquement. Outre son traitement par l'infrastructure qui délivre ce site, elle est utilisée, lors de l'envoi du formulaire, pour limiter le nombre d'envois autorisés depuis une même adresse sur un intervalle de temps donné, afin de protéger le site contre les abus automatisés. Pour cette vérification, l'adresse IP n'est pas conservée au-delà du temps nécessaire à sa réalisation, et elle ne sert en aucun cas à vous identifier ou à vous profiler."
           ]
         },
         {
           heading: "Pourquoi nous traitons vos données",
           paragraphs: [
-            "Nous traitons les données que vous nous transmettez dans une finalité unique : répondre à votre demande commerciale d'informations ou de démonstration du produit, vous recontacter et poursuivre la conversation que vous avez engagée.",
+            "Nous traitons les données que vous nous transmettez dans une finalité unique : répondre à votre demande commerciale d'informations ou de démonstration du produit, vous recontacter et poursuivre la conversation que vous avez engagée.",
             "Nous n'utilisons pas vos données à des fins de profilage, nous ne prenons pas de décision automatisée vous concernant et nous ne les cédons ni ne les vendons à des tiers à des fins de prospection."
           ]
         },
         {
           heading: "Base légale du traitement",
           paragraphs: [
-            "La base légale est votre consentement, donné de manière libre, spécifique et éclairée en cochant la case présente dans le formulaire avant l'envoi : article 6, paragraphe 1, point a, du RGPD.",
+            "La base légale est votre consentement, donné de manière libre, spécifique et éclairée en cochant la case présente dans le formulaire avant l'envoi : article 6, paragraphe 1, point a, du RGPD.",
             "Le consentement est facultatif. Ne pas le donner signifie seulement ne pas pouvoir envoyer le formulaire, sans aucune autre conséquence.",
             "Vous pouvez retirer votre consentement à tout moment en écrivant à info@aurabeauty.app. Le retrait ne compromet pas la licéité du traitement effectué avant celui-ci."
           ]
@@ -806,7 +822,7 @@ const translations = {
           heading: "Durée de conservation des données",
           paragraphs: [
             "Nous conservons les données collectées via le formulaire pendant 24 mois à compter de la dernière communication échangée entre vous et le responsable du traitement au sujet de votre demande.",
-            "Ce délai correspond à la durée habituelle d'un cycle d'évaluation commerciale dans notre secteur : une demande de démonstration peut déboucher sur une décision plusieurs mois plus tard, et une durée plus courte nous empêcherait de reprendre la conversation là où elle s'était interrompue. Passé ce délai de 24 mois, les données sont supprimées.",
+            "Ce délai correspond à la durée habituelle d'un cycle d'évaluation commerciale dans notre secteur : une demande de démonstration peut déboucher sur une décision plusieurs mois plus tard, et une durée plus courte nous empêcherait de reprendre la conversation là où elle s'était interrompue. Passé ce délai de 24 mois, les données sont supprimées.",
             "Si vous retirez votre consentement ou demandez l'effacement, les données sont supprimées immédiatement, sans attendre cette échéance."
           ]
         },
@@ -814,8 +830,8 @@ const translations = {
           heading: "À qui nous communiquons les données",
           paragraphs: [
             "Les données ne font l'objet d'aucune diffusion. Outre le personnel du responsable du traitement chargé des demandes commerciales, y accèdent les prestataires énumérés ci-dessous, qui les traitent pour notre compte en qualité de sous-traitants au sens de l'article 28 du RGPD.",
-            "Web3Forms : acheminement des messages envoyés depuis le formulaire de contact. Ce prestataire reçoit les données du formulaire dans le seul but de les transmettre à la boîte de réception du responsable du traitement.",
-            "Cloudflare : hébergement du site, réseau de diffusion de contenu (CDN) et statistiques d'utilisation sans cookies. Traite les données techniques de connexion, dont l'adresse IP.",
+            "Web3Forms : acheminement des messages envoyés depuis le formulaire de contact. Ce prestataire reçoit les données du formulaire dans le seul but de les transmettre à la boîte de réception du responsable du traitement.",
+            "Cloudflare : hébergement du site, réseau de diffusion de contenu (CDN) et statistiques d'utilisation sans cookies. Traite les données techniques de connexion, dont l'adresse IP.",
             "Nous ne faisons appel à aucun autre prestataire pour le traitement des données collectées via ce site."
           ]
         },
@@ -823,22 +839,22 @@ const translations = {
           heading: "Transfert de données hors de l'Union européenne",
           paragraphs: [
             "Le responsable du traitement est établi aux Émirats arabes unis. Les données que vous nous transmettez sont donc traitées dans un pays tiers à l'Union européenne.",
-            "Les Émirats arabes unis ne font pas l'objet d'une décision d'adéquation de la Commission européenne au titre de l'article 45 du RGPD : la Commission n'a donc pas constaté que ce pays offre un niveau de protection des données personnelles substantiellement équivalent à celui garanti au sein de l'Union.",
+            "Les Émirats arabes unis ne font pas l'objet d'une décision d'adéquation de la Commission européenne au titre de l'article 45 du RGPD : la Commission n'a donc pas constaté que ce pays offre un niveau de protection des données personnelles substantiellement équivalent à celui garanti au sein de l'Union.",
             "Le transfert repose sur votre consentement explicite, au titre de l'article 49, paragraphe 1, point a, du RGPD. En donnant votre consentement dans le formulaire, vous acceptez le transfert après avoir été informé qu'en l'absence de décision d'adéquation et de garanties appropriées, vous pourriez ne pas disposer des mêmes voies de recours que celles prévues par le droit de l'Union, et que les autorités locales pourraient avoir accès aux données dans des cas qui ne recoupent pas ceux prévus par l'ordre juridique européen.",
-            "Si vous préférez ne pas transférer vos données à ces conditions, n'envoyez pas le formulaire : le consentement est libre et son refus n'a aucune autre conséquence."
+            "Si vous préférez ne pas transférer vos données à ces conditions, n'envoyez pas le formulaire : le consentement est libre et son refus n'a aucune autre conséquence."
           ]
         },
         {
           heading: "Vos droits",
           paragraphs: [
             "En tant que personne concernée, vous pouvez exercer à tout moment les droits prévus aux articles 15 à 22 du RGPD.",
-            "Accès : obtenir la confirmation que vos données personnelles sont ou ne sont pas traitées et, le cas échéant, en recevoir une copie ainsi que les informations sur les finalités, les destinataires et la durée de conservation.",
-            "Rectification : faire corriger des données inexactes ou compléter des données incomplètes.",
-            "Effacement : obtenir la suppression de vos données personnelles.",
-            "Limitation : demander que le traitement soit limité à la seule conservation, dans les cas prévus par le RGPD.",
-            "Portabilité : recevoir les données que vous nous avez fournies dans un format structuré, couramment utilisé et lisible par machine, ou en demander la transmission directe à un autre responsable du traitement.",
-            "Opposition : vous opposer au traitement de vos données personnelles.",
-            "Retrait du consentement : retirer à tout moment le consentement donné, sans que cela compromette la licéité du traitement effectué auparavant.",
+            "Accès : obtenir la confirmation que vos données personnelles sont ou ne sont pas traitées et, le cas échéant, en recevoir une copie ainsi que les informations sur les finalités, les destinataires et la durée de conservation.",
+            "Rectification : faire corriger des données inexactes ou compléter des données incomplètes.",
+            "Effacement : obtenir la suppression de vos données personnelles.",
+            "Limitation : demander que le traitement soit limité à la seule conservation, dans les cas prévus par le RGPD.",
+            "Portabilité : recevoir les données que vous nous avez fournies dans un format structuré, couramment utilisé et lisible par machine, ou en demander la transmission directe à un autre responsable du traitement.",
+            "Opposition : vous opposer au traitement de vos données personnelles.",
+            "Retrait du consentement : retirer à tout moment le consentement donné, sans que cela compromette la licéité du traitement effectué auparavant.",
             "Pour exercer l'un de ces droits, écrivez à info@aurabeauty.app. Nous répondons sans retard injustifié et en tout état de cause dans un délai d'un mois à compter de la réception de la demande."
           ]
         },
@@ -874,6 +890,10 @@ const translations = {
       title: "AURA | IA de marketing para centros de belleza y clínicas",
       description: "AURA es el ecosistema de IA que ayuda a centros de estética, farmacias y clínicas a captar nuevos clientes, gestionar leads y llenar su agenda.",
       ogImageAlt: "AURA — IA de marketing para centros de belleza y clínicas"
+    },
+    notFound: {
+      title: "Página no encontrada | AURA",
+      message: "Esta página no existe."
     },
     nav: { home: "Inicio", chisiamo: "Sobre AURA", servizi: "Servicios", perche: "Por qué AURA", cta: "Solicitar una demo" },
     hero: {
@@ -944,10 +964,10 @@ const translations = {
     contact: {
       title: "Solicita una demo de AURA",
       p: "Cuéntanos algo sobre tu negocio: te mostraremos cómo AURA puede ayudarte a encontrar nuevos clientes y hacer crecer tu facturación.",
-      name: "Nombre y apellidos",
-      company: "Nombre del negocio",
-      email: "Correo electrónico",
-      message: "Cuéntanos más (opcional)",
+      labelName: "Nombre y apellidos",
+      labelCompany: "Negocio",
+      labelEmail: "Correo electrónico",
+      labelMessage: "Mensaje (opcional)",
       consentText: "Consiento el tratamiento de mis datos personales y acepto la",
       consentLink: "política de privacidad",
       submit: "Solicitar una demo de AURA",
@@ -975,7 +995,7 @@ const translations = {
     privacy: {
       seo: {
         title: "Política de privacidad | AURA",
-        description: "Cómo trata AI LAB L.L.C-FZ los datos personales recogidos a través de este sitio: finalidades, base jurídica, conservación, encargados, transferencias fuera de la Unión Europea y derechos del interesado."
+        description: "Cómo trata AI LAB L.L.C-FZ los datos recogidos en este sitio: finalidades, base jurídica, conservación, transferencias fuera de la UE y derechos del interesado."
       },
       title: "Política de privacidad",
       intro: "Esta política describe cómo se tratan los datos personales recogidos a través de este sitio, conforme a los artículos 13 y 14 del Reglamento (UE) 2016/679 (RGPD).",

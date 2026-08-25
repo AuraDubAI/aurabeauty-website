@@ -20,8 +20,12 @@ const LANGS = ['it', 'en', 'de', 'fr', 'es'];
 const BASE_URL = 'https://info.aurabeauty.app';
 const X_DEFAULT = 'en';
 
-// Segnaposto finche' non arriva la grafica definitiva.
-const OG_IMAGE = '/assets/og-image.png';   // 1200x630
+// Card social 1200x630, generata da tools/gen-og-image.mjs a partire da
+// assets/hero-bg.jpg. JPEG e non PNG: e' un ritaglio fotografico, in PNG
+// pesava 980 KB contro 74. Cambiando formato va aggiornato anche
+// OG_IMAGE_TYPE qui sotto.
+const OG_IMAGE = '/assets/og-image.jpg';   // 1200x630
+const OG_IMAGE_TYPE = 'image/jpeg';
 const OG_LOCALES = { it: 'it_IT', en: 'en_US', de: 'de_DE', fr: 'fr_FR', es: 'es_ES' };
 
 const pageUrl = lang => BASE_URL + '/' + lang + '/';
@@ -156,14 +160,15 @@ const RUNTIME_KEYS = [
 const BUILTIN = new Set([
   'LANG', 'LANG_UPPER', 'TITLE', 'DESCRIPTION', 'PRIVACY_URL',
   'LANG_OPTIONS', 'I18N_SCRIPT', 'SEO_HEAD', 'STYLE_URL', 'SCRIPT_URL',
-  'NOSCRIPT_STYLE', 'LANG_LINKS',
+  'NOSCRIPT_STYLE', 'LANG_LINKS', 'HERO_TITLE',
   // solo nelle pagine legali
-  'CANONICAL', 'HREFLANG_BLOCK', 'BODY'
+  'CANONICAL', 'HREFLANG_BLOCK', 'BODY', 'SOCIAL_BLOCK'
 ]);
 
 // Segnaposto il cui valore e' gia' markup e non va escapato.
 const RAW = new Set([
-  'LANG_OPTIONS', 'I18N_SCRIPT', 'SEO_HEAD', 'HREFLANG_BLOCK', 'BODY',
+  'LANG_OPTIONS', 'I18N_SCRIPT', 'SEO_HEAD', 'HREFLANG_BLOCK', 'BODY', 'SOCIAL_BLOCK',
+  'HERO_TITLE',
   'NOSCRIPT_STYLE', 'LANG_LINKS'
 ]);
 
@@ -259,36 +264,44 @@ function langLinks(lang, urlFor) {
 // Corpo di una pagina legale. Le sezioni sono dati, non markup:
 // translations.js non contiene HTML. Ogni stringa e' escapata, quindi un
 // < in un testo legale non puo' diventare un tag.
+// L'indirizzo e' il recapito per esercitare i diritti: lasciarlo come
+// testo semplice obbligava a copiarlo a mano. Si linkifica DOPO l'escape,
+// e solo la stringa esatta e' letterale — non c'e' HTML che arrivi dalle
+// traduzioni, quindi escapeHtml resta l'unica barriera e non viene
+// aggirata.
+const CONTACT_EMAIL = 'info@aurabeauty.app';
+
+function linkifyEmail(escaped) {
+  return escaped.split(CONTACT_EMAIL).join(
+    '<a href="mailto:' + CONTACT_EMAIL + '">' + CONTACT_EMAIL + '</a>'
+  );
+}
+
 function renderLegalBody(sections) {
   const out = [];
   for (const s of sections) {
     out.push('      <h2>' + escapeHtml(s.heading) + '</h2>');
-    for (const p of s.paragraphs) out.push('      <p>' + escapeHtml(p) + '</p>');
+    for (const p of s.paragraphs) {
+      out.push('      <p>' + linkifyEmail(escapeHtml(p)) + '</p>');
+    }
   }
   return out.join('\n');
 }
 
-// ---------- SEO nel <head> ----------
-// Tutto cio' che varia per lingua: canonical, hreflang reciproci,
-// Open Graph, Twitter Card, JSON-LD.
-function buildSeoHead(lang, t) {
-  const url = pageUrl(lang);
-  const title = getPath(t, 'seo.title');
-  const desc = getPath(t, 'seo.description');
-  const imgAlt = getPath(t, 'seo.ogImageAlt');
-  const img = BASE_URL + OG_IMAGE;
+// ---------- Open Graph + Twitter Card ----------
+// Condiviso fra home e pagine legali. Prima viveva dentro buildSeoHead e
+// quindi esisteva solo sulle home: condividere /it/privacy/ produceva una
+// card grezza col solo <title>, senza immagine ne' descrizione.
+//
+// og:url deve coincidere col canonical, altrimenti i crawler social
+// attribuiscono like e condivisioni a due URL diversi.
+function socialMeta({ url, title, desc, lang, imgAlt, ogType }) {
   const meta = (attr, name, content) =>
     '<meta ' + attr + '="' + name + '" content="' + escapeHtml(content) + '">';
-
+  const img = BASE_URL + OG_IMAGE;
   const out = [];
 
-  out.push('<link rel="canonical" href="' + url + '">');
-
-  // Blocco hreflang: ogni pagina elenca tutte le lingue, se stessa inclusa,
-  // altrimenti la reciprocita' non e' completa e i motori lo ignorano.
-  out.push(hreflangBlock(pageUrl));
-
-  out.push(meta('property', 'og:type', 'website'));
+  out.push(meta('property', 'og:type', ogType));
   out.push(meta('property', 'og:site_name', 'AURA'));
   out.push(meta('property', 'og:title', title));
   out.push(meta('property', 'og:description', desc));
@@ -298,6 +311,7 @@ function buildSeoHead(lang, t) {
     if (l !== lang) out.push(meta('property', 'og:locale:alternate', OG_LOCALES[l]));
   }
   out.push(meta('property', 'og:image', img));
+  out.push(meta('property', 'og:image:type', OG_IMAGE_TYPE));
   out.push(meta('property', 'og:image:width', '1200'));
   out.push(meta('property', 'og:image:height', '630'));
   out.push(meta('property', 'og:image:alt', imgAlt));
@@ -306,6 +320,35 @@ function buildSeoHead(lang, t) {
   out.push(meta('name', 'twitter:title', title));
   out.push(meta('name', 'twitter:description', desc));
   out.push(meta('name', 'twitter:image', img));
+  // Per specifica twitter:image:alt NON ricade su og:image:alt: i client
+  // che leggono solo il namespace twitter: restavano senza alternativa
+  // testuale sull'immagine della card.
+  out.push(meta('name', 'twitter:image:alt', imgAlt));
+
+  return out.join('\n');
+}
+
+// ---------- SEO nel <head> ----------
+// Tutto cio' che varia per lingua: canonical, hreflang reciproci,
+// Open Graph, Twitter Card, JSON-LD.
+function buildSeoHead(lang, t) {
+  const url = pageUrl(lang);
+  const out = [];
+
+  out.push('<link rel="canonical" href="' + url + '">');
+
+  // Blocco hreflang: ogni pagina elenca tutte le lingue, se stessa inclusa,
+  // altrimenti la reciprocita' non e' completa e i motori lo ignorano.
+  out.push(hreflangBlock(pageUrl));
+
+  out.push(socialMeta({
+    url,
+    title: getPath(t, 'seo.title'),
+    desc: getPath(t, 'seo.description'),
+    lang,
+    imgAlt: getPath(t, 'seo.ogImageAlt'),
+    ogType: 'website'
+  }));
 
   out.push(buildJsonLd(lang, t));
   return out.join('\n');
@@ -325,15 +368,19 @@ function buildJsonLd(lang, t) {
         url: BASE_URL + '/',
         logo: BASE_URL + '/assets/logo.png',
         email: 'info@aurabeauty.app',
-        // TRN emiratino, non una partita IVA UE: taxID, mai vatID.
-        taxID: '105142922100003',
+        // TRN emiratino, non una partita IVA UE: taxID, mai vatID. Il
+        // prefisso "TRN" fa parte del valore: un numero nudo in un campo
+        // fiscale si legge come partita IVA, e questo non lo e'.
+        taxID: 'TRN 105142922100003',
         address: {
           '@type': 'PostalAddress',
           streetAddress: 'Meydan Grandstand, 6th floor, Meydan Road, Nad Al Sheba',
           addressLocality: 'Dubai',
           addressCountry: 'AE'
-        },
-        sameAs: []
+        }
+        // sameAs rimosso: era un array vuoto, cioe' la dichiarazione di
+        // non avere profili ufficiali. Va reintrodotto con gli URL veri
+        // quando esistono.
       },
       {
         '@type': 'WebSite',
@@ -501,18 +548,41 @@ function buildHeaders(assets) {
   ].join('\n');
 }
 
-function build404(styleUrl) {
+// La 404 e' un file statico servito per qualunque percorso ignoto: non ha
+// una lingua determinabile. Il <title> e il lang del documento sono quindi
+// quelli di x-default, ma il messaggio compare in tutte e cinque le lingue.
+//
+// Un h1 con "404" porta il significato in modo neutro rispetto alla
+// lingua: le cinque frasi sono conferma, non segnale primario, e per
+// questo stanno uniformi e senza gerarchia fra loro. <ul> e non cinque
+// <p>: sono elementi paralleli, ed e' quello che una lista dichiara.
+//
+// lang su ogni <li> non e' decorativo: senza, uno screen reader legge la
+// frase tedesca con fonetica inglese.
+//
+// L'ordine e' quello di LANG_OPTIONS, lo stesso dei link qui sotto, cosi'
+// i due blocchi si rispecchiano.
+//
+// I titoli tradotti delle altre quattro lingue restano in translations.js
+// pur non essendo consumati: functions/index.js negozia gia'
+// Accept-Language per "/", e una eventuale functions/404.js che facesse
+// lo stesso diventerebbe una modifica di una riga.
+function build404(styleUrl, translations) {
   const links = LANG_OPTIONS
     .map(([code, label]) => '    <a href="/' + code + '/">' + escapeHtml(label) + '</a>')
     .join('\n');
+  const messages = LANG_OPTIONS
+    .map(([code]) => '    <li lang="' + code + '">' +
+      escapeHtml(getPath(translations[code], 'notFound.message')) + '</li>')
+    .join('\n');
   return [
     '<!DOCTYPE html>',
-    '<html lang="en">',
+    '<html lang="' + X_DEFAULT + '">',
     '<head>',
     '<meta charset="UTF-8">',
     '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
     '<meta name="robots" content="noindex">',
-    '<title>404 — AURA</title>',
+    '<title>' + escapeHtml(getPath(translations[X_DEFAULT], 'notFound.title')) + '</title>',
     '<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">',
     '<meta name="theme-color" content="#0a0a12">',
     '<link rel="stylesheet" href="' + styleUrl + '">',
@@ -521,8 +591,10 @@ function build404(styleUrl) {
     '<div class="bg-glow"></div>',
     '<main class="section container narrow center">',
     '  <h1>404</h1>',
-    '  <p class="lead">This page does not exist.</p>',
-    '  <nav class="hero-actions hero-actions-center">',
+    '  <ul class="error-messages">',
+    messages,
+    '  </ul>',
+    '  <nav class="hero-actions hero-actions-center error-langs">',
     links,
     '  </nav>',
     '</main>',
@@ -572,7 +644,16 @@ function validateKeys(templates, translations) {
     'seo.title', 'seo.description', 'seo.ogImageAlt',
     // <head> e corpo delle pagine legali: risolte dal build, non dal
     // template, quindi invisibili alla scansione dei segnaposto
-    'privacy.seo.title', 'privacy.seo.description', 'privacy.sections'
+    'privacy.seo.title', 'privacy.seo.description', 'privacy.sections',
+    // Titolo della hero: da quando il template usa {{HERO_TITLE}} questi
+    // tre non compaiono piu' come segnaposto, e senza elencarli qui una
+    // chiave mancante finirebbe in pagina come "undefined".
+    'hero.title_pre', 'hero.title_grad', 'hero.title_post',
+    // 404.html: scritta dal build, non passa da nessun template. Il
+    // messaggio serve in tutte e cinque le lingue perche' la pagina le
+    // mostra tutte; il titolo solo in x-default, ma richiederlo dovunque
+    // costa nulla e tiene la porta aperta a una 404 che negozi la lingua.
+    'notFound.title', 'notFound.message'
   ])];
 
   const problems = [];
@@ -668,6 +749,23 @@ function fill(template, builtin, t) {
   });
 }
 
+// Titolo della hero in tre pezzi: testo, porzione col gradiente, testo.
+// L'ordine e' quello, ma title_post serve solo al tedesco, dove il verbo
+// va in fondo ("Die kunstliche Intelligenz, die Marketing in ...
+// verwandelt"). Nelle altre quattro lingue e' "", e un <span></span> vuoto
+// finiva nel markup di ogni home: si emette solo cio' che ha testo.
+function heroTitle(t) {
+  const parts = [
+    ['', getPath(t, 'hero.title_pre')],
+    [' class="grad-text"', getPath(t, 'hero.title_grad')],
+    ['', getPath(t, 'hero.title_post')]
+  ];
+  return parts
+    .filter(([, text]) => text !== '')
+    .map(([attr, text]) => '<span' + attr + '>' + escapeHtml(text) + '</span>')
+    .join('');
+}
+
 function render(template, lang, translations, assets) {
   const t = translations[lang];
   const assetUrls = Object.fromEntries(assets.map(a => [a.urlKey, a.url]));
@@ -686,7 +784,8 @@ function render(template, lang, translations, assets) {
     LANG_LINKS: langLinks(lang, urlFor),
     I18N_SCRIPT: buildI18nScript(t),
     NOSCRIPT_STYLE: noscriptStyle(),
-    SEO_HEAD: buildSeoHead(lang, t)
+    SEO_HEAD: buildSeoHead(lang, t),
+    HERO_TITLE: heroTitle(t)
   }, t);
 }
 
@@ -708,6 +807,18 @@ function renderLegal(template, lang, translations, assets) {
     PRIVACY_URL: '/' + lang + '/privacy/',
     CANONICAL: privacyUrl(lang),
     HREFLANG_BLOCK: hreflangBlock(privacyUrl),
+    // og:type article e non website: e' un documento, non il sito.
+    // og:image e og:image:alt sono gli stessi della home — l'immagine
+    // descrive il brand, non la pagina, e una card social per
+    // l'informativa non ha una grafica propria.
+    SOCIAL_BLOCK: socialMeta({
+      url: privacyUrl(lang),
+      title: getPath(t, 'privacy.seo.title'),
+      desc: getPath(t, 'privacy.seo.description'),
+      lang,
+      imgAlt: getPath(t, 'seo.ogImageAlt'),
+      ogType: 'article'
+    }),
     LANG_OPTIONS: langOptions(lang, urlFor),
     LANG_LINKS: langLinks(lang, urlFor),
     // Il <select> c'e' anche qui, quindi qui serve la regola che lo
@@ -813,7 +924,22 @@ function verifyInternalLinks() {
         if (url) refs.push(url);
       }
     }
-    for (const ref of new Set(refs)) {
+    // og:image, og:url, twitter:image e canonical vivono in content=", non
+    // in href/src. Senza questo la card social poteva puntare a un file
+    // inesistente e il build non se ne accorgeva: e' esattamente il caso
+    // in cui og-image.png e' stato sostituito da og-image.jpg. Si
+    // raccolgono solo i valori che SONO riferimenti, non testo libero
+    // come og:title o og:description.
+    for (const m of html.matchAll(/<meta[^>]+content="([^"]+)"/g)) {
+      const v = m[1];
+      if (v.startsWith('/') || v.startsWith(BASE_URL)) refs.push(v);
+    }
+
+    for (let ref of new Set(refs)) {
+      // Gli URL assoluti sul dominio di produzione sono comunque file di
+      // dist/: normalizzandoli la guardia copre anche canonical, hreflang
+      // e og:image, che per specifica non possono essere relativi.
+      if (ref.startsWith(BASE_URL)) ref = ref.slice(BASE_URL.length) || '/';
       // Solo i riferimenti interni assoluti. mailto:, ancore di pagina e
       // URL esterni ("//host/…" incluso) non sono file di dist/.
       if (!ref.startsWith('/') || ref.startsWith('//')) continue;
@@ -948,7 +1074,7 @@ function build() {
   fs.writeFileSync(path.join(DIST, 'sitemap.xml'), buildSitemapXml());
   fs.writeFileSync(path.join(DIST, 'llms.txt'), buildLlmsTxt());
   fs.writeFileSync(path.join(DIST, '404.html'),
-    build404(assets.find(a => a.urlKey === 'STYLE_URL').url));
+    build404(assets.find(a => a.urlKey === 'STYLE_URL').url, translations));
   fs.writeFileSync(path.join(DIST, '_headers'), buildHeaders(assets));
 
   // Le versioni senza hash non devono esistere in dist/.

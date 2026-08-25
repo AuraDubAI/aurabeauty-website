@@ -54,3 +54,41 @@ dipendenza npm runtime. Vanilla HTML/CSS/JS.
   Non ha una casella propria: l'unico recapito dell'informativa
   resta info@aurabeauty.app
 - Nel JSON-LD usare taxID, non vatID. addressCountry: AE
+- Il valore di taxID include il prefisso: "TRN 105142922100003".
+  Un numero nudo in un campo fiscale si legge come partita IVA.
+
+## Punti aperti e accoppiamenti da rispettare
+Dettaglio in README.md, sezione "Punti aperti". Qui solo ciò che
+farebbe sbagliare chi modifica il codice.
+
+- Cambiare `--pink` NON basta: in `style.css` ci sono nove `rgba()`
+  con lo stesso rosa scritto a mano (`226,19,118`). Non possono
+  leggere il token, perché serve il canale alpha e `rgba()` non
+  accetta una variabile esadecimale. Vanno aggiornati tutti e nove,
+  altrimenti token e letterali divergono in silenzio.
+  `grep -o '226,19,118' style.css | wc -l` deve dare 10: i nove
+  valori più la citazione nel commento accanto al token. Conta le
+  occorrenze e non le righe, così resta valido anche se due
+  dichiarazioni finiscono sulla stessa riga.
+- Gli asset in `assets/` NON sono fingerprintati e `_headers` dà a
+  `/assets/*` `max-age=31536000, immutable`. Cambiare un file
+  mantenendo lo stesso nome non raggiunge chi lo ha già in cache.
+  Per la grafica definitiva serve un nome nuovo, o spostare quei
+  file fra i `FINGERPRINTED`.
+- `favicon.svg` e `apple-touch-icon.png` sono segnaposto. Nel primo
+  il rosa è testo e sta allineato a `--pink`; nel secondo è nei
+  pixel e resta col vecchio valore finché non si rigenera.
+- `BUILD_DATE` in `build.js` è una costante e va aggiornata a mano
+  a ogni cambio di contenuto sostanziale, o passata da CI con
+  `SOURCE_DATE_EPOCH`. Mai `new Date()`: romperebbe l'idempotenza.
+- Il contrasto di `.grad-text` nell'`<h1>` della hero non è
+  calcolabile: sta sopra una foto con due overlay, non un colore
+  piatto. Va misurato su render. Non dedurlo.
+- `sameAs` è stato rimosso dal JSON-LD perché era un array vuoto.
+  Va reintrodotto con gli URL veri quando esistono profili social.
+- Il rate limiting di `functions/api/contact.js` è per-isolate, non
+  globale. **Se passa a KV o Durable Objects va riscritto anche il
+  capoverso dell'informativa sull'indirizzo IP**: oggi dichiara che
+  l'IP non è conservato oltre la verifica, e con una `Map` in un
+  isolate effimero è vero. Un contatore persistente lo rende falso.
+  La modifica tecnica e quella legale vanno fatte insieme.

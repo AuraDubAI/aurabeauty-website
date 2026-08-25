@@ -57,7 +57,7 @@
     </div>
     <div class="container hero-content">
       <p class="eyebrow">{{hero.eyebrow}}</p>
-      <h1><span>{{hero.title_pre}}</span><span class="grad-text">{{hero.title_grad}}</span><span>{{hero.title_post}}</span></h1>
+      <h1>{{HERO_TITLE}}</h1>
       <p class="hero-lead">{{hero.lead}}</p>
       <p class="hero-sub">{{hero.sub}}</p>
       <p class="hero-tagline">{{hero.tagline}}</p>
@@ -104,22 +104,22 @@
       <div class="diff-highlights">
         <div class="diff-highlight">
           <div class="diff-highlight-icon" aria-hidden="true">⚡</div>
-          <h4>{{diffh1.title}}</h4>
+          <h3>{{diffh1.title}}</h3>
           <p>{{diffh1.p}}</p>
         </div>
         <div class="diff-highlight">
           <div class="diff-highlight-icon" aria-hidden="true">🎯</div>
-          <h4>{{diffh2.title}}</h4>
+          <h3>{{diffh2.title}}</h3>
           <p>{{diffh2.p}}</p>
         </div>
         <div class="diff-highlight">
           <div class="diff-highlight-icon" aria-hidden="true">🤝</div>
-          <h4>{{diffh3.title}}</h4>
+          <h3>{{diffh3.title}}</h3>
           <p>{{diffh3.p}}</p>
         </div>
         <div class="diff-highlight">
           <div class="diff-highlight-icon" aria-hidden="true">📊</div>
-          <h4>{{diffh4.title}}</h4>
+          <h3>{{diffh4.title}}</h3>
           <p>{{diffh4.p}}</p>
         </div>
       </div>
@@ -223,35 +223,35 @@
         <div class="why-item">
           <div class="why-check" aria-hidden="true">✓</div>
           <div>
-            <h4>{{why1.title}}</h4>
+            <h3>{{why1.title}}</h3>
             <p>{{why1.p}}</p>
           </div>
         </div>
         <div class="why-item">
           <div class="why-check" aria-hidden="true">✓</div>
           <div>
-            <h4>{{why2.title}}</h4>
+            <h3>{{why2.title}}</h3>
             <p>{{why2.p}}</p>
           </div>
         </div>
         <div class="why-item">
           <div class="why-check" aria-hidden="true">✓</div>
           <div>
-            <h4>{{why3.title}}</h4>
+            <h3>{{why3.title}}</h3>
             <p>{{why3.p}}</p>
           </div>
         </div>
         <div class="why-item">
           <div class="why-check" aria-hidden="true">✓</div>
           <div>
-            <h4>{{why4.title}}</h4>
+            <h3>{{why4.title}}</h3>
             <p>{{why4.p}}</p>
           </div>
         </div>
         <div class="why-item">
           <div class="why-check" aria-hidden="true">✓</div>
           <div>
-            <h4>{{why5.title}}</h4>
+            <h3>{{why5.title}}</h3>
             <p>{{why5.p}}</p>
           </div>
         </div>
@@ -281,21 +281,25 @@
 
         <div class="form-row">
           <div class="field">
-            <input type="text" name="nome" placeholder="{{contact.name}}" autocomplete="name" required>
+            <label for="f-nome">{{contact.labelName}}</label>
+            <input type="text" id="f-nome" name="nome" autocomplete="name" required>
             <p class="field-error" id="err-nome" role="alert"></p>
           </div>
           <div class="field">
-            <input type="text" name="attivita" placeholder="{{contact.company}}" autocomplete="organization">
+            <label for="f-attivita">{{contact.labelCompany}}</label>
+            <input type="text" id="f-attivita" name="attivita" autocomplete="organization">
           </div>
         </div>
         <div class="form-row form-row-single">
           <div class="field">
-            <input type="email" name="email" placeholder="{{contact.email}}" autocomplete="email" required>
+            <label for="f-email">{{contact.labelEmail}}</label>
+            <input type="email" id="f-email" name="email" autocomplete="email" required>
             <p class="field-error" id="err-email" role="alert"></p>
           </div>
         </div>
         <div class="field">
-          <textarea name="messaggio" rows="4" placeholder="{{contact.message}}"></textarea>
+          <label for="f-messaggio">{{contact.labelMessage}}</label>
+          <textarea id="f-messaggio" name="messaggio" rows="4"></textarea>
           <p class="field-error" id="err-messaggio" role="alert"></p>
         </div>
         <div class="field">
