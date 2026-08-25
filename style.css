@@ -168,7 +168,14 @@ h1,h2,h3,h4{
   line-height: 1.2;
   margin: 0 0 0.6em;
 }
-h1{ font-weight:700; }
+/* h1 aveva solo il peso e nessuna dimensione: fuori dalla hero cadeva
+   sul foglio dell'user agent, che per la resa suggerita dallo spec HTML
+   riduce a 1.5em gli h1 dentro <section> — 24px, meno degli h2 che vanno
+   da 27.2 a 40. Il titolo di pagina risultava piu' piccolo dei titoli di
+   sezione. Valeva per le pagine legali, vale per la 404 e varrebbe per
+   qualunque pagina futura: la dimensione va data qui, una volta.
+   .hero h1 e' piu' specifica e continua a vincere sulla home. */
+h1{ font-weight:700; font-size: clamp(2rem, 3.6vw, 2.75rem); }
 h2{ font-weight:600; font-size: clamp(1.7rem, 3vw, 2.5rem); }
 h3{ font-weight:600; font-size: 1.2rem; }
 h4{ font-weight:600; font-size: 1.05rem; }
@@ -304,7 +311,20 @@ a{ color: inherit; text-decoration:none; }
   outline: 2px solid var(--pink-soft);
   outline-offset: 2px;
 }
-.lang-select option{ background: var(--surface); color: #fff; }
+/* Dove il popup lo disegna il browser (Chromium e Firefox su Windows e
+   Linux) queste due righe colorano le voci. Dove lo disegna il sistema
+   operativo — Safari ovunque, Chrome su macOS, i picker di iOS e Android
+   — vengono ignorate, e l'unica leva resta color-scheme: dark su :root.
+   Cornice, angoli, ombra e colore di evidenziazione del popup sono chrome
+   nativo su ogni piattaforma: non esiste CSS che li raggiunga. */
+.lang-select option{ background: var(--surface); color: var(--text); }
+/* L'opzione corrente marcata con la tinta del sito invece che con il
+   blu di sistema. Vale solo dove il popup e' del browser. */
+.lang-select option:checked{
+  background: var(--bg-alt);
+  color: var(--pink-soft);
+  font-weight: 700;
+}
 
 /* Fallback del selettore lingua, visibile solo senza JavaScript: il
    <noscript> e' display:none quando lo scripting e' attivo, quindi con
@@ -826,6 +846,35 @@ select:focus-visible,
 .form-success-icon{ color: var(--pink-soft); margin-bottom: 14px; }
 .form-success h3{ margin-bottom: 8px; }
 .form-success p{ margin:0; color: var(--text-muted); }
+
+/* ---------- PAGINE LEGALI ---------- */
+
+/* La dimensione dell'h1 non e' qui: sta nella regola globale, perche' il
+   problema non era delle pagine legali ma di ogni h1 fuori dalla hero.
+   Qui resta solo cio' che e' proprio di una pagina da leggere.
+
+   Gli h2 della home sono titoli-insegna centrati che aprono una sezione
+   a tutta pagina, e 40px la' sono giusti. Dentro un documento che si
+   legge riga dopo riga sono un cartellone. Scala ridotta, e piu' aria
+   sopra che sotto: un heading appartiene al testo che introduce, non a
+   quello che chiude. */
+.section-legal h2{
+  font-size: clamp(1.25rem, 1.9vw, 1.5rem);
+  line-height: 1.3;
+  margin: 2.2em 0 0.5em;
+}
+
+/* Misura di riga. .container.narrow e' 760px: con Manrope a 16px fanno
+   circa 95 caratteri, oltre il punto in cui l'occhio perde il capo riga
+   tornando a sinistra. 72ch meno i 48px di padding che il container ha
+   gia' (box-sizing: border-box) scendono intorno ai 76. In ch e non in
+   px cosi' la misura regge se un giorno cambia la dimensione del testo. */
+.section-legal .container.narrow{ max-width: 72ch; }
+
+/* 1.65 va bene per i paragrafi brevi della home. Qui sono 37 paragrafi
+   di prosa legale di fila: un filo di interlinea in piu' riduce la
+   fatica su un testo che nessuno legge per piacere. */
+.section-legal p{ line-height: 1.7; }
 
 /* ---------- FOOTER ---------- */
 .site-footer{
