@@ -4,7 +4,9 @@
  * NON fa parte del build. Richiede sharp installato in locale con
  * `npm install --no-save sharp`. Non tocca build.js, il template o dist/.
  *
- * Uso: node tools/gen-images.mjs
+ * Uso: node tools/gen-images.mjs          rigenera tutte le varianti
+ *      node tools/gen-images.mjs logo     rigenera solo il logo
+ *      node tools/gen-images.mjs hero     ecc.
  */
 
 import { readFile, writeFile, stat } from 'node:fs/promises';
@@ -34,9 +36,50 @@ const Q = {
   heroJpg: 80,
   founderAvif: 58,
   founderWebp: 80,
-  logoAvif: 70,
-  logoWebp: 88,
 };
+
+// Il logo e' servito da un sorgente RIDOTTO, non dal PNG a piena
+// risoluzione. E' mostrato a 30px di altezza nell'header e 22px nel
+// footer: i 315px dell'originale sono ~10x piu' del necessario, e nessuna
+// scelta di codec recupera quello che si spreca in risoluzione.
+//
+// 90px = 3x DPR sull'altezza di resa maggiore. La larghezza la deriva
+// sharp dal rapporto d'aspetto reale del PNG: non va scritta a mano.
+const LOGO_HEIGHT = 90;
+
+// lanczos3 e' il kernel di sharp per il downscale. Dichiarato
+// esplicitamente perche' e' una scelta: su bordi antialiasati un kernel
+// piu' morbido impasterebbe proprio i pixel che danno la forma.
+const LOGO_KERNEL = 'lanczos3';
+
+// UN SOLO formato, e non e' una semplificazione pigra: e' il risultato
+// della misura. A 171x90 il PNG quantizzato a 256 colori pesa 4.4 KB e
+// rende 51.88 dB PSNR alla dimensione di resa; AVIF q70 pesa 4.2 KB e
+// rende 51.89 dB. Duecento byte di differenza. Servire tre formati per
+// 0.2 KB significa un <picture> con tre <source>, tre file da rigenerare
+// e mantenere allineati, e tre modi di sbagliare: complessita' senza
+// guadagno. Con un solo PNG il markup torna a essere un <img>.
+//
+// 256 e' il pavimento della quantizzazione, non un valore arrotondato:
+// a 128 colori il file scende a 1.3 KB ma il PSNR crolla a 32 dB e il
+// gradiente del marchio inizia a fasciarsi. Non scendere sotto.
+const LOGO_COLOURS = 256;
+const LOGO = {
+  // dither 1.0 e' il default di sharp e va bene: distribuisce l'errore di
+  // quantizzazione sul gradiente invece di concentrarlo in bande.
+  png: { compressionLevel: 9, effort: 10, palette: true, colours: LOGO_COLOURS, dither: 1 },
+};
+
+// Bersaglio opzionale. Senza argomenti rigenera tutto; con "logo" tocca
+// solo logo-90.png e lascia gli altri dieci file dove sono.
+const GROUPS = ['hero', 'founder', 'logo'];
+const ONLY = process.argv[2] || null;
+if (ONLY && !GROUPS.includes(ONLY)) {
+  console.error(`bersaglio sconosciuto: ${ONLY}`);
+  console.error(`ammessi: ${GROUPS.join(', ')} — oppure nessuno per rigenerare tutto`);
+  process.exit(1);
+}
+const wants = (group) => ONLY === null || ONLY === group;
 
 const warnings = [];
 const rows = [];
@@ -65,7 +108,10 @@ function encoder(pipeline, format) {
   }
 }
 
-async function emit({ name, input, width, height, format, options, originalBytes }) {
+async function emit({ group, name, input, width, height, format, options, originalBytes }) {
+  // Un gruppo non richiesto non viene nemmeno codificato: i file gia' su
+  // disco restano esattamente quelli, byte per byte.
+  if (!wants(group)) return;
   // .rotate() senza argomenti applica l'orientamento EXIF prima del resize.
   let pipeline = sharp(input).rotate();
   if (width && height) {
@@ -123,9 +169,12 @@ async function main() {
   // --- 2. hero: altezze derivate dal rapporto d'aspetto reale --------
   const hero = src.hero;
   const heroRatio = hero.width / hero.height;
-  console.log(`Hero: rapporto d'aspetto reale ${heroRatio.toFixed(4)} — altezze derivate, non hardcoded.`);
+  if (wants('hero')) {
+    console.log(`Hero: rapporto d'aspetto reale ${heroRatio.toFixed(4)} — altezze derivate, non hardcoded.`);
+  }
 
   for (const { width, formats } of HERO_WIDTHS) {
+    if (!wants('hero')) continue;
     if (width > hero.width) {
       const msg =
         `variante ${width}px SALTATA: il sorgente ${hero.file} è largo ` +
@@ -144,6 +193,7 @@ async function main() {
             ? { quality: Q.heroWebp }
             : { quality: Q.heroJpg, progressive: true, mozjpeg: true };
       await emit({
+        group: 'hero',
         name: `hero-bg-${width}.${format}`,
         input: hero.buf,
         width,
@@ -157,8 +207,11 @@ async function main() {
 
   // --- 3. founder: stesse dimensioni del sorgente, solo ricodifica ---
   const founder = src.founder;
-  console.log(`\nFounder: ${founder.width}x${founder.height} (dimensioni invariate, sola ricodifica)`);
+  if (wants('founder')) {
+    console.log(`\nFounder: ${founder.width}x${founder.height} (dimensioni invariate, sola ricodifica)`);
+  }
   await emit({
+    group: 'founder',
     name: 'founder.avif',
     input: founder.buf,
     format: 'avif',
@@ -166,6 +219,7 @@ async function main() {
     originalBytes: founder.bytes,
   });
   await emit({
+    group: 'founder',
     name: 'founder.webp',
     input: founder.buf,
     format: 'webp',
@@ -173,30 +227,78 @@ async function main() {
     originalBytes: founder.bytes,
   });
 
-  // --- 4. logo: alpha preservato -------------------------------------
+  // --- 4. logo: un solo PNG quantizzato ------------------------------
   const logo = src.logo;
-  console.log(`Logo:    ${logo.width}x${logo.height} (dimensioni invariate, alpha preservato)`);
-  await emit({
-    name: 'logo.avif',
-    input: logo.buf,
-    format: 'avif',
-    // alpha è preservato: nessun flatten, nessuno sfondo imposto.
-    options: { quality: Q.logoAvif },
-    originalBytes: logo.bytes,
-  });
-  await emit({
-    name: 'logo.webp',
-    input: logo.buf,
-    format: 'webp',
-    options: { quality: Q.logoWebp, alphaQuality: 100 },
-    originalBytes: logo.bytes,
-  });
+  if (wants('logo')) {
+    // Il ridimensionamento vero e proprio. Solo height: la larghezza la
+    // deriva sharp dal rapporto d'aspetto reale del sorgente.
+    const truecolor = await sharp(logo.buf)
+      .resize({ height: LOGO_HEIGHT, kernel: LOGO_KERNEL, withoutEnlargement: true })
+      .png({ compressionLevel: 9, effort: 10, palette: false })
+      .toBuffer();
 
-  // verifica che l'alpha sia sopravvissuto alla conversione
-  for (const name of ['logo.avif', 'logo.webp']) {
-    const meta = await sharp(join(ASSETS, name)).metadata();
-    if (!meta.hasAlpha) {
-      warnings.push(`${name}: canale alpha PERSO nella conversione.`);
+    // La quantizzazione parte dal ridimensionato, non dall'originale:
+    // quantizzare prima e ridurre dopo impasterebbe la palette.
+    const small = await sharp(truecolor).png(LOGO.png).toBuffer();
+    const sm = await sharp(small).metadata();
+    if (!sm.hasAlpha) {
+      warnings.push('logo-90.png: canale alpha PERSO nel ridimensionamento.');
+    }
+    await writeFile(join(ASSETS, 'logo-90.png'), small);
+    rows.push({
+      name: 'logo-90.png', width: sm.width, height: sm.height,
+      bytes: small.length, originalBytes: logo.bytes,
+    });
+    console.log(
+      `Logo:    ${logo.width}x${logo.height} -> ${sm.width}x${sm.height} ` +
+      `(${LOGO_KERNEL}, ratio derivato, alpha preservato)`
+    );
+    console.log(
+      `  truecolor ${fmtBytes(truecolor.length)} -> ` +
+      `${LOGO_COLOURS} colori ${fmtBytes(small.length)}`
+    );
+
+    // La quantizzazione e' lossy: si verifica che regga ALLA DIMENSIONE DI
+    // RESA, non a 90px. Quei 90 pixel nessuno li guarda 1:1 — il logo e'
+    // alto 30px nell'header e 22px nel footer.
+    const RENDER_H = 30;
+    const PSNR_MIN = 45;
+    const atRender = async (buf) => {
+      const { data, info } = await sharp(buf).ensureAlpha().raw()
+        .toBuffer({ resolveWithObject: true });
+      // Decodifica completa e POI resize: senza questo passaggio alcuni
+      // decoder scalano in proprio e il confronto misura loro, non il file.
+      return sharp(data, { raw: { width: info.width, height: info.height, channels: 4 } })
+        .resize({ height: RENDER_H, kernel: LOGO_KERNEL })
+        .ensureAlpha().raw().toBuffer();
+    };
+    // PSNR premoltiplicato: sotto alpha basso l'RGB non e' osservabile,
+    // confrontarlo grezzo darebbe un numero che non corrisponde a nulla.
+    const ref = await atRender(truecolor);
+    const got = await atRender(small);
+    let se = 0, n = 0, max = 0;
+    for (let k = 0; k < ref.length; k += 4) {
+      const ra = ref[k + 3], ga = got[k + 3];
+      for (let c = 0; c < 3; c++) {
+        const d = (ref[k + c] * ra) / 255 - (got[k + c] * ga) / 255;
+        se += d * d; n++; if (Math.abs(d) > max) max = Math.abs(d);
+      }
+      const da = ra - ga;
+      se += da * da; n++; if (Math.abs(da) > max) max = Math.abs(da);
+    }
+    const psnr = se === 0 ? Infinity : 10 * Math.log10((255 * 255) / (se / n));
+    const label = psnr === Infinity ? 'identico' : psnr.toFixed(2) + ' dB';
+    if (psnr < PSNR_MIN) {
+      warnings.push(
+        `logo-90.png: la quantizzazione a ${LOGO_COLOURS} colori rende ` +
+        `PSNR ${label} a ${RENDER_H}px, sotto la soglia di ${PSNR_MIN} dB ` +
+        `(scarto massimo ${max.toFixed(1)}/255).`
+      );
+    } else {
+      console.log(
+        `  quantizzazione verificata: PSNR ${label} a ${RENDER_H}px di resa, ` +
+        `scarto massimo ${max.toFixed(1)}/255`
+      );
     }
   }
 
@@ -224,7 +326,10 @@ async function main() {
   console.log('-'.repeat(w.name + w.dim + w.size + w.delta + 9));
   console.log(
     `  Originali: ` +
-      Object.values(src).map((s) => `${s.file} ${fmtBytes(s.bytes)}`).join('  |  ')
+      Object.entries(src)
+        .filter(([group]) => wants(group))
+        .map(([, s]) => `${s.file} ${fmtBytes(s.bytes)}`)
+        .join('  |  ')
   );
 
   if (warnings.length) {

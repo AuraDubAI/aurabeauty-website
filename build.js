@@ -673,6 +673,19 @@ function verifyInternalLinks() {
     const label = path.relative(DIST, file).split(path.sep).join('/');
     const html = fs.readFileSync(file, 'utf8');
     const refs = [...html.matchAll(/(?:href|src)="([^"]+)"/g)].map(m => m[1]);
+    // srcset e imagesrcset: "/a.avif 768w, /b.avif 1280w". Ogni voce e'
+    // URL + descrittore, l'URL e' il primo token. Senza questo la guardia
+    // vedrebbe solo il src di fallback e un <source> che punta a un file
+    // inesistente passerebbe: il browser scarterebbe quel candidato in
+    // silenzio, o mostrerebbe l'immagine rotta solo su certi dispositivi.
+    for (const m of html.matchAll(/(?:srcset|imagesrcset)="([^"]+)"/g)) {
+      // Split su virgola: corretto finche' gli URL non sono data: con
+      // virgole dentro. Qui sono tutti percorsi assoluti.
+      for (const entry of m[1].split(',')) {
+        const url = entry.trim().split(/\s+/)[0];
+        if (url) refs.push(url);
+      }
+    }
     for (const ref of new Set(refs)) {
       // Solo i riferimenti interni assoluti. mailto:, ancore di pagina e
       // URL esterni ("//host/…" incluso) non sono file di dist/.

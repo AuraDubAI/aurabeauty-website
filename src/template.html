@@ -24,7 +24,7 @@
 <header class="site-header" id="header">
   <div class="container header-inner">
     <a href="#home" class="brand">
-      <img src="/assets/logo.png" alt="AURA" class="brand-logo" width="600" height="315" decoding="async">
+      <img src="/assets/logo-90.png" alt="AURA" class="brand-logo" width="171" height="90" decoding="async">
     </a>
     <nav class="main-nav" id="main-nav">
       <a href="#home">{{nav.home}}</a>
@@ -46,7 +46,11 @@
   <!-- HERO -->
   <section class="hero" id="home">
     <div class="hero-bg">
-      <img src="/assets/hero-bg.jpg" alt="" role="presentation" width="1920" height="1080" fetchpriority="high" decoding="async">
+      <picture>
+        <source type="image/avif" sizes="100vw" srcset="/assets/hero-bg-768.avif 768w, /assets/hero-bg-1280.avif 1280w, /assets/hero-bg-1920.avif 1920w">
+        <source type="image/webp" sizes="100vw" srcset="/assets/hero-bg-768.webp 768w, /assets/hero-bg-1280.webp 1280w, /assets/hero-bg-1920.webp 1920w">
+        <img src="/assets/hero-bg.jpg" sizes="100vw" srcset="/assets/hero-bg-768.jpg 768w, /assets/hero-bg-1280.jpg 1280w, /assets/hero-bg.jpg 1920w" alt="" role="presentation" width="1920" height="1080" fetchpriority="high" decoding="async">
+      </picture>
       <div class="hero-overlay"></div>
     </div>
     <div class="container hero-content">
@@ -195,7 +199,11 @@
   <section class="section section-control">
     <div class="container control-inner">
       <div class="control-photo">
-        <img src="/assets/founder.jpg" alt="{{alt.team}}" width="497" height="500" loading="lazy" decoding="async">
+        <picture>
+          <source type="image/avif" srcset="/assets/founder.avif">
+          <source type="image/webp" srcset="/assets/founder.webp">
+          <img src="/assets/founder.jpg" alt="{{alt.team}}" width="497" height="500" loading="lazy" decoding="async">
+        </picture>
       </div>
       <div class="control-text">
         <h2>{{control.title}}</h2>
@@ -296,7 +304,7 @@
 
 <footer class="site-footer">
   <div class="container footer-inner">
-    <img src="/assets/logo.png" alt="AURA" class="footer-logo" width="600" height="315" loading="lazy" decoding="async">
+    <img src="/assets/logo-90.png" alt="AURA" class="footer-logo" width="171" height="90" loading="lazy" decoding="async">
     <div class="footer-legal">
       <p>&copy; <span id="year"></span> AURA. <span>{{footer.rights}}</span></p>
       <p>AI LAB L.L.C-FZ &middot; TRN 105142922100003 &middot; <a href="{{PRIVACY_URL}}">{{footer.privacy}}</a></p>

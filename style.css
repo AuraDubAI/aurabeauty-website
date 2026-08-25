@@ -320,6 +320,11 @@ a{ color: inherit; text-decoration:none; }
   overflow:hidden;
 }
 .hero-bg{ position:absolute; inset:0; z-index:0; }
+/* <picture> e' display:inline: senza questa regola l'height:100%
+   dell'img si risolverebbe contro una scatola inline di altezza auto
+   e lo sfondo dell'hero collasserebbe. Non e' una modifica al design,
+   e' cio' che lo conserva ora che l'img non e' piu' figlia diretta. */
+.hero-bg picture{ display:block; width:100%; height:100%; }
 .hero-bg img{
   width:100%; height:100%; object-fit: cover; object-position: center 30%;
   opacity: 0.5;
