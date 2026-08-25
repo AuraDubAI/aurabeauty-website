@@ -137,12 +137,6 @@ il browser non lo contatta mai.
 
 ## Punti aperti
 
-- [ ] **`__RAPPRESENTANTE_UE__`** — segnaposto nella sezione «Rappresentante
-      nell'Unione europea» dell'informativa, in tutte e 5 le lingue. Il
-      titolare è stabilito negli Emirati e tratta dati di interessati nell'UE:
-      l'art. 27 GDPR richiede un rappresentante nell'Unione. Da designare e
-      poi sostituire con nome e contatti. Cercare la stringa in
-      `src/translations.js`.
 - [ ] **Validazione legale dell'informativa** — due punti in particolare:
       la base del trasferimento extra-UE (art. 49.1.a, consenso esplicito,
       scelto perché il titolare *è* fuori dall'UE e non esiste un esportatore

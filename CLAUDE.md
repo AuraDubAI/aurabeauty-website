@@ -50,5 +50,3 @@ dipendenza npm runtime. Vanilla HTML/CSS/JS.
 - Identificativo fiscale: TRN 105142922100003 (NON è una P.IVA UE,
   va sempre etichettato "TRN")
 - Nel JSON-LD usare taxID, non vatID. addressCountry: AE
-- Segnaposto residui: __RAPPRESENTANTE_UE__ (GDPR art. 27, da validare
-  con un legale)

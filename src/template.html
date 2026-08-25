@@ -14,6 +14,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/poppins-700-latin.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/poppins-600-latin.woff2">
 <link rel="stylesheet" href="{{STYLE_URL}}">
+{{NOSCRIPT_STYLE}}
 </head>
 <body>
 
@@ -271,28 +272,57 @@
     <div class="container narrow center">
       <h2>{{contact.title}}</h2>
       <p>{{contact.p}}</p>
-      <form class="contact-form" id="contact-form">
+      <form class="contact-form" id="contact-form" method="post" novalidate>
         <input type="hidden" name="subject" value="Nuova richiesta demo da info.aurabeauty.app">
         <input type="hidden" name="from_name" value="AURA Website">
         <input type="hidden" name="lingua" value="{{LANG_UPPER}}">
         <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
 
         <div class="form-row">
-          <input type="text" name="nome" placeholder="{{contact.name}}" required>
-          <input type="text" name="attivita" placeholder="{{contact.company}}">
+          <div class="field">
+            <input type="text" name="nome" placeholder="{{contact.name}}" autocomplete="name" required>
+            <p class="field-error" id="err-nome" role="alert"></p>
+          </div>
+          <div class="field">
+            <input type="text" name="attivita" placeholder="{{contact.company}}" autocomplete="organization">
+          </div>
         </div>
         <div class="form-row form-row-single">
-          <input type="email" name="email" placeholder="{{contact.email}}" required>
+          <div class="field">
+            <input type="email" name="email" placeholder="{{contact.email}}" autocomplete="email" required>
+            <p class="field-error" id="err-email" role="alert"></p>
+          </div>
         </div>
-        <textarea name="messaggio" rows="4" placeholder="{{contact.message}}"></textarea>
-        <div class="form-consent">
-          <input type="checkbox" id="privacy-consent" name="privacy" required>
-          <label for="privacy-consent"><span>{{contact.consentText}}</span></label>
-          <a href="{{PRIVACY_URL}}">{{contact.consentLink}}</a>
+        <div class="field">
+          <textarea name="messaggio" rows="4" placeholder="{{contact.message}}"></textarea>
+          <p class="field-error" id="err-messaggio" role="alert"></p>
         </div>
-        <button type="submit" class="btn btn-primary btn-block">{{contact.submit}}</button>
+        <div class="field">
+          <div class="form-consent" id="consent-box">
+            <input type="checkbox" id="privacy-consent" name="privacy" required>
+            <label for="privacy-consent"><span>{{contact.consentText}}</span></label>
+            <a href="{{PRIVACY_URL}}">{{contact.consentLink}}</a>
+          </div>
+          <p class="field-error" id="err-privacy" role="alert"></p>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" id="submit-btn">
+          <span class="btn-spinner" aria-hidden="true"></span>
+          <span class="btn-label">{{contact.submit}}</span>
+        </button>
         <p class="form-note" id="form-note" role="status" aria-live="polite"></p>
+        <button type="button" class="btn btn-ghost btn-block" id="retry-btn" hidden>{{contact.retry}}</button>
       </form>
+
+      <p class="form-noscript">{{contact.noscript}}</p>
+
+      <div class="form-success" id="form-success" role="status" aria-live="polite" tabindex="-1" hidden>
+        <svg class="form-success-icon" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="m7.75 12.4 2.85 2.85 5.65-5.65"></path>
+        </svg>
+        <h3>{{contact.successTitle}}</h3>
+        <p>{{contact.success}}</p>
+      </div>
       <div class="contact-alt">
         <p>{{contact.altText}}</p>
         <a href="mailto:info@aurabeauty.app">info@aurabeauty.app</a>

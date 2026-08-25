@@ -73,21 +73,63 @@ const LANG_OPTIONS = [
   ['es', 'Español']
 ];
 
-// Le uniche stringhe che servono a runtime: gli esiti dell'invio del form.
-// Vengono iniettate inline, solo per la lingua della pagina.
-const RUNTIME_KEYS = ['sending', 'success', 'error'];
+// CSS applicato SOLO quando lo scripting e' disattivato, servito dentro
+// <noscript> nel <head>. Senza JavaScript il form non e' inviabile — e
+// lasciarlo visibile sarebbe peggio che nasconderlo: il submit nativo
+// spedirebbe nome, email e consenso nella query string, quindi in
+// cronologia, log del CDN e header Referer.
+//
+// Vive qui e non in style.css perche' e' inline, e la CSP dichiara
+// style-src 'self' senza 'unsafe-inline': va autorizzato per hash. Con
+// la stringa e il suo hash generati dalla stessa costante non possono
+// divergere — se il CSS cambia, l'header cambia con lui.
+const NOSCRIPT_CSS =
+  '.contact-form{display:none!important}.form-noscript{display:block!important}';
+
+const noscriptStyle = () =>
+  '<noscript><style>' + NOSCRIPT_CSS + '</style></noscript>';
+
+// Hash del contenuto esatto del <style>, nella forma che la CSP vuole.
+const noscriptCspHash = () =>
+  "'sha256-" + crypto.createHash('sha256').update(NOSCRIPT_CSS).digest('base64') + "'";
+
+// Le stringhe che servono a runtime: esito dell'invio e messaggi di
+// validazione. Vengono iniettate inline, solo per la lingua della pagina.
+//
+// Percorsi completi, non nomi: da quando esistono form.err.* non stanno
+// piu' tutte sotto contact. Il payload rispecchia l'annidamento, cosi'
+// script.js legge i18n.form.err.emailInvalid con lo stesso percorso che
+// la chiave ha in translations.js — un solo modello mentale.
+//
+// Qui stanno SOLO le stringhe che il JS sostituisce dentro un elemento
+// esistente. I blocchi che il JS si limita a mostrare o nascondere (esito
+// positivo, pulsante di ritenta) vivono nel template, gia' tradotti dal
+// build: non ha senso spedirli come JSON e riscriverli a mano.
+const RUNTIME_KEYS = [
+  'contact.sending',
+  'contact.error',
+  'form.err.nameRequired',
+  'form.err.nameTooShort',
+  'form.err.emailRequired',
+  'form.err.emailInvalid',
+  'form.err.messageTooLong',
+  'form.err.privacyRequired',
+  'form.err.summary'
+];
 
 // Segnaposto risolti dal build, non dalle traduzioni.
 const BUILTIN = new Set([
   'LANG', 'LANG_UPPER', 'TITLE', 'DESCRIPTION', 'PRIVACY_URL',
   'LANG_OPTIONS', 'I18N_SCRIPT', 'SEO_HEAD', 'STYLE_URL', 'SCRIPT_URL',
+  'NOSCRIPT_STYLE',
   // solo nelle pagine legali
   'CANONICAL', 'HREFLANG_BLOCK', 'BODY'
 ]);
 
 // Segnaposto il cui valore e' gia' markup e non va escapato.
 const RAW = new Set([
-  'LANG_OPTIONS', 'I18N_SCRIPT', 'SEO_HEAD', 'HREFLANG_BLOCK', 'BODY'
+  'LANG_OPTIONS', 'I18N_SCRIPT', 'SEO_HEAD', 'HREFLANG_BLOCK', 'BODY',
+  'NOSCRIPT_STYLE'
 ]);
 
 const PLACEHOLDER = /\{\{\s*([^}\s]+)\s*\}\}/g;
@@ -120,7 +162,15 @@ function escapeHtml(s) {
 // chiuderebbe il tag in anticipo.
 function buildI18nScript(t) {
   const payload = {};
-  for (const k of RUNTIME_KEYS) payload[k] = getPath(t, 'contact.' + k);
+  for (const path of RUNTIME_KEYS) {
+    const parts = path.split('.');
+    let node = payload;
+    for (const k of parts.slice(0, -1)) node = node[k] || (node[k] = {});
+    node[parts[parts.length - 1]] = getPath(t, path);
+  }
+  // L'ordine delle chiavi nel JSON e' quello di inserimento, cioe' quello
+  // di RUNTIME_KEYS: costante fra un build e l'altro, quindi l'output non
+  // cambia a parita' di sorgenti.
   const json = JSON.stringify(payload).replace(/</g, '\\u003c');
   return '<script>window.AURA_I18N=' + json + ';<\/script>';
 }
@@ -351,7 +401,9 @@ function buildHeaders(assets) {
     "default-src 'self'",
     "img-src 'self' data:",
     "font-src 'self'",
-    "style-src 'self'",
+    // L'hash autorizza il solo <style> dentro <noscript>: nessun altro
+    // stile inline passa, quindi la direttiva resta chiusa.
+    "style-src 'self' " + noscriptCspHash(),
     // 'unsafe-inline' serve per lo <script> con window.AURA_I18N.
     "script-src 'self' 'unsafe-inline' static.cloudflareinsights.com",
     // api.web3forms.com non serve piu': il browser parla solo con
@@ -454,7 +506,7 @@ function validateKeys(templates, translations) {
       .filter(k => !BUILTIN.has(k)),
     // chiavi consumate a runtime via window.AURA_I18N: non compaiono nel
     // template, ma se mancassero il form resterebbe muto senza avvisare
-    ...RUNTIME_KEYS.map(k => 'contact.' + k),
+    ...RUNTIME_KEYS,
     // usate dal build per <title>, <meta name="description"> e Open Graph
     'seo.title', 'seo.description', 'seo.ogImageAlt',
     // <head> e corpo delle pagine legali: risolte dal build, non dal
@@ -568,6 +620,7 @@ function render(template, lang, translations, assets) {
     PRIVACY_URL: '/' + lang + '/privacy/',
     LANG_OPTIONS: langOptions(lang, code => '/' + code + '/'),
     I18N_SCRIPT: buildI18nScript(t),
+    NOSCRIPT_STYLE: noscriptStyle(),
     SEO_HEAD: buildSeoHead(lang, t)
   }, t);
 }

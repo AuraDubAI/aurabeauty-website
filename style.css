@@ -123,6 +123,13 @@
   --pink-soft: #ff5fa8;
   --purple: #6c3ce9;
   --purple-soft: #9d7bff;
+  /* Rosso di errore. Scelto per distanza di tinta dal rosa del brand
+     (#ff5fa8, 333°): a 4° ne dista 31°, cosi' lo stato di errore non si
+     confonde con l'accento del sito, che .form-note usa gia'.
+     Contrasto 7.55:1 su --bg-alt e 7.24:1 su --surface: oltre AA 4.5:1
+     per il testo e oltre il 3:1 richiesto per i bordi. */
+  --color-error: #ff7b72;
+  --color-error-soft: rgba(255,123,114,0.12);
   --grad: linear-gradient(120deg, var(--pink) 0%, var(--purple) 100%);
   --radius: 18px;
   --max-width: 1180px;
@@ -219,7 +226,7 @@ a{ color: inherit; text-decoration:none; }
   justify-content:space-between;
   height: 76px;
 }
-.brand-logo{ height: 30px; width:auto; display:block; }
+.brand-logo{ max-height: 75px; width:auto; display:block; }
 .main-nav{
   display:flex;
   align-items:center;
@@ -635,6 +642,122 @@ a{ color: inherit; text-decoration:none; }
 }
 .contact-alt a{ color: var(--pink-soft); font-weight:600; }
 
+/* ---------- VALIDAZIONE DEL FORM ---------- */
+
+/* .btn imposta display:inline-block e vincerebbe sull'attributo hidden,
+   che vive nel foglio dell'utente-agente e ha percio' priorita' minore.
+   Senza questa riga il pulsante "riprova" sarebbe visibile da subito. */
+[hidden]{ display:none !important; }
+
+/* Il messaggio d'errore si mostra da solo quando ha del testo: il JS
+   scrive textContent e basta, non deve anche ricordarsi di alzare una
+   classe. Un errore impostato ma invisibile diventa impossibile. */
+.field-error{
+  display:none;
+  margin: 6px 0 0;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: var(--color-error);
+}
+.field-error:not(:empty){ display:block; }
+
+.contact-form input,
+.contact-form textarea{
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.form-consent{
+  transition: background-color .15s ease, box-shadow .15s ease;
+}
+
+/* Piu' in basso di .contact-form input:focus, quindi vince a parita' di
+   specificita': un campo invalido resta rosso anche mentre lo si compila. */
+.contact-form input.is-invalid,
+.contact-form textarea.is-invalid,
+.contact-form input.is-invalid:focus,
+.contact-form textarea.is-invalid:focus{
+  border-color: var(--color-error);
+}
+
+/* Focus da tastiera. Prima non esisteva: outline:none era applicato senza
+   un sostituto distinguibile, e il bordo rosa di :focus e' identico a
+   quello di :hover, quindi chi naviga da tastiera non sapeva dov'era.
+   :focus-visible non scatta sul clic del mouse, quindi il design a bordo
+   pulito resta intatto per chi usa il puntatore. */
+.contact-form input:focus-visible,
+.contact-form textarea:focus-visible,
+a:focus-visible,
+button:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible{
+  outline: 2px solid var(--pink-soft);
+  outline-offset: 2px;
+}
+.contact-form input.is-invalid:focus-visible,
+.contact-form textarea.is-invalid:focus-visible{
+  outline-color: var(--color-error);
+}
+
+/* Una casella di 16px non regge da sola il peso di uno stato di errore:
+   si evidenzia il contenitore. box-shadow invece di padding perche' la
+   checkbox e' in position:absolute e il padding la sposterebbe; lo spread
+   dipinge un'area piu' ampia del testo senza toccare il layout. */
+.form-consent.is-invalid{
+  border-radius: 8px;
+  background: var(--color-error-soft);
+  box-shadow: 0 0 0 10px var(--color-error-soft);
+}
+.form-consent.is-invalid input[type="checkbox"]{
+  accent-color: var(--color-error);
+  outline: 2px solid var(--color-error);
+  outline-offset: 2px;
+}
+
+.form-note.is-error{ color: var(--color-error); }
+
+/* Spinner: solo bordi e una rotazione, nessuna immagine. */
+.btn-spinner{
+  display:none;
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  vertical-align: -3px;
+  border: 2px solid rgba(255,255,255,0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: btn-spin .7s linear infinite;
+}
+.btn.is-sending .btn-spinner{ display:inline-block; }
+@keyframes btn-spin{ to{ transform: rotate(360deg); } }
+
+/* Mostrato solo dal <style> dentro <noscript>, che alza display:block.
+   Di default e' nascosto: con JavaScript attivo il form funziona e
+   questo messaggio non ha ragione di esistere. */
+.form-noscript{
+  display:none;
+  margin-top: 40px;
+  padding: 20px 22px;
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: 12px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Esito positivo: sostituisce il form, non lo affianca. Nessun display
+   dichiarato, cosi' l'attributo hidden continua a funzionare. */
+.form-success{
+  margin-top: 40px;
+  padding: 36px 24px;
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius);
+  text-align:center;
+}
+.form-success-icon{ color: var(--pink-soft); margin-bottom: 14px; }
+.form-success h3{ margin-bottom: 8px; }
+.form-success p{ margin:0; color: var(--text-muted); }
+
 /* ---------- FOOTER ---------- */
 .site-footer{
   padding: 40px 0;
@@ -647,7 +770,6 @@ a{ color: inherit; text-decoration:none; }
   flex-wrap:wrap;
   gap: 16px;
 }
-.footer-logo{ height: 22px; opacity: 0.85; }
 .site-footer p{ margin:0; font-size: 0.85rem; }
 /* Il footer ha due righe di testo: copyright e dati legali. */
 .footer-legal{ display:flex; flex-direction:column; gap: 6px; }
@@ -691,4 +813,19 @@ a{ color: inherit; text-decoration:none; }
   .form-row{ grid-template-columns: 1fr; }
   .hero{ padding: 100px 0 80px; text-align:left; }
   .diff-highlights{ grid-template-columns: 1fr; }
+}
+
+/* Chi ha chiesto meno animazioni le ottiene su tutto il sito, incluse le
+   cinque transizioni gia' presenti prima di questo blocco. Lo spinner si
+   ferma: lo stato di invio resta comunque comunicato dal testo del
+   pulsante e da aria-busy, quindi non si perde informazione.
+   scroll-behavior qui non basta per scrollIntoView({behavior:'smooth'}),
+   che ignora il CSS: quel caso e' gestito in script.js. */
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

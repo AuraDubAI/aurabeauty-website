@@ -84,9 +84,23 @@ const translations = {
       consentLink: "privacy policy",
       submit: "Request a demo of AURA",
       sending: "Sending…",
+      successTitle: "Request sent",
       success: "Thank you! Your message has been received, we'll be in touch soon.",
       error: "We couldn't send your request. Please try again, or write to us at info@aurabeauty.app.",
+      retry: "Try again",
+      noscript: "The form needs JavaScript, which does not appear to be active. You can write to us at the address below instead — we answer the same way.",
       altText: "Or write to us directly:"
+    },
+    form: {
+      err: {
+        nameRequired: "Enter your name",
+        nameTooShort: "Your name needs at least 2 characters",
+        emailRequired: "Enter your email address",
+        emailInvalid: "Enter a valid email address",
+        messageTooLong: "The message can be at most 2000 characters",
+        privacyRequired: "Accept the privacy policy to continue",
+        summary: "Please check the highlighted fields"
+      }
     },
     footer: { rights: "All rights reserved.", privacy: "Privacy Policy" },
 
@@ -104,14 +118,6 @@ const translations = {
             "The data controller is AI LAB L.L.C-FZ, Meydan Grandstand, 6th floor, Meydan Road, Nad Al Sheba, Dubai, United Arab Emirates.",
             "Tax identifier: TRN 105142922100003. The TRN (Tax Registration Number) is an identifier issued by the authorities of the United Arab Emirates: it is not a VAT number and not an EU VAT identification number.",
             "For any matter concerning the processing of your data you can write to info@aurabeauty.app."
-          ]
-        },
-        {
-          heading: "Representative in the European Union (Art. 27 GDPR)",
-          paragraphs: [
-            "__RAPPRESENTANTE_UE__",
-            "The designation of the representative in the European Union under Article 27 GDPR is in progress. This section will be updated with the representative's identity and contact details as soon as the appointment is finalised.",
-            "In the meantime you can address the controller directly at info@aurabeauty.app: no request goes unanswered because the representative has not yet been designated."
           ]
         },
         {
@@ -195,7 +201,7 @@ const translations = {
         {
           heading: "Changes to this policy",
           paragraphs: [
-            "This policy may be updated to reflect regulatory or organisational changes, for instance once the representative in the European Union has been designated. The version published on this page is always the one in force."
+            "This policy may be updated to reflect regulatory or organisational changes. The version published on this page is always the one in force."
           ]
         }
       ]
@@ -287,9 +293,23 @@ const translations = {
       consentLink: "privacy policy",
       submit: "Richiedi una demo di AURA",
       sending: "Invio in corso…",
+      successTitle: "Richiesta inviata",
       success: "Grazie! Il tuo messaggio è stato ricevuto, ti contatteremo a breve.",
       error: "Non siamo riusciti a inviare la richiesta. Riprova oppure scrivici a info@aurabeauty.app.",
+      retry: "Riprova",
+      noscript: "Il modulo richiede JavaScript, che non risulta attivo. Puoi scriverci all'indirizzo qui sotto: ti rispondiamo allo stesso modo.",
       altText: "Oppure scrivici direttamente:"
+    },
+    form: {
+      err: {
+        nameRequired: "Inserisci il tuo nome",
+        nameTooShort: "Il nome deve avere almeno 2 caratteri",
+        emailRequired: "Inserisci il tuo indirizzo email",
+        emailInvalid: "Inserisci un indirizzo email valido",
+        messageTooLong: "Il messaggio può contenere al massimo 2000 caratteri",
+        privacyRequired: "Accetta l'informativa sulla privacy per continuare",
+        summary: "Controlla i campi evidenziati"
+      }
     },
     footer: { rights: "Tutti i diritti riservati.", privacy: "Informativa sulla privacy" },
 
@@ -307,14 +327,6 @@ const translations = {
             "Il titolare del trattamento è AI LAB L.L.C-FZ, con sede in Meydan Grandstand, 6th floor, Meydan Road, Nad Al Sheba, Dubai, Emirati Arabi Uniti.",
             "Identificativo fiscale: TRN 105142922100003. Il TRN (Tax Registration Number) è un identificativo rilasciato dalle autorità degli Emirati Arabi Uniti: non è una partita IVA né un numero identificativo IVA dell'Unione europea.",
             "Per qualunque questione relativa al trattamento dei tuoi dati puoi scrivere a info@aurabeauty.app."
-          ]
-        },
-        {
-          heading: "Rappresentante nell'Unione europea (art. 27 GDPR)",
-          paragraphs: [
-            "__RAPPRESENTANTE_UE__",
-            "La designazione del rappresentante nell'Unione europea ai sensi dell'articolo 27 del GDPR è in corso. Questa sezione sarà aggiornata con i dati identificativi e di contatto del rappresentante non appena la nomina sarà perfezionata.",
-            "Nel frattempo puoi rivolgerti direttamente al titolare all'indirizzo info@aurabeauty.app: nessuna richiesta resta senza risposta per il fatto che il rappresentante non sia ancora designato."
           ]
         },
         {
@@ -398,7 +410,7 @@ const translations = {
         {
           heading: "Modifiche a questa informativa",
           paragraphs: [
-            "Questa informativa può essere aggiornata per adeguarla a cambiamenti normativi od organizzativi, per esempio quando sarà designato il rappresentante nell'Unione europea. La versione pubblicata su questa pagina è sempre quella vigente."
+            "Questa informativa può essere aggiornata per adeguarla a cambiamenti normativi od organizzativi. La versione pubblicata su questa pagina è sempre quella vigente."
           ]
         }
       ]
@@ -490,9 +502,23 @@ const translations = {
       consentLink: "Datenschutzerklärung",
       submit: "Demo von AURA anfordern",
       sending: "Wird gesendet…",
+      successTitle: "Anfrage gesendet",
       success: "Vielen Dank! Ihre Nachricht wurde empfangen, wir melden uns in Kürze.",
       error: "Ihre Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut oder schreiben Sie uns an info@aurabeauty.app.",
+      retry: "Erneut versuchen",
+      noscript: "Das Formular benötigt JavaScript, das derzeit nicht aktiv zu sein scheint. Sie können uns stattdessen an die untenstehende Adresse schreiben — wir antworten genauso.",
       altText: "Oder schreiben Sie uns direkt:"
+    },
+    form: {
+      err: {
+        nameRequired: "Bitte geben Sie Ihren Namen ein",
+        nameTooShort: "Der Name braucht mindestens 2 Zeichen",
+        emailRequired: "Bitte geben Sie Ihre E-Mail-Adresse ein",
+        emailInvalid: "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+        messageTooLong: "Die Nachricht darf höchstens 2000 Zeichen lang sein",
+        privacyRequired: "Bitte akzeptieren Sie die Datenschutzerklärung, um fortzufahren",
+        summary: "Bitte prüfen Sie die markierten Felder"
+      }
     },
     footer: { rights: "Alle Rechte vorbehalten.", privacy: "Datenschutzerklärung" },
 
@@ -510,14 +536,6 @@ const translations = {
             "Verantwortlicher für die Verarbeitung ist AI LAB L.L.C-FZ, Meydan Grandstand, 6th floor, Meydan Road, Nad Al Sheba, Dubai, Vereinigte Arabische Emirate.",
             "Steuerliche Kennung: TRN 105142922100003. Die TRN (Tax Registration Number) ist eine von den Behörden der Vereinigten Arabischen Emirate vergebene Kennung: sie ist weder eine Umsatzsteuer-Identifikationsnummer noch eine USt-IdNr. der Europäischen Union.",
             "Bei allen Fragen zur Verarbeitung Ihrer Daten können Sie an info@aurabeauty.app schreiben."
-          ]
-        },
-        {
-          heading: "Vertreter in der Europäischen Union (Art. 27 DSGVO)",
-          paragraphs: [
-            "__RAPPRESENTANTE_UE__",
-            "Die Benennung des Vertreters in der Europäischen Union nach Artikel 27 DSGVO läuft derzeit. Dieser Abschnitt wird um Identität und Kontaktdaten des Vertreters ergänzt, sobald die Benennung abgeschlossen ist.",
-            "In der Zwischenzeit können Sie sich unter info@aurabeauty.app unmittelbar an den Verantwortlichen wenden: keine Anfrage bleibt unbeantwortet, nur weil der Vertreter noch nicht benannt ist."
           ]
         },
         {
@@ -601,7 +619,7 @@ const translations = {
         {
           heading: "Änderungen dieser Erklärung",
           paragraphs: [
-            "Diese Erklärung kann aktualisiert werden, um rechtlichen oder organisatorischen Änderungen Rechnung zu tragen, etwa sobald der Vertreter in der Europäischen Union benannt ist. Maßgeblich ist stets die auf dieser Seite veröffentlichte Fassung."
+            "Diese Erklärung kann aktualisiert werden, um rechtlichen oder organisatorischen Änderungen Rechnung zu tragen. Maßgeblich ist stets die auf dieser Seite veröffentlichte Fassung."
           ]
         }
       ]
@@ -693,9 +711,23 @@ const translations = {
       consentLink: "politique de confidentialité",
       submit: "Demander une démo d'AURA",
       sending: "Envoi en cours…",
+      successTitle: "Demande envoyée",
       success: "Merci ! Votre message a bien été reçu, nous vous contacterons bientôt.",
       error: "Nous n'avons pas pu envoyer votre demande. Réessayez ou écrivez-nous à info@aurabeauty.app.",
+      retry: "Réessayer",
+      noscript: "Le formulaire nécessite JavaScript, qui ne semble pas actif. Vous pouvez nous écrire à l'adresse ci-dessous : nous répondons de la même manière.",
       altText: "Ou écrivez-nous directement :"
+    },
+    form: {
+      err: {
+        nameRequired: "Indiquez votre nom",
+        nameTooShort: "Le nom doit comporter au moins 2 caractères",
+        emailRequired: "Indiquez votre adresse e-mail",
+        emailInvalid: "Indiquez une adresse e-mail valide",
+        messageTooLong: "Le message peut contenir 2000 caractères au maximum",
+        privacyRequired: "Acceptez la politique de confidentialité pour continuer",
+        summary: "Vérifiez les champs signalés"
+      }
     },
     footer: { rights: "Tous droits réservés.", privacy: "Politique de confidentialité" },
 
@@ -713,14 +745,6 @@ const translations = {
             "Le responsable du traitement est AI LAB L.L.C-FZ, Meydan Grandstand, 6th floor, Meydan Road, Nad Al Sheba, Dubaï, Émirats arabes unis.",
             "Identifiant fiscal : TRN 105142922100003. Le TRN (Tax Registration Number) est un identifiant délivré par les autorités des Émirats arabes unis : il ne s'agit ni d'un numéro de TVA ni d'un numéro d'identification à la TVA de l'Union européenne.",
             "Pour toute question relative au traitement de vos données, vous pouvez écrire à info@aurabeauty.app."
-          ]
-        },
-        {
-          heading: "Représentant dans l'Union européenne (art. 27 RGPD)",
-          paragraphs: [
-            "__RAPPRESENTANTE_UE__",
-            "La désignation du représentant dans l'Union européenne au titre de l'article 27 du RGPD est en cours. Cette section sera complétée par l'identité et les coordonnées du représentant dès que la nomination sera finalisée.",
-            "Dans l'intervalle, vous pouvez vous adresser directement au responsable du traitement à l'adresse info@aurabeauty.app : aucune demande ne reste sans réponse du fait que le représentant n'est pas encore désigné."
           ]
         },
         {
@@ -804,7 +828,7 @@ const translations = {
         {
           heading: "Modifications de la présente politique",
           paragraphs: [
-            "Cette politique peut être mise à jour pour tenir compte d'évolutions réglementaires ou organisationnelles, par exemple lorsque le représentant dans l'Union européenne aura été désigné. La version publiée sur cette page est toujours celle en vigueur."
+            "Cette politique peut être mise à jour pour tenir compte d'évolutions réglementaires ou organisationnelles. La version publiée sur cette page est toujours celle en vigueur."
           ]
         }
       ]
@@ -896,9 +920,23 @@ const translations = {
       consentLink: "política de privacidad",
       submit: "Solicitar una demo de AURA",
       sending: "Enviando…",
+      successTitle: "Solicitud enviada",
       success: "¡Gracias! Hemos recibido tu mensaje, nos pondremos en contacto pronto.",
       error: "No hemos podido enviar tu solicitud. Inténtalo de nuevo o escríbenos a info@aurabeauty.app.",
+      retry: "Inténtalo de nuevo",
+      noscript: "El formulario necesita JavaScript, que ahora mismo no parece estar activo. Puedes escribirnos a la dirección de abajo: te respondemos igual.",
       altText: "O escríbenos directamente:"
+    },
+    form: {
+      err: {
+        nameRequired: "Introduce tu nombre",
+        nameTooShort: "El nombre debe tener al menos 2 caracteres",
+        emailRequired: "Introduce tu correo electrónico",
+        emailInvalid: "Introduce un correo electrónico válido",
+        messageTooLong: "El mensaje puede tener 2000 caracteres como máximo",
+        privacyRequired: "Acepta la política de privacidad para continuar",
+        summary: "Revisa los campos señalados"
+      }
     },
     footer: { rights: "Todos los derechos reservados.", privacy: "Política de privacidad" },
 
@@ -916,14 +954,6 @@ const translations = {
             "El responsable del tratamiento es AI LAB L.L.C-FZ, con domicilio en Meydan Grandstand, 6th floor, Meydan Road, Nad Al Sheba, Dubái, Emiratos Árabes Unidos.",
             "Identificador fiscal: TRN 105142922100003. El TRN (Tax Registration Number) es un identificador emitido por las autoridades de los Emiratos Árabes Unidos: no es un NIF-IVA ni un número de identificación a efectos del IVA de la Unión Europea.",
             "Para cualquier cuestión relativa al tratamiento de tus datos puedes escribir a info@aurabeauty.app."
-          ]
-        },
-        {
-          heading: "Representante en la Unión Europea (art. 27 RGPD)",
-          paragraphs: [
-            "__RAPPRESENTANTE_UE__",
-            "La designación del representante en la Unión Europea conforme al artículo 27 del RGPD está en curso. Esta sección se actualizará con la identidad y los datos de contacto del representante en cuanto se formalice el nombramiento.",
-            "Mientras tanto puedes dirigirte directamente al responsable en info@aurabeauty.app: ninguna solicitud queda sin respuesta por el hecho de que el representante no esté designado todavía."
           ]
         },
         {
@@ -1007,7 +1037,7 @@ const translations = {
         {
           heading: "Modificaciones de esta política",
           paragraphs: [
-            "Esta política puede actualizarse para adaptarla a cambios normativos u organizativos, por ejemplo cuando se designe al representante en la Unión Europea. La versión publicada en esta página es siempre la vigente."
+            "Esta política puede actualizarse para adaptarla a cambios normativos u organizativos. La versión publicada en esta página es siempre la vigente."
           ]
         }
       ]
