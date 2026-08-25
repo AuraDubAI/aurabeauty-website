@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
       note.textContent = '';
 
       try {
-        var response = await fetch('https://api.web3forms.com/submit', {
+        var response = await fetch('/api/contact', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

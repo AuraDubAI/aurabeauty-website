@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{TITLE}}</title>
 <meta name="description" content="{{DESCRIPTION}}">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#0a0a12">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+{{SEO_HEAD}}
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/manrope-variable-latin.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/poppins-700-latin.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/poppins-600-latin.woff2">
@@ -259,7 +264,6 @@
       <h2>{{contact.title}}</h2>
       <p>{{contact.p}}</p>
       <form class="contact-form" id="contact-form">
-        <input type="hidden" name="access_key" value="631fc8a6-9d42-420d-b49c-5b195e796627">
         <input type="hidden" name="subject" value="Nuova richiesta demo da info.aurabeauty.app">
         <input type="hidden" name="from_name" value="AURA Website">
         <input type="hidden" name="lingua" value="{{LANG_UPPER}}">

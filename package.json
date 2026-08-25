@@ -1,0 +1,16 @@
+{
+  "name": "aura-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Landing page AURA — statica, multilingua, senza dipendenze runtime",
+  "license": "UNLICENSED",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "node build.js",
+    "dev": "node build.js && node serve.js",
+    "serve": "node serve.js"
+  }
+}
