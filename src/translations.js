@@ -1,6 +1,11 @@
 const translations = {
   en: {
-    a11y: { skip: "Skip to content", navToggle: "Open menu" },
+    a11y: { skip: "Skip to content", navToggle: "Open menu", langSelect: "Choose language" },
+    alt: { team: "The AURA team" },
+    seo: {
+      title: "AURA | AI Marketing Automation for Beauty & Med Spa",
+      description: "AURA is the AI ecosystem that helps beauty centers, med spas, pharmacies and clinics attract new clients, manage leads and book more appointments."
+    },
     nav: { home: "Home", chisiamo: "About AURA", servizi: "Services", perche: "Why AURA", cta: "Request a demo" },
     hero: {
       eyebrow: "AI for the beauty & health industry",
@@ -86,7 +91,12 @@ const translations = {
   },
 
   it: {
-    a11y: { skip: "Vai al contenuto", navToggle: "Apri il menu" },
+    a11y: { skip: "Vai al contenuto", navToggle: "Apri il menu", langSelect: "Scegli la lingua" },
+    alt: { team: "Il team AURA" },
+    seo: {
+      title: "AURA | Intelligenza artificiale per centri estetici e beauty",
+      description: "AURA è l'ecosistema AI che porta nuovi clienti a centri estetici, farmacie e studi medici: campagne, gestione lead e prenotazioni automatizzate."
+    },
     nav: { home: "Home", chisiamo: "Chi è AURA", servizi: "Servizi", perche: "Perché AURA", cta: "Richiedi una demo" },
     hero: {
       eyebrow: "AI per il settore beauty & health",
@@ -172,7 +182,12 @@ const translations = {
   },
 
   de: {
-    a11y: { skip: "Zum Inhalt springen", navToggle: "Menü öffnen" },
+    a11y: { skip: "Zum Inhalt springen", navToggle: "Menü öffnen", langSelect: "Sprache wählen" },
+    alt: { team: "Das AURA-Team" },
+    seo: {
+      title: "AURA | KI-Marketing für Beauty-Studios und Praxen",
+      description: "AURA ist das KI-Ökosystem für Kosmetikstudios, Apotheken und Praxen: mehr Neukunden, automatisierte Lead-Verwaltung und Terminbuchung."
+    },
     nav: { home: "Startseite", chisiamo: "Über AURA", servizi: "Leistungen", perche: "Warum AURA", cta: "Demo anfordern" },
     hero: {
       eyebrow: "KI für Beauty & Gesundheit",
@@ -258,7 +273,12 @@ const translations = {
   },
 
   fr: {
-    a11y: { skip: "Aller au contenu", navToggle: "Ouvrir le menu" },
+    a11y: { skip: "Aller au contenu", navToggle: "Ouvrir le menu", langSelect: "Choisir la langue" },
+    alt: { team: "L'équipe AURA" },
+    seo: {
+      title: "AURA | L'IA marketing pour instituts de beauté et cliniques",
+      description: "AURA est l'écosystème d'IA qui aide instituts de beauté, pharmacies et cabinets médicaux à trouver de nouveaux clients et à remplir leur agenda."
+    },
     nav: { home: "Accueil", chisiamo: "À propos d'AURA", servizi: "Services", perche: "Pourquoi AURA", cta: "Demander une démo" },
     hero: {
       eyebrow: "L'IA pour le secteur beauté & santé",
@@ -344,7 +364,12 @@ const translations = {
   },
 
   es: {
-    a11y: { skip: "Ir al contenido", navToggle: "Abrir el menú" },
+    a11y: { skip: "Ir al contenido", navToggle: "Abrir el menú", langSelect: "Elegir idioma" },
+    alt: { team: "El equipo AURA" },
+    seo: {
+      title: "AURA | IA de marketing para centros de belleza y clínicas",
+      description: "AURA es el ecosistema de IA que ayuda a centros de estética, farmacias y clínicas a captar nuevos clientes, gestionar leads y llenar su agenda."
+    },
     nav: { home: "Inicio", chisiamo: "Sobre AURA", servizi: "Servicios", perche: "Por qué AURA", cta: "Solicitar una demo" },
     hero: {
       eyebrow: "IA para el sector belleza y salud",

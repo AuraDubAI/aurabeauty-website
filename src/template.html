@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<meta name="description" content="{{DESCRIPTION}}">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/manrope-variable-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/poppins-700-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/poppins-600-latin.woff2">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">{{a11y.skip}}</a>
+
+<div class="bg-glow"></div>
+
+<header class="site-header" id="header">
+  <div class="container header-inner">
+    <a href="#home" class="brand">
+      <img src="/assets/logo.png" alt="AURA" class="brand-logo" width="600" height="315" decoding="async">
+    </a>
+    <nav class="main-nav" id="main-nav">
+      <a href="#home">{{nav.home}}</a>
+      <a href="#chi-siamo">{{nav.chisiamo}}</a>
+      <a href="#servizi">{{nav.servizi}}</a>
+      <a href="#perche">{{nav.perche}}</a>
+      <a href="#contatti" class="nav-cta">{{nav.cta}}</a>
+      <label class="sr-only" for="lang-select">{{a11y.langSelect}}</label>
+      <select class="lang-select" id="lang-select">{{LANG_OPTIONS}}</select>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="{{a11y.navToggle}}">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main-content" tabindex="-1">
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <img src="/assets/hero-bg.jpg" alt="" role="presentation" width="1920" height="1080" fetchpriority="high" decoding="async">
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="container hero-content">
+      <p class="eyebrow">{{hero.eyebrow}}</p>
+      <h1><span>{{hero.title_pre}}</span><span class="grad-text">{{hero.title_grad}}</span><span>{{hero.title_post}}</span></h1>
+      <p class="hero-lead">{{hero.lead}}</p>
+      <p class="hero-sub">{{hero.sub}}</p>
+      <p class="hero-tagline">{{hero.tagline}}</p>
+      <div class="hero-actions">
+        <a href="#chi-siamo" class="btn btn-primary">{{hero.cta1}}</a>
+        <a href="#contatti" class="btn btn-ghost">{{hero.cta2}}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT / INTRO -->
+  <section class="section" id="chi-siamo">
+    <div class="container narrow">
+      <h2>{{chisiamo.title}}</h2>
+      <p class="lead">{{chisiamo.lead}}</p>
+      <p>{{chisiamo.p1}}</p>
+      <p class="highlight">{{chisiamo.highlight}}</p>
+    </div>
+  </section>
+
+  <!-- DIFFERENTIATORS -->
+  <section class="section section-diff">
+    <div class="container">
+      <h2 class="section-title">{{diff.title}}</h2>
+
+      <div class="diff-grid">
+        <article class="diff-card">
+          <div class="diff-icon" aria-hidden="true">🎬</div>
+          <h3>{{diffA.title}}</h3>
+          <p>{{diffA.p}}</p>
+          <div class="diff-stat">
+            <span class="diff-stat-num">{{diffA.statNum}}</span>
+            <span class="diff-stat-label">{{diffA.statLabel}}</span>
+          </div>
+        </article>
+
+        <article class="diff-card">
+          <div class="diff-icon" aria-hidden="true">📡</div>
+          <h3>{{diffB.title}}</h3>
+          <p>{{diffB.p}}</p>
+        </article>
+      </div>
+
+      <div class="diff-highlights">
+        <div class="diff-highlight">
+          <div class="diff-highlight-icon" aria-hidden="true">⚡</div>
+          <h4>{{diffh1.title}}</h4>
+          <p>{{diffh1.p}}</p>
+        </div>
+        <div class="diff-highlight">
+          <div class="diff-highlight-icon" aria-hidden="true">🎯</div>
+          <h4>{{diffh2.title}}</h4>
+          <p>{{diffh2.p}}</p>
+        </div>
+        <div class="diff-highlight">
+          <div class="diff-highlight-icon" aria-hidden="true">🤝</div>
+          <h4>{{diffh3.title}}</h4>
+          <p>{{diffh3.p}}</p>
+        </div>
+        <div class="diff-highlight">
+          <div class="diff-highlight-icon" aria-hidden="true">📊</div>
+          <h4>{{diffh4.title}}</h4>
+          <p>{{diffh4.p}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section section-alt" id="servizi">
+    <div class="container">
+      <h2 class="section-title">{{servizi.title}}</h2>
+
+      <div class="feature-grid">
+
+        <article class="feature-card feature-card-wide">
+          <div class="feature-icon" aria-hidden="true">📣</div>
+          <h3>{{feature1.title}}</h3>
+          <p>{{feature1.p}}</p>
+          <p class="feature-list-label">{{feature1.listlabel}}</p>
+          <ul class="feature-list">{{feature1.list}}</ul>
+          <p class="feature-note">{{feature1.note}}</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon" aria-hidden="true">⏱️</div>
+          <h3>{{feature2.title}}</h3>
+          <p>{{feature2.p}}</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon" aria-hidden="true">🎯</div>
+          <h3>{{feature3.title}}</h3>
+          <p>{{feature3.p}}</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon" aria-hidden="true">📅</div>
+          <h3>{{feature4.title}}</h3>
+          <p>{{feature4.p}}</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon" aria-hidden="true">🔄</div>
+          <h3>{{feature5.title}}</h3>
+          <p>{{feature5.p}}</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon" aria-hidden="true">📈</div>
+          <h3>{{feature6.title}}</h3>
+          <p>{{feature6.p}}</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ECOSYSTEM / 3 GOALS -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">{{pillars.title}}</h2>
+      <div class="pillars">
+        <div class="pillar">
+          <span class="pillar-tag">{{pillar1.tag}}</span>
+          <p>{{pillar1.p}}</p>
+        </div>
+        <div class="pillar">
+          <span class="pillar-tag">{{pillar2.tag}}</span>
+          <p>{{pillar2.p}}</p>
+        </div>
+        <div class="pillar">
+          <span class="pillar-tag">{{pillar3.tag}}</span>
+          <p>{{pillar3.p}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HUMAN CONTROL -->
+  <section class="section section-control">
+    <div class="container control-inner">
+      <div class="control-photo">
+        <img src="/assets/founder.jpg" alt="{{alt.team}}" width="497" height="500" loading="lazy" decoding="async">
+      </div>
+      <div class="control-text">
+        <h2>{{control.title}}</h2>
+        <p>{{control.p}}</p>
+        <p class="highlight">{{control.highlight}}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE -->
+  <section class="section section-alt" id="perche">
+    <div class="container">
+      <h2 class="section-title">{{why.title}}</h2>
+      <div class="why-grid">
+        <div class="why-item">
+          <div class="why-check" aria-hidden="true">✓</div>
+          <div>
+            <h4>{{why1.title}}</h4>
+            <p>{{why1.p}}</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-check" aria-hidden="true">✓</div>
+          <div>
+            <h4>{{why2.title}}</h4>
+            <p>{{why2.p}}</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-check" aria-hidden="true">✓</div>
+          <div>
+            <h4>{{why3.title}}</h4>
+            <p>{{why3.p}}</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-check" aria-hidden="true">✓</div>
+          <div>
+            <h4>{{why4.title}}</h4>
+            <p>{{why4.p}}</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-check" aria-hidden="true">✓</div>
+          <div>
+            <h4>{{why5.title}}</h4>
+            <p>{{why5.p}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING STATEMENT -->
+  <section class="section closing-section">
+    <div class="container narrow center">
+      <h2>{{closing.title}}</h2>
+      <p>{{closing.p}}</p>
+      <p class="closing-tagline">{{closing.tagline}}</p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section section-contact" id="contatti">
+    <div class="container narrow center">
+      <h2>{{contact.title}}</h2>
+      <p>{{contact.p}}</p>
+      <form class="contact-form" id="contact-form">
+        <input type="hidden" name="access_key" value="631fc8a6-9d42-420d-b49c-5b195e796627">
+        <input type="hidden" name="subject" value="Nuova richiesta demo da info.aurabeauty.app">
+        <input type="hidden" name="from_name" value="AURA Website">
+        <input type="hidden" name="lingua" value="{{LANG_UPPER}}">
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <div class="form-row">
+          <input type="text" name="nome" placeholder="{{contact.name}}" required>
+          <input type="text" name="attivita" placeholder="{{contact.company}}">
+        </div>
+        <div class="form-row form-row-single">
+          <input type="email" name="email" placeholder="{{contact.email}}" required>
+        </div>
+        <textarea name="messaggio" rows="4" placeholder="{{contact.message}}"></textarea>
+        <div class="form-consent">
+          <input type="checkbox" id="privacy-consent" name="privacy" required>
+          <label for="privacy-consent"><span>{{contact.consentText}}</span></label>
+          <a href="{{PRIVACY_URL}}">{{contact.consentLink}}</a>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">{{contact.submit}}</button>
+        <p class="form-note" id="form-note" role="status" aria-live="polite"></p>
+      </form>
+      <div class="contact-alt">
+        <p>{{contact.altText}}</p>
+        <a href="mailto:info@aurabeauty.app">info@aurabeauty.app</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <img src="/assets/logo.png" alt="AURA" class="footer-logo" width="600" height="315" loading="lazy" decoding="async">
+    <p>&copy; <span id="year"></span> AURA. <span>{{footer.rights}}</span></p>
+  </div>
+</footer>
+
+{{I18N_SCRIPT}}
+<script src="/script.js"></script>
+</body>
+</html>
