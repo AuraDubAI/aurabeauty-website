@@ -7,6 +7,7 @@
 <meta name="description" content="AURA is the artificial intelligence ecosystem that helps beauty centers, pharmacies, medical practices and beauty-industry businesses find new clients, manage contacts and increase sales.">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/manrope-variable-latin.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/poppins-700-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/poppins-600-latin.woff2">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -18,7 +19,7 @@
 <header class="site-header" id="header">
   <div class="container header-inner">
     <a href="#home" class="brand">
-      <img src="assets/logo.png" alt="AURA" class="brand-logo" width="600" height="315" loading="lazy" decoding="async">
+      <img src="assets/logo.png" alt="AURA" class="brand-logo" width="600" height="315" decoding="async">
     </a>
     <nav class="main-nav" id="main-nav">
       <a href="#home" data-i18n="nav.home">Home</a>
@@ -34,7 +35,7 @@
         <option value="es">Español</option>
       </select>
     </nav>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+    <button class="nav-toggle" id="nav-toggle" aria-controls="main-nav" aria-expanded="false" data-i18n-aria-label="a11y.navToggle">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -210,35 +211,35 @@
       <h2 class="section-title" data-i18n="why.title"></h2>
       <div class="why-grid">
         <div class="why-item">
-          <div class="why-check">✓</div>
+          <div class="why-check" aria-hidden="true">✓</div>
           <div>
             <h4 data-i18n="why1.title"></h4>
             <p data-i18n="why1.p"></p>
           </div>
         </div>
         <div class="why-item">
-          <div class="why-check">✓</div>
+          <div class="why-check" aria-hidden="true">✓</div>
           <div>
             <h4 data-i18n="why2.title"></h4>
             <p data-i18n="why2.p"></p>
           </div>
         </div>
         <div class="why-item">
-          <div class="why-check">✓</div>
+          <div class="why-check" aria-hidden="true">✓</div>
           <div>
             <h4 data-i18n="why3.title"></h4>
             <p data-i18n="why3.p"></p>
           </div>
         </div>
         <div class="why-item">
-          <div class="why-check">✓</div>
+          <div class="why-check" aria-hidden="true">✓</div>
           <div>
             <h4 data-i18n="why4.title"></h4>
             <p data-i18n="why4.p"></p>
           </div>
         </div>
         <div class="why-item">
-          <div class="why-check">✓</div>
+          <div class="why-check" aria-hidden="true">✓</div>
           <div>
             <h4 data-i18n="why5.title"></h4>
             <p data-i18n="why5.p"></p>
@@ -263,6 +264,12 @@
       <h2 data-i18n="contact.title"></h2>
       <p data-i18n="contact.p"></p>
       <form class="contact-form" id="contact-form">
+        <input type="hidden" name="access_key" value="631fc8a6-9d42-420d-b49c-5b195e796627">
+        <input type="hidden" name="subject" value="Nuova richiesta demo da info.aurabeauty.app">
+        <input type="hidden" name="from_name" value="AURA Website">
+        <input type="hidden" name="lingua" value="IT">
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+
         <div class="form-row">
           <input type="text" name="nome" data-i18n-placeholder="contact.name" required>
           <input type="text" name="attivita" data-i18n-placeholder="contact.company">
@@ -271,8 +278,14 @@
           <input type="email" name="email" data-i18n-placeholder="contact.email" required>
         </div>
         <textarea name="messaggio" rows="4" data-i18n-placeholder="contact.message"></textarea>
+        <div class="form-consent">
+          <input type="checkbox" id="privacy-consent" name="privacy" required>
+          <label for="privacy-consent"><span data-i18n="contact.consentText"></span></label>
+          <!-- TODO blocco 3: href = {{PRIVACY_URL}} -->
+          <a href="#" data-i18n="contact.consentLink"></a>
+        </div>
         <button type="submit" class="btn btn-primary btn-block" data-i18n="contact.submit"></button>
-        <p class="form-note" id="form-note"></p>
+        <p class="form-note" id="form-note" role="status" aria-live="polite"></p>
       </form>
       <div class="contact-alt">
         <p data-i18n="contact.altText"></p>

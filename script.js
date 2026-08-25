@@ -20,6 +20,11 @@ document.addEventListener('DOMContentLoaded', function () {
       if (typeof val === 'string') el.placeholder = val;
     });
 
+    document.querySelectorAll('[data-i18n-aria-label]').forEach(function (el) {
+      var val = getPath(translations[lang], el.getAttribute('data-i18n-aria-label'));
+      if (typeof val === 'string') el.setAttribute('aria-label', val);
+    });
+
     document.querySelectorAll('[data-i18n-list]').forEach(function (el) {
       var arr = getPath(translations[lang], el.getAttribute('data-i18n-list'));
       if (Array.isArray(arr)) {
@@ -36,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
       sel.value = lang;
     });
 
-    // reset the demo-only success message when switching language
+    // clear any submit feedback when switching language
     var note = document.getElementById('form-note');
     if (note) note.textContent = '';
   }
@@ -70,15 +75,49 @@ document.addEventListener('DOMContentLoaded', function () {
   var yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  // Contact form (placeholder handling — no backend connected yet)
+  // Contact form → Web3Forms
   var form = document.getElementById('contact-form');
   var note = document.getElementById('form-note');
-  if (form) {
-    form.addEventListener('submit', function (e) {
+  if (form && note) {
+    var submitBtn = form.querySelector('button[type="submit"]');
+
+    form.addEventListener('submit', async function (e) {
       e.preventDefault();
+
       var lang = document.documentElement.getAttribute('lang') || DEFAULT_LANG;
-      note.textContent = getPath(translations[lang], 'contact.success') || '';
-      form.reset();
+      var t = function (key) { return getPath(translations[lang], key) || ''; };
+      var originalText = submitBtn.textContent;
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = t('contact.sending');
+      form.setAttribute('aria-busy', 'true');
+      note.textContent = '';
+
+      try {
+        var response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(Object.fromEntries(new FormData(form)))
+        });
+        var json = await response.json();
+
+        if (response.ok && json.success) {
+          note.textContent = t('contact.success');
+          form.reset();
+        } else {
+          note.textContent = t('contact.error');
+        }
+      } catch (err) {
+        // network failure, or a response body that isn't JSON
+        note.textContent = t('contact.error');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+        form.removeAttribute('aria-busy');
+      }
     });
   }
 });

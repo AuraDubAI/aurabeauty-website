@@ -22,5 +22,13 @@ dipendenza npm runtime. Vanilla HTML/CSS/JS.
 ## Contatti
 - Email lead: info@aurabeauty.app
 - Nessun telefono, nessun WhatsApp.
-- Dati legali: usare i segnaposto __RAGIONE_SOCIALE__, __PIVA__,
-  __SEDE_LEGALE__ finché non forniti.
+
+## Dati legali
+- Titolare: AI LAB L.L.C-FZ
+- Sede: Meydan Grandstand, 6th floor, Meydan Road, Nad Al Sheba,
+  Dubai, U.A.E.
+- Identificativo fiscale: TRN 105142922100003 (NON è una P.IVA UE,
+  va sempre etichettato "TRN")
+- Nel JSON-LD usare taxID, non vatID. addressCountry: AE
+- Segnaposto residui: __RAPPRESENTANTE_UE__ (GDPR art. 27, da validare
+  con un legale)

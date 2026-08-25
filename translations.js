@@ -1,6 +1,6 @@
 const translations = {
   en: {
-    a11y: { skip: "Skip to content" },
+    a11y: { skip: "Skip to content", navToggle: "Open menu" },
     nav: { home: "Home", chisiamo: "About AURA", servizi: "Services", perche: "Why AURA", cta: "Request a demo" },
     hero: {
       eyebrow: "AI for the beauty & health industry",
@@ -74,15 +74,19 @@ const translations = {
       company: "Business name",
       email: "Email",
       message: "Tell us more (optional)",
+      consentText: "I consent to the processing of my personal data and I accept the",
+      consentLink: "privacy policy",
       submit: "Request a demo of AURA",
+      sending: "Sending…",
       success: "Thank you! Your message has been received, we'll be in touch soon.",
+      error: "We couldn't send your request. Please try again, or write to us at info@aurabeauty.app.",
       altText: "Or write to us directly:"
     },
     footer: { rights: "All rights reserved." }
   },
 
   it: {
-    a11y: { skip: "Vai al contenuto" },
+    a11y: { skip: "Vai al contenuto", navToggle: "Apri il menu" },
     nav: { home: "Home", chisiamo: "Chi è AURA", servizi: "Servizi", perche: "Perché AURA", cta: "Richiedi una demo" },
     hero: {
       eyebrow: "AI per il settore beauty & health",
@@ -156,15 +160,19 @@ const translations = {
       company: "Nome dell'attività",
       email: "Email",
       message: "Raccontaci qualcosa in più (opzionale)",
+      consentText: "Acconsento al trattamento dei miei dati personali e accetto la",
+      consentLink: "privacy policy",
       submit: "Richiedi una demo di AURA",
+      sending: "Invio in corso…",
       success: "Grazie! Il tuo messaggio è stato ricevuto, ti contatteremo a breve.",
+      error: "Non siamo riusciti a inviare la richiesta. Riprova oppure scrivici a info@aurabeauty.app.",
       altText: "Oppure scrivici direttamente:"
     },
     footer: { rights: "Tutti i diritti riservati." }
   },
 
   de: {
-    a11y: { skip: "Zum Inhalt springen" },
+    a11y: { skip: "Zum Inhalt springen", navToggle: "Menü öffnen" },
     nav: { home: "Startseite", chisiamo: "Über AURA", servizi: "Leistungen", perche: "Warum AURA", cta: "Demo anfordern" },
     hero: {
       eyebrow: "KI für Beauty & Gesundheit",
@@ -238,15 +246,19 @@ const translations = {
       company: "Name des Unternehmens",
       email: "E-Mail",
       message: "Erzählen Sie uns mehr (optional)",
+      consentText: "Ich willige in die Verarbeitung meiner personenbezogenen Daten ein und akzeptiere die",
+      consentLink: "Datenschutzerklärung",
       submit: "Demo von AURA anfordern",
+      sending: "Wird gesendet…",
       success: "Vielen Dank! Ihre Nachricht wurde empfangen, wir melden uns in Kürze.",
+      error: "Ihre Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut oder schreiben Sie uns an info@aurabeauty.app.",
       altText: "Oder schreiben Sie uns direkt:"
     },
     footer: { rights: "Alle Rechte vorbehalten." }
   },
 
   fr: {
-    a11y: { skip: "Aller au contenu" },
+    a11y: { skip: "Aller au contenu", navToggle: "Ouvrir le menu" },
     nav: { home: "Accueil", chisiamo: "À propos d'AURA", servizi: "Services", perche: "Pourquoi AURA", cta: "Demander une démo" },
     hero: {
       eyebrow: "L'IA pour le secteur beauté & santé",
@@ -320,15 +332,19 @@ const translations = {
       company: "Nom de l'établissement",
       email: "E-mail",
       message: "Dites-nous en plus (facultatif)",
+      consentText: "Je consens au traitement de mes données personnelles et j'accepte la",
+      consentLink: "politique de confidentialité",
       submit: "Demander une démo d'AURA",
+      sending: "Envoi en cours…",
       success: "Merci ! Votre message a bien été reçu, nous vous contacterons bientôt.",
+      error: "Nous n'avons pas pu envoyer votre demande. Réessayez ou écrivez-nous à info@aurabeauty.app.",
       altText: "Ou écrivez-nous directement :"
     },
     footer: { rights: "Tous droits réservés." }
   },
 
   es: {
-    a11y: { skip: "Ir al contenido" },
+    a11y: { skip: "Ir al contenido", navToggle: "Abrir el menú" },
     nav: { home: "Inicio", chisiamo: "Sobre AURA", servizi: "Servicios", perche: "Por qué AURA", cta: "Solicitar una demo" },
     hero: {
       eyebrow: "IA para el sector belleza y salud",
@@ -402,8 +418,12 @@ const translations = {
       company: "Nombre del negocio",
       email: "Correo electrónico",
       message: "Cuéntanos más (opcional)",
+      consentText: "Consiento el tratamiento de mis datos personales y acepto la",
+      consentLink: "política de privacidad",
       submit: "Solicitar una demo de AURA",
+      sending: "Enviando…",
       success: "¡Gracias! Hemos recibido tu mensaje, nos pondremos en contacto pronto.",
+      error: "No hemos podido enviar tu solicitud. Inténtalo de nuevo o escríbenos a info@aurabeauty.app.",
       altText: "O escríbenos directamente:"
     },
     footer: { rights: "Todos los derechos reservados." }
