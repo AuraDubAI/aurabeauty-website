@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AURA — The AI that turns marketing into clients</title>
+<meta name="description" content="AURA is the artificial intelligence ecosystem that helps beauty centers, pharmacies, medical practices and beauty-industry businesses find new clients, manage contacts and increase sales.">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/manrope-variable-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/poppins-700-latin.woff2">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a href="#main-content" class="skip-link" data-i18n="a11y.skip">Skip to content</a>
+
+<div class="bg-glow"></div>
+
+<header class="site-header" id="header">
+  <div class="container header-inner">
+    <a href="#home" class="brand">
+      <img src="assets/logo.png" alt="AURA" class="brand-logo" width="600" height="315" loading="lazy" decoding="async">
+    </a>
+    <nav class="main-nav" id="main-nav">
+      <a href="#home" data-i18n="nav.home">Home</a>
+      <a href="#chi-siamo" data-i18n="nav.chisiamo">About AURA</a>
+      <a href="#servizi" data-i18n="nav.servizi">Services</a>
+      <a href="#perche" data-i18n="nav.perche">Why AURA</a>
+      <a href="#contatti" class="nav-cta" data-i18n="nav.cta">Request a demo</a>
+      <select class="lang-select" aria-label="Language">
+        <option value="en">English</option>
+        <option value="de">Deutsch</option>
+        <option value="it">Italiano</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+      </select>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main-content" tabindex="-1">
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <img src="assets/hero-bg.jpg" alt="" role="presentation" width="1920" height="1080" fetchpriority="high" decoding="async">
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="container hero-content">
+      <p class="eyebrow" data-i18n="hero.eyebrow">AI for the beauty &amp; health industry</p>
+      <h1><span data-i18n="hero.title_pre"></span><span class="grad-text" data-i18n="hero.title_grad"></span><span data-i18n="hero.title_post"></span></h1>
+      <p class="hero-lead" data-i18n="hero.lead"></p>
+      <p class="hero-sub" data-i18n="hero.sub"></p>
+      <p class="hero-tagline" data-i18n="hero.tagline"></p>
+      <div class="hero-actions">
+        <a href="#chi-siamo" class="btn btn-primary" data-i18n="hero.cta1">Discover AURA</a>
+        <a href="#contatti" class="btn btn-ghost" data-i18n="hero.cta2">Request a demo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT / INTRO -->
+  <section class="section" id="chi-siamo">
+    <div class="container narrow">
+      <h2 data-i18n="chisiamo.title"></h2>
+      <p class="lead" data-i18n="chisiamo.lead"></p>
+      <p data-i18n="chisiamo.p1"></p>
+      <p class="highlight" data-i18n="chisiamo.highlight"></p>
+    </div>
+  </section>
+
+  <!-- DIFFERENTIATORS -->
+  <section class="section section-diff">
+    <div class="container">
+      <h2 class="section-title" data-i18n="diff.title"></h2>
+
+      <div class="diff-grid">
+        <article class="diff-card">
+          <div class="diff-icon" aria-hidden="true">🎬</div>
+          <h3 data-i18n="diffA.title"></h3>
+          <p data-i18n="diffA.p"></p>
+          <div class="diff-stat">
+            <span class="diff-stat-num" data-i18n="diffA.statNum"></span>
+            <span class="diff-stat-label" data-i18n="diffA.statLabel"></span>
+          </div>
+        </article>
+
+        <article class="diff-card">
+          <div class="diff-icon" aria-hidden="true">📡</div>
+          <h3 data-i18n="diffB.title"></h3>
+          <p data-i18n="diffB.p"></p>
+        </article>
+      </div>
+
+      <div class="diff-highlights">
+        <div class="diff-highlight">
+          <div class="diff-highlight-icon" aria-hidden="true">⚡</div>
+          <h4 data-i18n="diffh1.title"></h4>
+          <p data-i18n="diffh1.p"></p>
+        </div>
+        <div class="diff-highlight">
+          <div class="diff-highlight-icon" aria-hidden="true">🎯</div>
+          <h4 data-i18n="diffh2.title"></h4>
+          <p data-i18n="diffh2.p"></p>
+        </div>
+        <div class="diff-highlight">
+          <div class="diff-highlight-icon" aria-hidden="true">🤝</div>
+          <h4 data-i18n="diffh3.title"></h4>
+          <p data-i18n="diffh3.p"></p>
+        </div>
+        <div class="diff-highlight">
+          <div class="diff-highlight-icon" aria-hidden="true">📊</div>
+          <h4 data-i18n="diffh4.title"></h4>
+          <p data-i18n="diffh4.p"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section section-alt" id="servizi">
+    <div class="container">
+      <h2 class="section-title" data-i18n="servizi.title"></h2>
+
+      <div class="feature-grid">
+
+        <article class="feature-card feature-card-wide">
+          <div class="feature-icon" aria-hidden="true">📣</div>
+          <h3 data-i18n="feature1.title"></h3>
+          <p data-i18n="feature1.p"></p>
+          <p class="feature-list-label" data-i18n="feature1.listlabel"></p>
+          <ul class="feature-list" data-i18n-list="feature1.list"></ul>
+          <p class="feature-note" data-i18n="feature1.note"></p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon" aria-hidden="true">⏱️</div>
+          <h3 data-i18n="feature2.title"></h3>
+          <p data-i18n="feature2.p"></p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon" aria-hidden="true">🎯</div>
+          <h3 data-i18n="feature3.title"></h3>
+          <p data-i18n="feature3.p"></p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon" aria-hidden="true">📅</div>
+          <h3 data-i18n="feature4.title"></h3>
+          <p data-i18n="feature4.p"></p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon" aria-hidden="true">🔄</div>
+          <h3 data-i18n="feature5.title"></h3>
+          <p data-i18n="feature5.p"></p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon" aria-hidden="true">📈</div>
+          <h3 data-i18n="feature6.title"></h3>
+          <p data-i18n="feature6.p"></p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ECOSYSTEM / 3 GOALS -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title" data-i18n="pillars.title"></h2>
+      <div class="pillars">
+        <div class="pillar">
+          <span class="pillar-tag" data-i18n="pillar1.tag"></span>
+          <p data-i18n="pillar1.p"></p>
+        </div>
+        <div class="pillar">
+          <span class="pillar-tag" data-i18n="pillar2.tag"></span>
+          <p data-i18n="pillar2.p"></p>
+        </div>
+        <div class="pillar">
+          <span class="pillar-tag" data-i18n="pillar3.tag"></span>
+          <p data-i18n="pillar3.p"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HUMAN CONTROL -->
+  <section class="section section-control">
+    <div class="container control-inner">
+      <div class="control-photo">
+        <img src="assets/founder.jpg" alt="The AURA team" width="497" height="500" loading="lazy" decoding="async">
+      </div>
+      <div class="control-text">
+        <h2 data-i18n="control.title"></h2>
+        <p data-i18n="control.p"></p>
+        <p class="highlight" data-i18n="control.highlight"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE -->
+  <section class="section section-alt" id="perche">
+    <div class="container">
+      <h2 class="section-title" data-i18n="why.title"></h2>
+      <div class="why-grid">
+        <div class="why-item">
+          <div class="why-check">✓</div>
+          <div>
+            <h4 data-i18n="why1.title"></h4>
+            <p data-i18n="why1.p"></p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-check">✓</div>
+          <div>
+            <h4 data-i18n="why2.title"></h4>
+            <p data-i18n="why2.p"></p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-check">✓</div>
+          <div>
+            <h4 data-i18n="why3.title"></h4>
+            <p data-i18n="why3.p"></p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-check">✓</div>
+          <div>
+            <h4 data-i18n="why4.title"></h4>
+            <p data-i18n="why4.p"></p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-check">✓</div>
+          <div>
+            <h4 data-i18n="why5.title"></h4>
+            <p data-i18n="why5.p"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING STATEMENT -->
+  <section class="section closing-section">
+    <div class="container narrow center">
+      <h2 data-i18n="closing.title"></h2>
+      <p data-i18n="closing.p"></p>
+      <p class="closing-tagline" data-i18n="closing.tagline"></p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section section-contact" id="contatti">
+    <div class="container narrow center">
+      <h2 data-i18n="contact.title"></h2>
+      <p data-i18n="contact.p"></p>
+      <form class="contact-form" id="contact-form">
+        <div class="form-row">
+          <input type="text" name="nome" data-i18n-placeholder="contact.name" required>
+          <input type="text" name="attivita" data-i18n-placeholder="contact.company">
+        </div>
+        <div class="form-row form-row-single">
+          <input type="email" name="email" data-i18n-placeholder="contact.email" required>
+        </div>
+        <textarea name="messaggio" rows="4" data-i18n-placeholder="contact.message"></textarea>
+        <button type="submit" class="btn btn-primary btn-block" data-i18n="contact.submit"></button>
+        <p class="form-note" id="form-note"></p>
+      </form>
+      <div class="contact-alt">
+        <p data-i18n="contact.altText"></p>
+        <a href="mailto:info@aurabeauty.app">info@aurabeauty.app</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <img src="assets/logo.png" alt="AURA" class="footer-logo" width="600" height="315" loading="lazy" decoding="async">
+    <p>&copy; <span id="year"></span> AURA. <span data-i18n="footer.rights"></span></p>
+  </div>
+</footer>
+
+<script src="translations.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
