@@ -35,6 +35,9 @@ dipendenza npm runtime. Vanilla HTML/CSS/JS.
   Se il build fallisce si corregge la causa, non la guardia.
 - `src/translations.js` non deve MAI finire in `dist/`: è un sorgente
   di build, non un asset di produzione (~45 KB di 5 lingue per usarne una).
+- `style.css` e `script.js` sono emessi in `dist/` con hash del contenuto
+  nel nome. I riferimenti nel template sono riscritti dal build e devono
+  essere assoluti. Non reintrodurre riferimenti non fingerprintati.
 
 ## Contatti
 - Email lead: info@aurabeauty.app

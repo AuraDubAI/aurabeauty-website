@@ -7,6 +7,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 
 const ROOT = __dirname;
 const SRC  = path.join(ROOT, 'src');
@@ -32,8 +33,26 @@ const BUILD_DATE = process.env.SOURCE_DATE_EPOCH
   ? new Date(Number(process.env.SOURCE_DATE_EPOCH) * 1000).toISOString().slice(0, 10)
   : '2026-08-25';
 
-// Copiati nella root di dist/.
-const COPY = ['assets', 'style.css', 'script.js'];
+// Copiati verbatim nella root di dist/: nomi stabili, contenuto immutabile
+// di fatto (le immagini e i font non cambiano senza cambiare nome).
+const COPY = ['assets'];
+
+// Asset mutabili: emessi con l'hash del contenuto nel nome, cosi' possono
+// avere cache lunga senza rischiare di servire una versione vecchia dopo un
+// deploy. Le versioni senza hash NON finiscono in dist/.
+const FINGERPRINTED = [
+  { src: 'style.css',  base: 'style',  ext: 'css', urlKey: 'STYLE_URL'  },
+  { src: 'script.js',  base: 'script', ext: 'js',  urlKey: 'SCRIPT_URL' }
+];
+
+function fingerprint(entry) {
+  const buf = fs.readFileSync(path.join(ROOT, entry.src));
+  const hash = crypto.createHash('sha256').update(buf).digest('hex').slice(0, 8);
+  const out = entry.base + '.' + hash + '.' + entry.ext;
+  // URL assoluto: le pagine vivono in /<lang>/, un riferimento relativo
+  // punterebbe a /it/style.<hash>.css e darebbe 404.
+  return { ...entry, buf, hash, out, url: '/' + out };
+}
 
 // Non devono MAI finire in dist/, a nessuna profondità.
 const EXCLUDE = new Set([
@@ -60,7 +79,7 @@ const RUNTIME_KEYS = ['sending', 'success', 'error'];
 // Segnaposto risolti dal build, non dalle traduzioni.
 const BUILTIN = new Set([
   'LANG', 'LANG_UPPER', 'TITLE', 'DESCRIPTION', 'PRIVACY_URL',
-  'LANG_OPTIONS', 'I18N_SCRIPT', 'SEO_HEAD'
+  'LANG_OPTIONS', 'I18N_SCRIPT', 'SEO_HEAD', 'STYLE_URL', 'SCRIPT_URL'
 ]);
 
 // Segnaposto il cui valore e' gia' markup e non va escapato.
@@ -276,13 +295,15 @@ function buildLlmsTxt() {
   ].join('\n');
 }
 
-function buildHeaders() {
+function buildHeaders(assets) {
   // Le regole si applicano in ordine: /* per prima con la cache corta,
-  // /assets/* dopo sovrascrive solo Cache-Control con quella lunga.
+  // le successive sovrascrivono solo Cache-Control con quella lunga.
   //
-  // style.css e script.js stanno in root, non in /assets/, quindi
-  // ricadono in max-age=0: non hanno hash nel nome, una cache lunga li
-  // congelerebbe al primo deploy.
+  // I due asset fingerprintati sono elencati con il nome esatto invece
+  // che con /style.*.css: il wildcard in mezzo al path non e' fra le
+  // forme documentate per Pages, e un match mancato sarebbe silenzioso
+  // (nessun errore, solo cache lunga persa). I nomi si rigenerano a ogni
+  // build insieme all'hash, quindi non c'e' nulla da allineare a mano.
   const csp = [
     "default-src 'self'",
     "img-src 'self' data:",
@@ -315,7 +336,12 @@ function buildHeaders() {
     '',
     '/assets/*',
     '  Cache-Control: public, max-age=31536000, immutable',
-    ''
+    '',
+    ...assets.flatMap(a => [
+      a.url,
+      '  Cache-Control: public, max-age=31536000, immutable',
+      ''
+    ])
   ].join('\n');
 }
 
@@ -414,9 +440,11 @@ function validateKeys(template, translations) {
 }
 
 // ---------- rendering ----------
-function render(template, lang, translations) {
+function render(template, lang, translations, assets) {
   const t = translations[lang];
+  const assetUrls = Object.fromEntries(assets.map(a => [a.urlKey, a.url]));
   const builtin = {
+    ...assetUrls,
     LANG: lang,
     LANG_UPPER: lang.toUpperCase(),
     TITLE: getPath(t, 'seo.title'),
@@ -458,6 +486,16 @@ function verifyOutput(html, label) {
   const bs = html.match(/(?:href|src)="[^"]*\\[^"]*"/g);
   if (bs) {
     fail('backslash in un URL di ' + label, bs.join('\n'));
+  }
+  // Guardia (d): un riferimento senza hash reintrodotto nel template
+  // vanificherebbe la cache lunga. style.<hash>.css non matcha style.css,
+  // quindi questo pattern scatta solo sul nome nudo.
+  const unhashed = html.match(/(?:href|src)="[^"]*(?:style\.css|script\.js)"/g);
+  if (unhashed) {
+    fail('riferimento non fingerprintato in ' + label,
+      [...new Set(unhashed)].join('\n') +
+      '\n\nUsare {{STYLE_URL}} e {{SCRIPT_URL}}: il build li risolve nei\n' +
+      'nomi con hash del contenuto.');
   }
 }
 
@@ -529,8 +567,21 @@ function build() {
     copied += copyRecursive(from, path.join(DIST, item));
   }
 
+  // Asset con hash nel nome. Emessi prima delle pagine, perche' il
+  // rendering ha bisogno dei loro URL.
+  const assets = FINGERPRINTED.map(entry => {
+    if (!fs.existsSync(path.join(ROOT, entry.src))) {
+      fail('asset da fingerprintare mancante', entry.src);
+    }
+    return fingerprint(entry);
+  });
+  for (const a of assets) {
+    fs.writeFileSync(path.join(DIST, a.out), a.buf);
+    copied++;
+  }
+
   for (const lang of LANGS) {
-    const html = render(template, lang, translations);
+    const html = render(template, lang, translations, assets);
     verifyOutput(html, `dist/${lang}/index.html`);
     verifyJsonLd(html, `dist/${lang}/index.html`);
     fs.mkdirSync(path.join(DIST, lang), { recursive: true });
@@ -542,7 +593,14 @@ function build() {
   fs.writeFileSync(path.join(DIST, 'sitemap.xml'), buildSitemapXml());
   fs.writeFileSync(path.join(DIST, 'llms.txt'), buildLlmsTxt());
   fs.writeFileSync(path.join(DIST, '404.html'), build404());
-  fs.writeFileSync(path.join(DIST, '_headers'), buildHeaders());
+  fs.writeFileSync(path.join(DIST, '_headers'), buildHeaders(assets));
+
+  // Le versioni senza hash non devono esistere in dist/.
+  for (const entry of FINGERPRINTED) {
+    if (fs.existsSync(path.join(DIST, entry.src))) {
+      fail('versione non fingerprintata emessa in dist/', entry.src);
+    }
+  }
 
   // Nessun nome escluso deve essere finito in dist/.
   for (const f of walk(DIST)) {
@@ -560,6 +618,7 @@ function build() {
   console.log(`  ${LANGS.length} pagine   ${LANGS.map(l => '/' + l + '/').join(' ')}`);
   console.log(`  ${keys.length} chiavi risolte per lingua`);
   console.log(`  ${copied} file copiati`);
+  for (const a of assets) console.log(`  fingerprint  ${a.src}  ->  ${a.out}`);
   console.log(`  ${files.length} file totali in dist/  (${(bytes / 1024).toFixed(1)} KB)`);
   console.log(`  ${ms.toFixed(0)} ms`);
 }
