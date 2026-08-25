@@ -49,4 +49,8 @@ dipendenza npm runtime. Vanilla HTML/CSS/JS.
   Dubai, U.A.E.
 - Identificativo fiscale: TRN 105142922100003 (NON è una P.IVA UE,
   va sempre etichettato "TRN")
+- Rappresentante nell'UE (art. 27 GDPR): PERLA BEAUTY SRL,
+  Via Cappuccio 11, 20123 Milano, Italia. Designazione effettuata.
+  Non ha una casella propria: l'unico recapito dell'informativa
+  resta info@aurabeauty.app
 - Nel JSON-LD usare taxID, non vatID. addressCountry: AE

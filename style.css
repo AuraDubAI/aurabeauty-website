@@ -135,6 +135,18 @@
   --max-width: 1180px;
   --font-display: "Poppins", sans-serif;
   --font-body: "Manrope", sans-serif;
+
+  /* Il sito esiste solo in versione scura. Dichiararlo fa usare al
+     browser le proprie varianti scure per tutto cio' che non stiliamo
+     noi e che spesso non e' stilabile affatto: il menu a tendina dei
+     <select>, le scrollbar, il caret, le checkbox, e il riempimento
+     automatico di Chrome, che senza questa riga resta giallo pallido
+     sopra i campi scuri del form.
+
+     Non interferisce con prefers-color-scheme: color-scheme dichiara
+     cosa la PAGINA supporta, la media query legge cosa l'UTENTE
+     preferisce. Sono due cose diverse. */
+  color-scheme: dark;
 }
 
 *{ box-sizing: border-box; }
@@ -282,7 +294,64 @@ a{ color: inherit; text-decoration:none; }
   transition: border-color .2s ease;
 }
 .lang-select:hover, .lang-select:focus{ border-color: var(--pink); outline:none; }
+/* Serve una regola dedicata, non basta il select:focus-visible generico
+   piu' in basso: quello e' (0,1,1) e perdeva contro l'outline:none della
+   riga sopra, che e' (0,2,0). Risultato, il selettore lingua era l'unico
+   controllo del sito senza indicatore di focus da tastiera — e il bordo
+   rosa non lo sostituisce, perche' e' identico a quello di :hover.
+   L'outline e' disegnato fuori dal bordo, quindi non copre la freccia. */
+.lang-select:focus-visible{
+  outline: 2px solid var(--pink-soft);
+  outline-offset: 2px;
+}
 .lang-select option{ background: var(--surface); color: #fff; }
+
+/* Fallback del selettore lingua, visibile solo senza JavaScript: il
+   <noscript> e' display:none quando lo scripting e' attivo, quindi con
+   JS non occupa spazio e non entra nell'albero di accessibilita'.
+
+   Sta su una riga propria e NON dentro .header-inner. Quello e' un flex
+   alto 76px con logo e hamburger: a 320px il contenuto disponibile e'
+   272px, il logo ne occupa 143 e il pulsante ~30, restano 99px per
+   cinque pillole. Non ci stanno. Una riga a se' con flex-wrap non puo'
+   rompersi a nessuna larghezza.
+
+   Nemmeno dentro .main-nav: a <=720px quel pannello e' opacity:0 e
+   pointer-events:none finche' JS non aggiunge .open, quindi i link
+   sarebbero irraggiungibili proprio dove il fallback serve. */
+.lang-links-row{
+  display:flex;
+  justify-content:center;
+  padding: 8px 24px 10px;
+  border-top: 1px solid var(--surface-border);
+}
+.lang-links{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap: 6px;
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+.lang-links a{
+  display:block;
+  padding: 5px 11px;
+  border: 1px solid var(--surface-border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: color .15s ease, border-color .15s ease;
+}
+.lang-links a:hover{ color:#fff; border-color: var(--pink); }
+.lang-links a[aria-current="page"]{
+  color:#fff;
+  border-color: var(--pink);
+  background: rgba(236,27,127,0.16);
+}
 
 /* ---------- BUTTONS ---------- */
 .btn{

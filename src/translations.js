@@ -121,6 +121,14 @@ const translations = {
           ]
         },
         {
+          heading: "Representative in the European Union (Art. 27 GDPR)",
+          paragraphs: [
+            "The data controller, not being established in the European Union, has designated its representative in the Union under Article 27 GDPR: PERLA BEAUTY SRL, Via Cappuccio 11, 20123 Milano, Italy.",
+            "The representative acts as a point of contact for data subjects and for supervisory authorities on matters relating to the processing of personal data.",
+            "To exercise your rights, or for any request, you can write to info@aurabeauty.app."
+          ]
+        },
+        {
           heading: "Data we collect",
           paragraphs: [
             "Through the contact form we collect your name, your business name (optional), your email address, the message you choose to write to us (optional) and the language of the page you sent the request from.",
@@ -327,6 +335,14 @@ const translations = {
             "Il titolare del trattamento è AI LAB L.L.C-FZ, con sede in Meydan Grandstand, 6th floor, Meydan Road, Nad Al Sheba, Dubai, Emirati Arabi Uniti.",
             "Identificativo fiscale: TRN 105142922100003. Il TRN (Tax Registration Number) è un identificativo rilasciato dalle autorità degli Emirati Arabi Uniti: non è una partita IVA né un numero identificativo IVA dell'Unione europea.",
             "Per qualunque questione relativa al trattamento dei tuoi dati puoi scrivere a info@aurabeauty.app."
+          ]
+        },
+        {
+          heading: "Rappresentante nell'Unione europea (art. 27 GDPR)",
+          paragraphs: [
+            "Il titolare del trattamento, non essendo stabilito nell'Unione europea, ha designato ai sensi dell'articolo 27 del GDPR il proprio rappresentante nell'Unione: PERLA BEAUTY SRL, Via Cappuccio 11, 20123 Milano, Italia.",
+            "Il rappresentante funge da punto di contatto per gli interessati e per le autorità di controllo per le questioni relative al trattamento dei dati personali.",
+            "Per esercitare i tuoi diritti o per qualunque richiesta puoi scrivere a info@aurabeauty.app."
           ]
         },
         {
@@ -539,6 +555,14 @@ const translations = {
           ]
         },
         {
+          heading: "Vertreter in der Europäischen Union (Art. 27 DSGVO)",
+          paragraphs: [
+            "Der Verantwortliche hat, da er nicht in der Europäischen Union niedergelassen ist, nach Artikel 27 DSGVO seinen Vertreter in der Union benannt: PERLA BEAUTY SRL, Via Cappuccio 11, 20123 Milano, Italien.",
+            "Der Vertreter dient als Anlaufstelle für betroffene Personen und für Aufsichtsbehörden in Fragen der Verarbeitung personenbezogener Daten.",
+            "Zur Ausübung Ihrer Rechte oder für jede andere Anfrage können Sie an info@aurabeauty.app schreiben."
+          ]
+        },
+        {
           heading: "Welche Daten wir erheben",
           paragraphs: [
             "Über das Kontaktformular erheben wir Ihren Namen, den Namen Ihres Betriebs (freiwillig), Ihre E-Mail-Adresse, die Nachricht, die Sie uns schreiben möchten (freiwillig), und die Sprache der Seite, von der aus Sie die Anfrage gesendet haben.",
@@ -748,6 +772,14 @@ const translations = {
           ]
         },
         {
+          heading: "Représentant dans l'Union européenne (art. 27 RGPD)",
+          paragraphs: [
+            "Le responsable du traitement, n'étant pas établi dans l'Union européenne, a désigné au titre de l'article 27 du RGPD son représentant dans l'Union : PERLA BEAUTY SRL, Via Cappuccio 11, 20123 Milano, Italie.",
+            "Le représentant sert de point de contact pour les personnes concernées et pour les autorités de contrôle sur les questions relatives au traitement des données personnelles.",
+            "Pour exercer vos droits ou pour toute demande, vous pouvez écrire à info@aurabeauty.app."
+          ]
+        },
+        {
           heading: "Données que nous collectons",
           paragraphs: [
             "Via le formulaire de contact, nous collectons votre nom, le nom de votre établissement (facultatif), votre adresse électronique, le message que vous choisissez de nous écrire (facultatif) et la langue de la page depuis laquelle vous avez envoyé la demande.",
@@ -954,6 +986,14 @@ const translations = {
             "El responsable del tratamiento es AI LAB L.L.C-FZ, con domicilio en Meydan Grandstand, 6th floor, Meydan Road, Nad Al Sheba, Dubái, Emiratos Árabes Unidos.",
             "Identificador fiscal: TRN 105142922100003. El TRN (Tax Registration Number) es un identificador emitido por las autoridades de los Emiratos Árabes Unidos: no es un NIF-IVA ni un número de identificación a efectos del IVA de la Unión Europea.",
             "Para cualquier cuestión relativa al tratamiento de tus datos puedes escribir a info@aurabeauty.app."
+          ]
+        },
+        {
+          heading: "Representante en la Unión Europea (art. 27 RGPD)",
+          paragraphs: [
+            "El responsable del tratamiento, al no estar establecido en la Unión Europea, ha designado conforme al artículo 27 del RGPD a su representante en la Unión: PERLA BEAUTY SRL, Via Cappuccio 11, 20123 Milano, Italia.",
+            "El representante actúa como punto de contacto para los interesados y para las autoridades de control en las cuestiones relativas al tratamiento de datos personales.",
+            "Para ejercer tus derechos o para cualquier solicitud puedes escribir a info@aurabeauty.app."
           ]
         },
         {

@@ -84,7 +84,42 @@ const LANG_OPTIONS = [
 // la stringa e il suo hash generati dalla stessa costante non possono
 // divergere — se il CSS cambia, l'header cambia con lui.
 const NOSCRIPT_CSS =
-  '.contact-form{display:none!important}.form-noscript{display:block!important}';
+  // --- form: non inviabile, quindi nascosto ------------------------
+  '.contact-form{display:none!important}' +
+  '.form-noscript{display:block!important}' +
+
+  // --- selettore lingua: inerte a ogni larghezza -------------------
+  // Il <select> naviga solo perche' script.js ascolta 'change'. Con il
+  // controllo nascosto la sua <label> sr-only resterebbe a puntare a un
+  // elemento fuori dall'albero di accessibilita': va via con lui.
+  '.lang-select,.main-nav label[for=lang-select]{display:none!important}' +
+
+  // --- navigazione su mobile ---------------------------------------
+  // Sotto i 720px .main-nav e' un overlay che si apre solo con la classe
+  // .open aggiunta da JS: senza scripting i cinque link della pagina
+  // sono irraggiungibili. Non basta renderlo visibile — resterebbe
+  // position:absolute dentro un header sticky, cioe' un pannello opaco
+  // fisso sopra il contenuto. Va riportato nel flusso.
+  //
+  // Sopra i 720px non serve nulla: la nav e' gia' una riga visibile.
+  '@media(max-width:720px){' +
+    // L'header diventa due righe: logo sopra, nav sotto. height:auto
+    // perche' i 76px fissi conterrebbero solo la prima.
+    '.header-inner{flex-wrap:wrap;height:auto}' +
+    '.main-nav{' +
+      // neutralizzazione dell'overlay
+      'position:static;opacity:1;pointer-events:auto;transform:none;' +
+      'background:none;backdrop-filter:none;border-bottom:0;' +
+      // layout in flusso: riga a capo invece di colonna, cosi' cinque
+      // voci occupano due righe invece di cinque. I gutter orizzontali
+      // li da' gia' .container, quindi il padding proprio va azzerato.
+      'width:100%;flex-direction:row;flex-wrap:wrap;' +
+      'padding:0 0 14px;gap:10px 18px' +
+    '}' +
+    // L'hamburger senza JS non apre nulla: accanto a una nav gia'
+    // aperta sarebbe un comando che mente.
+    '.nav-toggle{display:none!important}' +
+  '}';
 
 const noscriptStyle = () =>
   '<noscript><style>' + NOSCRIPT_CSS + '</style></noscript>';
@@ -121,7 +156,7 @@ const RUNTIME_KEYS = [
 const BUILTIN = new Set([
   'LANG', 'LANG_UPPER', 'TITLE', 'DESCRIPTION', 'PRIVACY_URL',
   'LANG_OPTIONS', 'I18N_SCRIPT', 'SEO_HEAD', 'STYLE_URL', 'SCRIPT_URL',
-  'NOSCRIPT_STYLE',
+  'NOSCRIPT_STYLE', 'LANG_LINKS',
   // solo nelle pagine legali
   'CANONICAL', 'HREFLANG_BLOCK', 'BODY'
 ]);
@@ -129,7 +164,7 @@ const BUILTIN = new Set([
 // Segnaposto il cui valore e' gia' markup e non va escapato.
 const RAW = new Set([
   'LANG_OPTIONS', 'I18N_SCRIPT', 'SEO_HEAD', 'HREFLANG_BLOCK', 'BODY',
-  'NOSCRIPT_STYLE'
+  'NOSCRIPT_STYLE', 'LANG_LINKS'
 ]);
 
 const PLACEHOLDER = /\{\{\s*([^}\s]+)\s*\}\}/g;
@@ -193,6 +228,32 @@ function langOptions(lang, urlFor) {
     '<option value="' + urlFor(code) + '"' + (code === lang ? ' selected' : '') + '>' +
     escapeHtml(label) + '</option>'
   ).join('');
+}
+
+// Fallback del selettore lingua per chi non esegue JavaScript. Senza
+// questo elenco chi non ha JS resta bloccato sulla lingua d'ingresso, e
+// i crawler che non eseguono JS non trovano alcun link fra le versioni
+// linguistiche — un link reale e' un segnale piu' forte della sola
+// dichiarazione hreflang nel <head>.
+//
+// Prende lo stesso LANG_OPTIONS e lo stesso urlFor di langOptions: i due
+// elenchi non possono divergere, e cambiando la forma degli URL si
+// aggiornano insieme.
+//
+// Il codice a due lettere e' l'etichetta visibile, l'endonimo il nome
+// accessibile: cinque endonimi per intero non stanno su una riga a 320px,
+// ma non c'e' ragione di far perdere il nome della lingua a chi usa uno
+// screen reader. aria-hidden sul codice evita il doppio annuncio.
+function langLinks(lang, urlFor) {
+  const items = LANG_OPTIONS.map(([code, label]) =>
+    '<li><a href="' + urlFor(code) + '" hreflang="' + code + '"' +
+    (code === lang ? ' aria-current="page"' : '') + '>' +
+    '<span aria-hidden="true">' + escapeHtml(code.toUpperCase()) + '</span>' +
+    '<span class="sr-only" lang="' + code + '">' + escapeHtml(label) + '</span>' +
+    '</a></li>'
+  ).join('');
+  return '<noscript><div class="container lang-links-row">' +
+    '<ul class="lang-links">' + items + '</ul></div></noscript>';
 }
 
 // Corpo di una pagina legale. Le sezioni sono dati, non markup:
@@ -610,6 +671,9 @@ function fill(template, builtin, t) {
 function render(template, lang, translations, assets) {
   const t = translations[lang];
   const assetUrls = Object.fromEntries(assets.map(a => [a.urlKey, a.url]));
+  // Scritto una volta e passato sia al <select> sia ai link del
+  // fallback: se la forma degli URL cambia, cambiano insieme.
+  const urlFor = code => '/' + code + '/';
   return fill(template, {
     ...assetUrls,
     LANG: lang,
@@ -618,7 +682,8 @@ function render(template, lang, translations, assets) {
     DESCRIPTION: getPath(t, 'seo.description'),
     // URL, non percorso filesystem: sempre forward slash.
     PRIVACY_URL: '/' + lang + '/privacy/',
-    LANG_OPTIONS: langOptions(lang, code => '/' + code + '/'),
+    LANG_OPTIONS: langOptions(lang, urlFor),
+    LANG_LINKS: langLinks(lang, urlFor),
     I18N_SCRIPT: buildI18nScript(t),
     NOSCRIPT_STYLE: noscriptStyle(),
     SEO_HEAD: buildSeoHead(lang, t)
@@ -630,6 +695,9 @@ function render(template, lang, translations, assets) {
 function renderLegal(template, lang, translations, assets) {
   const t = translations[lang];
   const assetUrls = Object.fromEntries(assets.map(a => [a.urlKey, a.url]));
+  // Sulle pagine legali si resta fra pagine legali: dalla privacy
+  // italiana si va alla privacy tedesca, non alla home tedesca.
+  const urlFor = code => '/' + code + '/privacy/';
   return fill(template, {
     ...assetUrls,
     LANG: lang,
@@ -640,7 +708,13 @@ function renderLegal(template, lang, translations, assets) {
     PRIVACY_URL: '/' + lang + '/privacy/',
     CANONICAL: privacyUrl(lang),
     HREFLANG_BLOCK: hreflangBlock(privacyUrl),
-    LANG_OPTIONS: langOptions(lang, code => '/' + code + '/privacy/'),
+    LANG_OPTIONS: langOptions(lang, urlFor),
+    LANG_LINKS: langLinks(lang, urlFor),
+    // Il <select> c'e' anche qui, quindi qui serve la regola che lo
+    // nasconde senza JS. Le altre regole di NOSCRIPT_CSS riguardano il
+    // form, che su queste pagine non esiste: inerti, non dannose, e un
+    // unico CSS significa un unico hash nella CSP.
+    NOSCRIPT_STYLE: noscriptStyle(),
     BODY: renderLegalBody(getPath(t, 'privacy.sections'))
   }, t);
 }
