@@ -19,6 +19,10 @@ const LANGS = ['it', 'en', 'de', 'fr', 'es'];
 // sitemap e robots.txt. Cambiare dominio significa cambiare solo questa riga.
 const BASE_URL = 'https://info.aurabeauty.app';
 const X_DEFAULT = 'en';
+// I quattro mercati in cui AURA opera davvero. Non coincidono con le
+// lingue del sito: lo spagnolo serve anche clienti fuori da questi paesi,
+// e l'inglese copre US e AE. Finiscono in areaServed del nodo Service.
+const MARKETS = ['IT', 'US', 'AE', 'CH'];
 
 // Card social 1200x630, generata da tools/gen-og-image.mjs a partire da
 // assets/hero-bg.jpg. JPEG e non PNG: e' un ritaglio fotografico, in PNG
@@ -36,7 +40,7 @@ const privacyUrl = lang => BASE_URL + '/' + lang + '/privacy/';
 // mano quando i contenuti cambiano, o passare SOURCE_DATE_EPOCH da CI.
 const BUILD_DATE = process.env.SOURCE_DATE_EPOCH
   ? new Date(Number(process.env.SOURCE_DATE_EPOCH) * 1000).toISOString().slice(0, 10)
-  : '2026-08-25';
+  : '2026-08-26';
 
 // Copiati verbatim nella root di dist/: nomi stabili, contenuto immutabile
 // di fatto (le immagini e i font non cambiano senza cambiare nome).
@@ -354,6 +358,20 @@ function buildSeoHead(lang, t) {
   return out.join('\n');
 }
 
+// I nodi che buildJsonLd emette sulle home, per @type. La guardia (c)
+// confronta questo insieme con quello trovato nell'output.
+//
+// Un conteggio non basterebbe: "quattro nodi" resta vero anche se uno
+// di essi cambia tipo per errore, e va corretto a mano a ogni aggiunta.
+// Elencare i tipi rende la guardia piu' stretta e sposta la modifica
+// nel punto giusto: qui si dichiara l'intenzione, la guardia la verifica.
+const JSONLD_TYPES = [
+  'Organization',
+  'WebSite',
+  'SoftwareApplication',
+  'Service'
+];
+
 function buildJsonLd(lang, t) {
   const url = pageUrl(lang);
   const orgId = BASE_URL + '/#organization';
@@ -397,7 +415,26 @@ function buildJsonLd(lang, t) {
         operatingSystem: 'Web',
         description: getPath(t, 'seo.description'),
         url: url,
+        // Le sei funzionalita' sono i titoli delle sei feature descritte in
+        // pagina, letti da translations.js: il dato strutturato non puo'
+        // affermare nulla che il testo visibile non dica gia'.
+        featureList: [1, 2, 3, 4, 5, 6].map(n => getPath(t, 'feature' + n + '.title')),
         offers: { '@type': 'Offer', availability: 'https://schema.org/InStock' }
+      },
+      {
+        '@type': 'Service',
+        '@id': url + '#service',
+        name: getPath(t, 'jsonld.serviceName'),
+        // serviceType resta in inglese e uguale in tutte le lingue: e' una
+        // categoria per i motori, non testo mostrato a un lettore.
+        serviceType: 'Marketing automation and lead generation',
+        provider: { '@id': orgId },
+        description: getPath(t, 'jsonld.serviceDescription'),
+        areaServed: MARKETS.map(code => ({ '@type': 'Country', name: code })),
+        audience: {
+          '@type': 'Audience',
+          audienceType: getPath(t, 'jsonld.audienceType')
+        }
       }
     ]
   };
@@ -463,13 +500,15 @@ function buildLlmsTxt() {
     '> AI marketing automation for the beauty and health industry.',
     '',
     'AURA is an artificial-intelligence ecosystem that helps beauty centers,',
-    'med spas, pharmacies, medical practices and other beauty-industry',
-    'businesses find new clients, manage leads and increase sales.',
+    'beauty salons, med spas, day spas, pharmacies, medical practices and',
+    'other beauty-industry businesses find new clients, manage leads and',
+    'increase sales.',
     '',
     '## What it does',
     '',
     '- Builds complete advertising campaigns: strategy, copy, images and',
-    '  cinematic-quality video ads tuned for the Meta advertising algorithm.',
+    '  cinematic-quality video ads tuned for the Meta advertising algorithm',
+    '  across Facebook and Instagram.',
     '- Answers new leads around the clock, qualifies them and guides them',
     '  toward booking an appointment.',
     '- Reactivates dormant clients already in the business database and',
@@ -479,9 +518,14 @@ function buildLlmsTxt() {
     '',
     '## Who it is for',
     '',
-    'Beauty centers, med spas, aesthetic clinics, pharmacies and medical',
-    'practices that want more booked appointments without hiring an',
-    'in-house marketing team.',
+    'Beauty centers, beauty salons, med spas, day spas, aesthetic clinics,',
+    'wellness centers, pharmacies and medical practices that want more',
+    'booked appointments without hiring an in-house marketing team.',
+    '',
+    '## Markets',
+    '',
+    'Italy, United States, United Arab Emirates and Switzerland.',
+    'Site languages: Italian, English, German, French and Spanish.',
     '',
     '## Operator',
     '',
@@ -872,9 +916,17 @@ function verifyJsonLd(html, label) {
   const body = /<script type="application\/ld\+json">([\s\S]*?)<\/script>/.exec(blocks[0])[1];
   try {
     const parsed = JSON.parse(body);
-    if (!Array.isArray(parsed['@graph']) || parsed['@graph'].length !== 3) {
+    if (!Array.isArray(parsed['@graph'])) {
+      fail('JSON-LD senza @graph in ' + label);
+    }
+    // Confronto ordinato: l'ordine dei nodi nel grafo non e' significativo
+    // per schema.org, quindi la guardia non deve imporlo.
+    const found = parsed['@graph'].map(n => n['@type']).sort();
+    const expected = JSONLD_TYPES.slice().sort();
+    if (found.join(',') !== expected.join(',')) {
       fail('JSON-LD con @graph inatteso in ' + label,
-        'attesi 3 nodi, trovati ' + (parsed['@graph'] || []).length);
+        'attesi:  ' + expected.join(', ') +
+        '\ntrovati: ' + found.join(', '));
     }
   } catch (e) {
     fail('JSON-LD non parsabile in ' + label, e.message + '\n\n' + body.slice(0, 400));

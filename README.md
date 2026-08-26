@@ -116,6 +116,62 @@ mettere HTML in `translations.js`**: verrebbe mostrato come testo.
 Aggiungere una sezione all'informativa significa aggiungerla in tutte e cinque
 le lingue: la guardia (e) rifiuta conteggi disallineati.
 
+## Posizionamento: perché il copy dice quello che dice
+
+Questa sezione non elenca le modifiche — quelle stanno in `git log`. Spiega la
+ragione, che è l'unica cosa che dal codice non si deduce e che, non scritta,
+verrebbe annullata dalla prima persona che «migliora» il title in buona fede.
+
+**Il mercato è già presidiato.** Sulla query «software gestionale centro
+estetico» competono almeno otto prodotti — BeautyCheck, Primo, WeGest, Venere
+Cloud, BeautyOnWeb, Bitrix24 e altri — alcuni con una versione gratuita.
+È uno spazio saturo, difeso da anni di dominio e backlink.
+
+**AURA non è un gestionale.** Non ha agenda, schede cliente, magazzino,
+fatturazione. Posizionarsi su quella query attirerebbe persone che cercano
+esattamente quelle funzioni: arriverebbero, non le troverebbero, e
+rimbalzerebbero. Il rimbalzo è un segnale negativo per il ranking, quindi il
+danno non sarebbe solo il lead sbagliato: sarebbe pagare in posizionamento per
+il privilegio di riceverlo.
+
+**Lo spazio scelto è «trovare nuovi clienti»**, che per un gestionale è una
+funzionalità secondaria e per AURA è il prodotto intero. È l'unica query dove
+la concorrenza è debole perché è l'unica dove noi siamo la risposta migliore.
+
+**Conseguenza operativa.** `seo.title`, `seo.description` e gli heading usano
+il vocabolario del *problema del cliente* — nuovi clienti, acquisizione
+clienti, centri estetici, saloni di bellezza, spa — e non quello della
+*tecnologia*. Il title precedente era «AURA | Intelligenza artificiale per
+centri estetici e beauty» e puntava su una ricerca che quasi nessuno fa: chi ha
+l'agenda vuota cerca il proprio problema, non lo strumento che lo risolve.
+**Non tornare indietro su questo.**
+
+### Parole tenute deliberatamente fuori
+
+- **`no-show`** e **`prenotazioni online`** non compaiono da nessuna parte,
+  né nel corpo né negli heading né nel JSON-LD. Descriverebbero funzioni che
+  il testo non promette: la pagina dice che AURA «porta il cliente verso la
+  prenotazione», mai che la prenotazione sia self-service, e non parla mai di
+  appuntamenti mancati. Se il prodotto acquisisce queste capacità e la pagina
+  le descrive, allora si aggiungono — in quest'ordine, non nell'altro.
+- **`acquisizione clienti`** è un caso diverso e la distinzione conta: vive
+  negli heading (`diff.title`, in tutte e cinque le lingue) e in
+  `jsonld.serviceName`, ma **non** nel corpo. Non per prudenza: nel corpo non
+  entra senza forzare la frase, perché lì la forma naturale è già «trovare
+  nuovi clienti». Un heading tollera il registro nominale, un paragrafo no.
+
+### Il tetto strutturale
+
+Una pagina per lingua compete su **una** query principale e poche varianti
+vicine. Non su cinque temi. Aggiungere altre keyword alla landing non allarga
+la copertura: diluisce il segnale di quella che già funziona, e le nuove non
+si posizionano comunque perché nessuna sezione le approfondisce davvero.
+
+Coprire altri argomenti richiede **pagine dedicate**, una per intento, non più
+parole in questa. È una decisione di prodotto e di struttura del sito, non una
+modifica al copy — e `CLAUDE.md` vieta di aggiungere pagine senza richiesta
+esplicita, quindi non si fa di iniziativa.
+
 ## Deploy — Cloudflare Pages
 
 | impostazione | valore |
