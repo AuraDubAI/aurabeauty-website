@@ -77,10 +77,14 @@ scatta si corregge la causa, non la guardia.
 | (d) riferimenti non fingerprintati | `style.css`/`script.js` senza hash finiti in un `href` |
 | (e) `validateLegalSections` | `privacy.sections` malformato, o un numero di sezioni diverso fra lingue |
 | (f) `verifyInternalLinks` | un `href`/`src` interno che punta a un file inesistente in `dist/` |
+| (h) `verifyNoInlineStyles` | un attributo `style="…"` nel markup, che la CSP blocca |
 
 La (f) è quella che tiene onesto il link del consenso nel form: se
 `/<lang>/privacy/` non venisse emessa, il build si ferma invece di pubblicare
 una casella di consenso che rimanda a un 404.
+
+Le guardie sono **sette**. Non esiste una `(g)`: la lettera è stata saltata
+quando le etichette sono state assegnate, non è una guardia rimossa.
 
 ## Dove vivono i testi
 
@@ -203,6 +207,45 @@ il browser non lo contatta mai.
       tale nelle sezioni «Per quanto tempo conserviamo i dati» e «A chi
       comunichiamo i dati». È una modifica tecnica che cambia un'affermazione
       legale, quindi le due cose vanno fatte insieme.
+- [x] **Verifica Google Search Console** — `src/template.html` e
+      `src/legal.html` portano, fra i meta di base del `<head>`,
+      `<meta name="google-site-verification" content="wVva…GqY">`. È un
+      valore fisso, identico in tutte le lingue: per questo sta nei template
+      e non in `buildSeoHead`, che emette solo ciò che varia per lingua.
+      **Il meta non va rimosso: Google revoca la proprietà se il tag
+      sparisce**, e con essa l'accesso ai dati di Search Console.
+      Compare sulle 10 pagine generate dai template; `404.html` e il
+      fallback di `/` sono scritti a mano da `build404()` e
+      `buildRootFallback()` e non lo hanno — sono `noindex` e non servono
+      alla verifica. Non va in `sitemap.xml`, non si referenzia da nessuna
+      parte e non tocca la CSP: è un `<meta>` inerte.
+      **Tipo di proprietà: cinque proprietà a prefisso URL, una per
+      lingua** (`/it/`, `/en/`, `/de/`, `/fr/`, `/es/`). Non una proprietà
+      di dominio, e non una sola proprietà sulla radice, per due ragioni
+      indipendenti: la radice risponde `302` senza body
+      (`functions/index.js` negozia `Accept-Language`), quindi non c'è
+      nessun `<head>` in cui leggere il tag; e una proprietà di dominio
+      richiederebbe un record TXT sulla root `aurabeauty.app`, che
+      appartiene alla webapp — oltre al fatto che `info` è un CNAME verso
+      Cloudflare Pages, e un TXT sullo stesso nome di un CNAME non è una
+      configurazione valida. Il meta è già su tutte e dieci le pagine,
+      quindi le cinque proprietà si verificano senza altre modifiche.
+      **Conseguenza da tenere a mente: i rapporti di Search Console sono
+      divisi per lingua, non aggregati.** Copertura, query e prestazioni
+      vanno lette una proprietà alla volta; non esiste un totale di sito.
+      **La sitemap non è inviabile a mano.** `sitemap.xml` è emessa nella
+      radice (`https://info.aurabeauty.app/sitemap.xml`) e contiene tutte e
+      dieci le URL: sta quindi fuori dal percorso di ciascuna delle cinque
+      proprietà a prefisso, e il rapporto Sitemap non l'accetta in nessuna.
+      La scoperta avviene però via `robots.txt`, che la dichiara, e
+      prescinde dalle proprietà: **il crawling funziona, si perde solo il
+      rapporto di stato per-sitemap.** Le singole URL restano ispezionabili
+      con Controllo URL. Se in futuro servisse l'invio manuale, la strada
+      sono cinque sitemap per lingua (`/it/sitemap.xml` e così via) oppure
+      una sitemap-index, con modifiche a `buildSitemapXml()` e
+      `buildRobotsTxt()`. Non fatto oggi di proposito: complessità
+      permanente nel build in cambio di un vantaggio diagnostico marginale
+      su dieci URL. Si rivaluta se il sito cresce.
 
 ## Vincoli da non violare
 
