@@ -3,14 +3,14 @@ const translations = {
     a11y: { skip: "Skip to content", navToggle: "Open menu", langSelect: "Choose language" },
     alt: { team: "The AURA team" },
     seo: {
-      title: "Get more clients for your med spa or beauty salon | AURA",
-      description: "AURA finds new clients for med spas, beauty salons, aesthetic clinics and pharmacies: AI-built Meta and Instagram campaigns, lead handling and bookings.",
-      ogImageAlt: "AURA — new clients for med spas, beauty salons and clinics"
+      title: "New clients for advanced aesthetic clinics | AURA",
+      description: "AURA brings new clients to advanced aesthetic clinics, medtech centers and pharmacies: Meta and Instagram campaigns for laser, body contouring and PMU.",
+      ogImageAlt: "AURA — new clients for advanced aesthetic clinics and pharmacies"
     },
     jsonld: {
-      serviceName: "Client acquisition for med spas and beauty salons",
-      serviceDescription: "Meta and Instagram advertising campaigns, lead handling and qualification, appointment booking, reactivation of dormant clients and upselling for med spas, beauty salons, aesthetic clinics, pharmacies and medical practices.",
-      audienceType: "Med spas, beauty salons, day spas, aesthetic and medical clinics, pharmacies and wellness centers"
+      serviceName: "Client acquisition for advanced aesthetic and laser clinics",
+      serviceDescription: "Meta and Instagram advertising campaigns, lead handling and qualification, appointment booking, reactivation of dormant clients and upselling for advanced aesthetic clinics, medtech centers, pharmacies and medical practices.",
+      audienceType: "Advanced aesthetic clinics, laser hair removal centers, medtech centers, permanent make-up studios, pharmacies, medical practices and aesthetic medicine clinics"
     },
     notFound: {
       title: "Page not found | AURA",
@@ -18,11 +18,11 @@ const translations = {
     },
     nav: { home: "Home", chisiamo: "About AURA", servizi: "Services", perche: "Why AURA", cta: "Request a demo" },
     hero: {
-      eyebrow: "AI for the beauty & health industry",
+      eyebrow: "Advanced aesthetics, medtech, pharmacies",
       title_pre: "The artificial intelligence that turns marketing into ",
       title_grad: "appointments, clients, and revenue",
       title_post: "",
-      lead: "AURA is the artificial intelligence ecosystem designed to help beauty centers, beauty salons, med spas, pharmacies, medical practices, and beauty-industry businesses find new clients, manage contacts, and increase sales.",
+      lead: "AURA is the artificial intelligence ecosystem designed to help advanced aesthetic clinics, medtech centers, pharmacies, and medical practices find new clients, manage contacts, and increase sales.",
       sub: "It isn't just a chatbot, and it isn't only a tool for creating content. AURA supports your business through every stage of the sales journey: from building the advertising campaign to booking the appointment, including lead management, follow-ups, and reactivating clients already in your database.",
       tagline: "More automation. More control. More sales opportunities.",
       cta1: "Discover AURA",
@@ -52,7 +52,7 @@ const translations = {
     diffh4: { title: "Deep market intelligence", p: "AURA analyzes thousands of campaigns every day, staying constantly up to date with what's working in the market." },
     feature1: {
       title: "Creates advertising campaigns",
-      p: "AURA analyzes your goal and guides you in choosing the best strategy to promote facial and body treatments, hair removal, massages, body-contouring and anti-cellulite programs, open days, and other commercial initiatives.",
+      p: "AURA analyzes your goal and guides you in choosing the best strategy to promote laser hair removal, cryolipolysis, T-Shape and T-Face, radiofrequency, permanent make-up, open days, and other commercial initiatives.",
       listlabel: "It can generate:",
       list: ["promotional strategies", "offers and positioning", "copy for Meta and Instagram campaigns", "images and creative content", "cinematic-quality video ads", "WhatsApp messages and follow-ups"],
       note: "You no longer start from a blank page. You start from a strategy."
@@ -71,7 +71,7 @@ const translations = {
       p: "Artificial intelligence automates repetitive tasks, but you always define the goals, offers, budget, and priorities. You can monitor campaigns, review the leads generated, track how conversations are going, and step in whenever your team's support is needed.",
       highlight: "AURA doesn't replace the human value of your business. It makes it more effective."
     },
-    why: { title: "Why med spas and salons choose AURA" },
+    why: { title: "Why advanced aesthetic clinics choose AURA" },
     why1: { title: "Faster responses", p: "New contacts get information without having to wait for the center to open." },
     why2: { title: "Less manual work", p: "Messages, content, follow-ups, and repetitive tasks can be handled automatically." },
     why3: { title: "Greater commercial continuity", p: "Every lead is guided through a structured process, without being forgotten." },
@@ -229,14 +229,14 @@ const translations = {
     a11y: { skip: "Vai al contenuto", navToggle: "Apri il menu", langSelect: "Scegli la lingua" },
     alt: { team: "Il team AURA" },
     seo: {
-      title: "Nuovi clienti per centri estetici e saloni | AURA",
-      description: "AURA trova nuovi clienti per centri estetici, saloni di bellezza, spa, farmacie e studi medici: campagne Meta e Instagram, gestione lead e prenotazioni.",
-      ogImageAlt: "AURA — nuovi clienti per centri estetici, saloni di bellezza e spa"
+      title: "Nuovi clienti per centri di estetica avanzata | AURA",
+      description: "AURA porta nuovi clienti a centri di estetica avanzata e farmacie: campagne Meta e Instagram per laser, criolipolisi, T-Shape e permanent make up.",
+      ogImageAlt: "AURA — nuovi clienti per centri di estetica avanzata e farmacie"
     },
     jsonld: {
-      serviceName: "Acquisizione clienti per centri estetici e saloni di bellezza",
-      serviceDescription: "Campagne pubblicitarie su Meta e Instagram, gestione e qualifica dei nuovi contatti, prenotazione degli appuntamenti, riattivazione dei clienti inattivi e upselling per centri estetici, saloni di bellezza, spa, farmacie e studi medici.",
-      audienceType: "Centri estetici, saloni di bellezza, spa, beauty farm, centri benessere, farmacie, studi medici e cliniche di medicina estetica"
+      serviceName: "Acquisizione clienti per centri di estetica avanzata",
+      serviceDescription: "Campagne pubblicitarie su Meta e Instagram, gestione e qualifica dei nuovi contatti, prenotazione degli appuntamenti, riattivazione dei clienti inattivi e upselling per centri di estetica avanzata, centri medtech, farmacie e studi medici.",
+      audienceType: "Centri di estetica avanzata, centri di epilazione laser, centri medtech, studi di permanent make up, farmacie, studi medici e cliniche di medicina estetica"
     },
     notFound: {
       title: "Pagina non trovata | AURA",
@@ -244,11 +244,11 @@ const translations = {
     },
     nav: { home: "Home", chisiamo: "Chi è AURA", servizi: "Servizi", perche: "Perché AURA", cta: "Richiedi una demo" },
     hero: {
-      eyebrow: "AI per il settore beauty & health",
+      eyebrow: "Estetica avanzata, medtech, farmacie",
       title_pre: "L'intelligenza artificiale che trasforma il marketing in ",
       title_grad: "appuntamenti, clienti e fatturato",
       title_post: "",
-      lead: "AURA è l'ecosistema di intelligenza artificiale progettato per aiutare centri estetici, saloni di bellezza, spa, farmacie, studi medici e attività del settore beauty a trovare nuovi clienti, gestire i contatti e aumentare le vendite.",
+      lead: "AURA è l'ecosistema di intelligenza artificiale progettato per aiutare centri di estetica avanzata, centri medtech, farmacie e studi medici a trovare nuovi clienti, gestire i contatti e aumentare le vendite.",
       sub: "Non è un semplice chatbot e non è solamente uno strumento per creare contenuti. AURA affianca la tua attività in tutte le fasi del percorso commerciale: dalla creazione della campagna pubblicitaria fino alla prenotazione dell'appuntamento, passando per la gestione del lead, i follow-up e la riattivazione dei clienti già presenti nel tuo database.",
       tagline: "Più automazione. Più controllo. Più opportunità di vendita.",
       cta1: "Scopri AURA",
@@ -278,7 +278,7 @@ const translations = {
     diffh4: { title: "Conoscenza profonda del mercato", p: "AURA analizza migliaia di campagne ogni giorno, restando costantemente aggiornata su ciò che funziona nel mercato." },
     feature1: {
       title: "Crea campagne pubblicitarie",
-      p: "AURA analizza il tuo obiettivo e ti guida nella scelta della strategia più adatta per promuovere trattamenti viso, corpo, epilazione, massaggi, percorsi di rimodellamento e anticellulite, open day e altre iniziative commerciali.",
+      p: "AURA analizza il tuo obiettivo e ti guida nella scelta della strategia più adatta per promuovere epilazione laser, criolipolisi, T-Shape e T-Face, radiofrequenza, permanent make up, open day e altre iniziative commerciali.",
       listlabel: "Può generare:",
       list: ["strategie promozionali", "offerte e posizionamento", "copy per campagne Meta e Instagram", "immagini e contenuti creativi", "video pubblicitari di qualità cinematografica", "messaggi WhatsApp e follow-up"],
       note: "Non parti più da una pagina bianca. Parti da una strategia."
@@ -297,7 +297,7 @@ const translations = {
       p: "L'intelligenza artificiale automatizza le attività ripetitive, ma sei sempre tu a definire obiettivi, offerte, budget e priorità. Puoi monitorare le campagne, verificare i contatti generati, controllare l'andamento delle conversazioni e intervenire quando è necessario il supporto del tuo team.",
       highlight: "AURA non sostituisce il valore umano della tua attività. Lo rende più efficace."
     },
-    why: { title: "Perché i centri estetici scelgono AURA" },
+    why: { title: "Perché i centri di estetica avanzata scelgono AURA" },
     why1: { title: "Risposte più rapide", p: "I nuovi contatti ricevono informazioni senza dover attendere l'apertura del centro." },
     why2: { title: "Meno lavoro manuale", p: "Messaggi, contenuti, follow-up e attività ripetitive possono essere gestiti in automazione." },
     why3: { title: "Maggiore continuità commerciale", p: "Ogni lead viene accompagnato attraverso un processo strutturato, senza essere dimenticato." },
@@ -455,14 +455,14 @@ const translations = {
     a11y: { skip: "Zum Inhalt springen", navToggle: "Menü öffnen", langSelect: "Sprache wählen" },
     alt: { team: "Das AURA-Team" },
     seo: {
-      title: "Neue Kunden für Kosmetikstudios und Beauty-Salons | AURA",
-      description: "AURA gewinnt neue Kunden für Kosmetikstudios, Beauty-Salons, Spas, Apotheken und Praxen: Meta- und Instagram-Kampagnen, Lead-Handling und Terminbuchung.",
-      ogImageAlt: "AURA – neue Kunden für Kosmetikstudios, Beauty-Salons und Spas"
+      title: "Neue Kunden für apparative Kosmetik und Praxen | AURA",
+      description: "AURA gewinnt neue Kunden für Institute für apparative Kosmetik und Apotheken: Meta- und Instagram-Kampagnen für Laser, Bodyforming und Permanent Make-up.",
+      ogImageAlt: "AURA – neue Kunden für apparative Kosmetik und Apotheken"
     },
     jsonld: {
-      serviceName: "Neukundengewinnung für Kosmetikstudios und Beauty-Salons",
-      serviceDescription: "Werbekampagnen auf Meta und Instagram, Lead-Handling und Qualifizierung, Terminbuchung, Reaktivierung inaktiver Kunden und Upselling für Kosmetikstudios, Beauty-Salons, Spas, Apotheken und Arztpraxen.",
-      audienceType: "Kosmetikstudios, Beauty-Salons, Spas, Wellness-Zentren, Apotheken, Arztpraxen und Kliniken für ästhetische Medizin"
+      serviceName: "Neukundengewinnung für Institute für apparative Kosmetik",
+      serviceDescription: "Werbekampagnen auf Meta und Instagram, Lead-Handling und Qualifizierung, Terminbuchung, Reaktivierung inaktiver Kunden und Upselling für Institute für apparative Kosmetik, Medtech-Zentren, Apotheken und Arztpraxen.",
+      audienceType: "Institute für apparative Kosmetik, Laser-Haarentfernungsstudios, Medtech-Zentren, Permanent-Make-up-Studios, Apotheken, Arztpraxen und Kliniken für ästhetische Medizin"
     },
     notFound: {
       title: "Seite nicht gefunden | AURA",
@@ -470,11 +470,11 @@ const translations = {
     },
     nav: { home: "Startseite", chisiamo: "Über AURA", servizi: "Leistungen", perche: "Warum AURA", cta: "Demo anfordern" },
     hero: {
-      eyebrow: "KI für Beauty & Gesundheit",
+      eyebrow: "Apparative Kosmetik, Medtech, Apotheken",
       title_pre: "Die künstliche Intelligenz, die Marketing in ",
       title_grad: "Termine, Kunden und Umsatz",
       title_post: " verwandelt",
-      lead: "AURA ist das Ökosystem künstlicher Intelligenz, das Kosmetikstudios, Beauty-Salons, Spas, Apotheken, Arztpraxen und Unternehmen der Beauty-Branche dabei unterstützt, neue Kunden zu gewinnen, Kontakte zu verwalten und den Umsatz zu steigern.",
+      lead: "AURA ist das Ökosystem künstlicher Intelligenz, das Institute für apparative Kosmetik, Medtech-Zentren, Apotheken und Arztpraxen dabei unterstützt, neue Kunden zu gewinnen, Kontakte zu verwalten und den Umsatz zu steigern.",
       sub: "AURA ist weder ein einfacher Chatbot noch nur ein Tool zur Content-Erstellung. AURA begleitet Ihr Unternehmen in jeder Phase der Vertriebsstrecke: von der Erstellung der Werbekampagne bis zur Terminbuchung, einschließlich Lead-Management, Follow-ups und Reaktivierung bereits vorhandener Kunden in Ihrer Datenbank.",
       tagline: "Mehr Automatisierung. Mehr Kontrolle. Mehr Verkaufschancen.",
       cta1: "AURA entdecken",
@@ -504,7 +504,7 @@ const translations = {
     diffh4: { title: "Tiefe Marktintelligenz", p: "AURA analysiert täglich Tausende von Kampagnen und bleibt so stets auf dem neuesten Stand dessen, was auf dem Markt funktioniert." },
     feature1: {
       title: "Erstellt Werbekampagnen",
-      p: "AURA analysiert Ihr Ziel und unterstützt Sie bei der Wahl der passenden Strategie zur Bewerbung von Gesichts- und Körperbehandlungen, Haarentfernung, Massagen, Body-Contouring- und Anti-Cellulite-Programmen, Tagen der offenen Tür und anderen kommerziellen Initiativen.",
+      p: "AURA analysiert Ihr Ziel und unterstützt Sie bei der Wahl der passenden Strategie zur Bewerbung von Laser-Haarentfernung, Kryolipolyse, T-Shape und T-Face, Radiofrequenz, Permanent Make-up, Tagen der offenen Tür und anderen kommerziellen Initiativen.",
       listlabel: "Kann Folgendes erstellen:",
       list: ["Werbestrategien", "Angebote und Positionierung", "Copy für Meta- und Instagram-Kampagnen", "Bilder und kreative Inhalte", "Werbevideos in Kinoqualität", "WhatsApp-Nachrichten und Follow-ups"],
       note: "Sie starten nicht mehr bei null. Sie starten mit einer Strategie."
@@ -523,7 +523,7 @@ const translations = {
       p: "Künstliche Intelligenz automatisiert wiederkehrende Aufgaben, aber Sie legen immer Ziele, Angebote, Budget und Prioritäten fest. Sie können Kampagnen überwachen, generierte Kontakte prüfen, den Verlauf der Gespräche verfolgen und eingreifen, wann immer die Unterstützung Ihres Teams gefragt ist.",
       highlight: "AURA ersetzt nicht den menschlichen Wert Ihres Unternehmens. Es macht ihn wirksamer."
     },
-    why: { title: "Warum Kosmetikstudios AURA wählen" },
+    why: { title: "Warum Institute für apparative Kosmetik AURA wählen" },
     why1: { title: "Schnellere Antworten", p: "Neue Kontakte erhalten Informationen, ohne auf die Öffnung des Zentrums warten zu müssen." },
     why2: { title: "Weniger manuelle Arbeit", p: "Nachrichten, Inhalte, Follow-ups und wiederkehrende Aufgaben lassen sich automatisieren." },
     why3: { title: "Mehr kommerzielle Kontinuität", p: "Jeder Lead wird durch einen strukturierten Prozess begleitet, ohne vergessen zu werden." },
@@ -681,14 +681,14 @@ const translations = {
     a11y: { skip: "Aller au contenu", navToggle: "Ouvrir le menu", langSelect: "Choisir la langue" },
     alt: { team: "L'équipe AURA" },
     seo: {
-      title: "Nouveaux clients pour instituts de beauté et spas | AURA",
-      description: "AURA trouve de nouveaux clients pour instituts de beauté, salons, spas, pharmacies et cabinets : campagnes Meta et Instagram, gestion des leads et RDV.",
-      ogImageAlt: "AURA — de nouveaux clients pour instituts de beauté, salons et spas"
+      title: "Nouveaux clients pour l'esthétique avancée | AURA",
+      description: "AURA amène de nouveaux clients aux centres d'esthétique avancée et pharmacies : campagnes Meta et Instagram pour laser, amincissement et maquillage permanent.",
+      ogImageAlt: "AURA — de nouveaux clients pour l'esthétique avancée et les pharmacies"
     },
     jsonld: {
-      serviceName: "Acquisition de clients pour instituts de beauté et spas",
-      serviceDescription: "Campagnes publicitaires sur Meta et Instagram, gestion et qualification des leads, prise de rendez-vous, réactivation des clients inactifs et upselling pour instituts de beauté, salons de beauté, spas, pharmacies et cabinets médicaux.",
-      audienceType: "Instituts de beauté, salons de beauté, spas, centres de bien-être, pharmacies, cabinets médicaux et cliniques de médecine esthétique"
+      serviceName: "Acquisition de clients pour centres d'esthétique avancée",
+      serviceDescription: "Campagnes publicitaires sur Meta et Instagram, gestion et qualification des leads, prise de rendez-vous, réactivation des clients inactifs et upselling pour centres d'esthétique avancée, centres medtech, pharmacies et cabinets médicaux.",
+      audienceType: "Centres d'esthétique avancée, centres d'épilation laser, centres medtech, studios de maquillage permanent, pharmacies, cabinets médicaux et cliniques de médecine esthétique"
     },
     notFound: {
       title: "Page introuvable | AURA",
@@ -696,11 +696,11 @@ const translations = {
     },
     nav: { home: "Accueil", chisiamo: "À propos d'AURA", servizi: "Services", perche: "Pourquoi AURA", cta: "Demander une démo" },
     hero: {
-      eyebrow: "L'IA pour le secteur beauté & santé",
+      eyebrow: "Esthétique avancée, medtech, pharmacies",
       title_pre: "L'intelligence artificielle qui transforme le marketing en ",
       title_grad: "rendez-vous, clients et chiffre d'affaires",
       title_post: "",
-      lead: "AURA est l'écosystème d'intelligence artificielle conçu pour aider les instituts de beauté, salons de beauté, spas, pharmacies, cabinets médicaux et entreprises du secteur beauté à trouver de nouveaux clients, gérer les contacts et augmenter les ventes.",
+      lead: "AURA est l'écosystème d'intelligence artificielle conçu pour aider les centres d'esthétique avancée, centres medtech, pharmacies et cabinets médicaux à trouver de nouveaux clients, gérer les contacts et augmenter les ventes.",
       sub: "Ce n'est pas un simple chatbot, ni seulement un outil de création de contenu. AURA accompagne votre activité à chaque étape du parcours commercial : de la création de la campagne publicitaire à la prise de rendez-vous, en passant par la gestion des leads, les relances et la réactivation des clients déjà présents dans votre base de données.",
       tagline: "Plus d'automatisation. Plus de contrôle. Plus d'opportunités de vente.",
       cta1: "Découvrir AURA",
@@ -730,7 +730,7 @@ const translations = {
     diffh4: { title: "Une connaissance approfondie du marché", p: "AURA analyse des milliers de campagnes chaque jour, restant constamment à jour sur ce qui fonctionne sur le marché." },
     feature1: {
       title: "Crée des campagnes publicitaires",
-      p: "AURA analyse votre objectif et vous guide dans le choix de la stratégie la plus adaptée pour promouvoir les soins du visage et du corps, l'épilation, les massages, les programmes de remodelage corporel et anti-cellulite, les journées portes ouvertes et autres initiatives commerciales.",
+      p: "AURA analyse votre objectif et vous guide dans le choix de la stratégie la plus adaptée pour promouvoir l'épilation laser, la cryolipolyse, le T-Shape et le T-Face, la radiofréquence, le maquillage permanent, les journées portes ouvertes et autres initiatives commerciales.",
       listlabel: "Elle peut générer :",
       list: ["des stratégies promotionnelles", "des offres et un positionnement", "des textes pour les campagnes Meta et Instagram", "des images et contenus créatifs", "des vidéos publicitaires de qualité cinématographique", "des messages WhatsApp et relances"],
       note: "Vous ne partez plus d'une page blanche. Vous partez d'une stratégie."
@@ -749,7 +749,7 @@ const translations = {
       p: "L'intelligence artificielle automatise les tâches répétitives, mais c'est toujours vous qui définissez les objectifs, les offres, le budget et les priorités. Vous pouvez suivre les campagnes, vérifier les contacts générés, contrôler le déroulement des conversations et intervenir chaque fois que le soutien de votre équipe est nécessaire.",
       highlight: "AURA ne remplace pas la valeur humaine de votre activité. Elle la rend plus efficace."
     },
-    why: { title: "Pourquoi les instituts de beauté choisissent AURA" },
+    why: { title: "Pourquoi les centres d'esthétique avancée choisissent AURA" },
     why1: { title: "Réponses plus rapides", p: "Les nouveaux contacts reçoivent des informations sans attendre l'ouverture du centre." },
     why2: { title: "Moins de travail manuel", p: "Messages, contenus, relances et tâches répétitives peuvent être gérés automatiquement." },
     why3: { title: "Une meilleure continuité commerciale", p: "Chaque lead est accompagné à travers un processus structuré, sans être oublié." },
@@ -907,14 +907,14 @@ const translations = {
     a11y: { skip: "Ir al contenido", navToggle: "Abrir el menú", langSelect: "Elegir idioma" },
     alt: { team: "El equipo AURA" },
     seo: {
-      title: "Nuevos clientes para centros de estética y salones | AURA",
-      description: "AURA capta nuevos clientes para centros de estética, salones de belleza, spas, farmacias y clínicas: campañas en Meta e Instagram, leads y reservas.",
-      ogImageAlt: "AURA — nuevos clientes para centros de estética, salones y spas"
+      title: "Nuevos clientes para estética avanzada | AURA",
+      description: "AURA capta nuevos clientes para centros de estética avanzada y farmacias: campañas en Meta e Instagram para láser, remodelación corporal y micropigmentación.",
+      ogImageAlt: "AURA — nuevos clientes para estética avanzada y farmacias"
     },
     jsonld: {
-      serviceName: "Captación de clientes para centros de estética y salones de belleza",
-      serviceDescription: "Campañas publicitarias en Meta e Instagram, gestión y cualificación de leads, reserva de citas, reactivación de clientes inactivos y upselling para centros de estética, salones de belleza, spas, farmacias y clínicas.",
-      audienceType: "Centros de estética, salones de belleza, spas, centros de bienestar, farmacias, clínicas médicas y de medicina estética"
+      serviceName: "Captación de clientes para centros de estética avanzada",
+      serviceDescription: "Campañas publicitarias en Meta e Instagram, gestión y cualificación de leads, reserva de citas, reactivación de clientes inactivos y upselling para centros de estética avanzada, centros medtech, farmacias y clínicas médicas.",
+      audienceType: "Centros de estética avanzada, centros de depilación láser, centros medtech, estudios de micropigmentación, farmacias, clínicas médicas y de medicina estética"
     },
     notFound: {
       title: "Página no encontrada | AURA",
@@ -922,11 +922,11 @@ const translations = {
     },
     nav: { home: "Inicio", chisiamo: "Sobre AURA", servizi: "Servicios", perche: "Por qué AURA", cta: "Solicitar una demo" },
     hero: {
-      eyebrow: "IA para el sector belleza y salud",
+      eyebrow: "Estética avanzada, medtech, farmacias",
       title_pre: "La inteligencia artificial que convierte el marketing en ",
       title_grad: "citas, clientes y facturación",
       title_post: "",
-      lead: "AURA es el ecosistema de inteligencia artificial diseñado para ayudar a centros de estética, salones de belleza, spas, farmacias, clínicas médicas y negocios del sector belleza a encontrar nuevos clientes, gestionar los contactos y aumentar las ventas.",
+      lead: "AURA es el ecosistema de inteligencia artificial diseñado para ayudar a centros de estética avanzada, centros medtech, farmacias y clínicas médicas a encontrar nuevos clientes, gestionar los contactos y aumentar las ventas.",
       sub: "No es un simple chatbot ni solo una herramienta para crear contenido. AURA acompaña a tu negocio en todas las fases del proceso comercial: desde la creación de la campaña publicitaria hasta la reserva de la cita, pasando por la gestión de leads, los seguimientos y la reactivación de los clientes ya presentes en tu base de datos.",
       tagline: "Más automatización. Más control. Más oportunidades de venta.",
       cta1: "Descubre AURA",
@@ -956,7 +956,7 @@ const translations = {
     diffh4: { title: "Conocimiento profundo del mercado", p: "AURA analiza miles de campañas cada día, manteniéndose siempre al día de lo que funciona en el mercado." },
     feature1: {
       title: "Crea campañas publicitarias",
-      p: "AURA analiza tu objetivo y te guía en la elección de la estrategia más adecuada para promocionar tratamientos faciales y corporales, depilación, masajes, programas de remodelado corporal y anticelulíticos, jornadas de puertas abiertas y otras iniciativas comerciales.",
+      p: "AURA analiza tu objetivo y te guía en la elección de la estrategia más adecuada para promocionar la depilación láser, la criolipólisis, el T-Shape y el T-Face, la radiofrecuencia, la micropigmentación, las jornadas de puertas abiertas y otras iniciativas comerciales.",
       listlabel: "Puede generar:",
       list: ["estrategias promocionales", "ofertas y posicionamiento", "copy para campañas de Meta e Instagram", "imágenes y contenidos creativos", "vídeos publicitarios de calidad cinematográfica", "mensajes de WhatsApp y seguimientos"],
       note: "Ya no partes de una página en blanco. Partes de una estrategia."
@@ -975,7 +975,7 @@ const translations = {
       p: "La inteligencia artificial automatiza las tareas repetitivas, pero siempre eres tú quien define objetivos, ofertas, presupuesto y prioridades. Puedes supervisar las campañas, revisar los contactos generados, controlar el desarrollo de las conversaciones e intervenir cuando sea necesario el apoyo de tu equipo.",
       highlight: "AURA no sustituye el valor humano de tu negocio. Lo hace más eficaz."
     },
-    why: { title: "Por qué los centros de estética eligen AURA" },
+    why: { title: "Por qué los centros de estética avanzada eligen AURA" },
     why1: { title: "Respuestas más rápidas", p: "Los nuevos contactos reciben información sin tener que esperar a que abra el centro." },
     why2: { title: "Menos trabajo manual", p: "Mensajes, contenidos, seguimientos y tareas repetitivas pueden gestionarse de forma automática." },
     why3: { title: "Mayor continuidad comercial", p: "Cada lead se acompaña a través de un proceso estructurado, sin quedar olvidado." },

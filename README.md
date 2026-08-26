@@ -138,9 +138,33 @@ il privilegio di riceverlo.
 funzionalità secondaria e per AURA è il prodotto intero. È l'unica query dove
 la concorrenza è debole perché è l'unica dove noi siamo la risposta migliore.
 
+### Il target: estetica avanzata, non saloni
+
+Il cliente di AURA è un **centro di estetica avanzata con macchinari** —
+epilazione laser, criolipolisi, T-Shape, T-Face, radiofrequenza, permanent
+make up — più i **centri medtech**, le **farmacie** e gli **studi medici**.
+**Non** è un salone di bellezza, non è una spa, non è una beauty farm.
+
+La differenza non è di sfumatura, è economica. Chi ha immobilizzato decine di
+migliaia di euro in apparecchiature ha un costo fisso da ammortizzare e sedute
+da riempire: per lui un lead qualificato ha un valore calcolabile, ed è
+disposto a pagarlo. Un salone che vende manicure e massaggi non ha quel
+problema, quindi non ha quel budget. Sono due mercati, non due segmenti dello
+stesso mercato.
+
+**I nomi dei trattamenti vivono solo nel corpo, mai nel title e mai negli
+heading.** La ragione è la stessa del gestionale, ribaltata: chi cerca
+«criolipolisi» è un consumatore che vuole il trattamento, non il titolare che
+compra AURA. Ottimizzare un title su quei nomi porterebbe traffico consumer in
+volume, che rimbalza subito e affossa il ranking della pagina anche per le
+query B2B che contano. In `feature1.p` i nomi ci stanno perché lì descrivono
+che cosa AURA promuove *per conto del centro*: sono una prova di competenza di
+settore rivolta al titolare, non un'esca per chi cerca il trattamento.
+Il lettore da convincere è sempre e solo il **titolare**.
+
 **Conseguenza operativa.** `seo.title`, `seo.description` e gli heading usano
 il vocabolario del *problema del cliente* — nuovi clienti, acquisizione
-clienti, centri estetici, saloni di bellezza, spa — e non quello della
+clienti, centri di estetica avanzata — e non quello della
 *tecnologia*. Il title precedente era «AURA | Intelligenza artificiale per
 centri estetici e beauty» e puntava su una ricerca che quasi nessuno fa: chi ha
 l'agenda vuota cerca il proprio problema, non lo strumento che lo risolve.
@@ -148,6 +172,13 @@ l'agenda vuota cerca il proprio problema, non lo strumento che lo risolve.
 
 ### Parole tenute deliberatamente fuori
 
+- **`salone di bellezza`**, **`spa`** e **`beauty farm`** — con i loro
+  equivalenti nelle altre quattro lingue, e l'inglese **`med spa`** quando
+  indica il tipo di attività — sono stati rimossi il **2026-08-26** dopo una
+  correzione del target, da title, description, `ogImageAlt`, corpo, JSON-LD e
+  `llms.txt`. Descrivevano un pubblico che non compra AURA. **Non
+  reintrodurli**: allargano l'imbuto verso persone senza il problema che AURA
+  risolve, e ogni parola spesa per loro è segnale tolto al target vero.
 - **`no-show`** e **`prenotazioni online`** non compaiono da nessuna parte,
   né nel corpo né negli heading né nel JSON-LD. Descriverebbero funzioni che
   il testo non promette: la pagina dice che AURA «porta il cliente verso la
