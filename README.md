@@ -170,6 +170,36 @@ centri estetici e beauty» e puntava su una ricerca che quasi nessuno fa: chi ha
 l'agenda vuota cerca il proprio problema, non lo strumento che lo risolve.
 **Non tornare indietro su questo.**
 
+### L'occhiello della hero
+
+`hero.eyebrow` diceva «AI per il settore beauty & health». È stato
+riassegnato ai tipi di attività target — «Estetica avanzata, medtech,
+farmacie» e paralleli — per due ragioni che dal risultato non si vedono.
+
+La prima: era **l'ultimo catch-all rimasto in produzione**, e per giunta nella
+prima riga di testo della pagina. Aver ripulito title, description, corpo e
+JSON-LD lasciando «settore beauty» sopra l'`<h1>` sarebbe stato ripulire
+tutto tranne il punto più visibile.
+
+La seconda: **«AI» è stato tolto di proposito, e non va rimesso.** L'`<h1>`
+che sta subito sotto apre già con «L'intelligenza artificiale che trasforma
+il marketing in…», in tutte e cinque le lingue. Con «AI» nell'occhiello il
+lettore riceveva il nome della tecnologia due volte nelle prime due righe,
+prima che la pagina gli avesse detto una sola cosa su di sé. La divisione dei
+ruoli corretta è **occhiello = per chi, h1 = che cosa fa**: l'occhiello è
+l'unico posto sopra la piega in cui il pubblico può riconoscersi prima di
+`hero.lead`, che è il terzo blocco. Chi legge «Estetica avanzata, medtech,
+farmacie» e pensa che manchi «AI» sta guardando l'occhiello senza l'h1.
+
+**Verificato su render**, non calcolato: a viewport reale di 320px l'occhiello
+va su due righe in tutte e cinque le lingue, mai tre, senza sovrapporsi
+all'`<h1>`. Nota metodologica per chi rifarà la prova: `--window-size=320`
+in Chrome o Edge headless **non** produce un viewport da 320px — entrambi
+impongono una larghezza minima di finestra (~492px con Edge, 500px con
+Chrome) e lo screenshot esce semplicemente ritagliato, il che simula un
+traboccamento orizzontale inesistente. Per un viewport davvero stretto serve
+un `<iframe width="320">` dentro una pagina più larga.
+
 ### Parole tenute deliberatamente fuori
 
 - **`salone di bellezza`**, **`spa`** e **`beauty farm`** — con i loro
